@@ -7,13 +7,13 @@ public class Player : MonoBehaviour
 {
     ThirdPersonController thirdPersonController;
     private StarterAssetsInputs _input;
-    private Grid grid;
+    private GridBuildingSystem gridBuildingSystem;
     // Start is called before the first frame update
     void Start()
     {
         thirdPersonController = GetComponent<ThirdPersonController>();
+        gridBuildingSystem = FindFirstObjectByType<GridBuildingSystem>();
         _input = GetComponent<StarterAssetsInputs>();
-        grid = new Grid(10, 20, 2f, new Vector3(0, 0, 0));
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     {
         if (_input.confirm)
         {
-            grid.SetValue(thirdPersonController.mouseWorldPosition, 56);
+            gridBuildingSystem.SpawnStructure(thirdPersonController.mouseWorldPosition);
             _input.confirm = false;
         }
     }
