@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -75,6 +75,14 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Tooltip("For determining mouse world position")]
+        public LayerMask aimColliderLayerMask = new LayerMask();
+
+        [Tooltip("Debug")]
+        public Vector3 mouseWorldPosition = Vector3.zero;
+        [Tooltip("Debug")]
+        public RaycastHit hit;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -135,7 +143,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -159,6 +167,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            updateMouseWorldPosition();
         }
 
         private void LateUpdate()
@@ -387,6 +396,23 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        private void updateMouseWorldPosition()
+        {
+
+            Vector2 screenCentrePoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            Ray ray = Camera.main.ScreenPointToRay(screenCentrePoint);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask)) { }
+            {
+                hit = raycastHit;
+                mouseWorldPosition = raycastHit.point;
+            }
+        }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(mouseWorldPosition, 0.2f);
         }
     }
 }
