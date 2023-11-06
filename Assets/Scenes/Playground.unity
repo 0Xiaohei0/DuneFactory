@@ -558,12 +558,6 @@ LightProbeGroup:
   - {x: 7.1518564, y: 2.7763042, z: -11.2319765}
   - {x: 8.993203, y: 2.3566551, z: -8.796325}
   m_Dering: 1
---- !u!4 &930644632 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6025988682447340519, guid: 88a34a4f2365bf54bb60400f938bd370,
-    type: 3}
-  m_PrefabInstance: {fileID: 8802159148110657467}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1016642509
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94399d17b0b2ff54ca96cdd1283c75f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testTransform: {fileID: 930644632}
+  placedObjectTypeSO: {fileID: 11400000, guid: 5ad5049d2923a3b46829d0a991460f24, type: 2}
 --- !u!4 &1016642511
 Transform:
   m_ObjectHideFlags: 0
@@ -1982,6 +1976,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345070700224654063, guid: 09aade0ecefd01e4b8f7661acf64f5c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8544373569423216721, guid: 09aade0ecefd01e4b8f7661acf64f5c2,
         type: 3}
