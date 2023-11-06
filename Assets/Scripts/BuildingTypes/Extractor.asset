@@ -15,5 +15,5 @@ MonoBehaviour:
   nameString: Extractor
   prefab: {fileID: 6025988682447340519, guid: 88a34a4f2365bf54bb60400f938bd370, type: 3}
   visual: {fileID: 6025988682447340519, guid: 88a34a4f2365bf54bb60400f938bd370, type: 3}
-  width: 2
-  height: 2
+  width: 1
+  height: 1

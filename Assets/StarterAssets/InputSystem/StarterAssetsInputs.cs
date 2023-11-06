@@ -13,6 +13,8 @@ namespace StarterAssets
         public bool jump;
         public bool sprint;
         public bool confirm;
+        public bool rotate;
+        public bool demolish;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -48,6 +50,14 @@ namespace StarterAssets
         {
             ConfirmInput(value.isPressed);
         }
+        public void OnRotate(InputValue value)
+        {
+            RotateInput(value.isPressed);
+        }
+        public void OnDemolish(InputValue value)
+        {
+            DemolishInput(value.isPressed);
+        }
 #endif
 
 
@@ -73,6 +83,14 @@ namespace StarterAssets
         public void ConfirmInput(bool newConfirmState)
         {
             confirm = newConfirmState;
+        }
+        public void RotateInput(bool newRotateState)
+        {
+            rotate = newRotateState;
+        }
+        public void DemolishInput(bool newDemolishState)
+        {
+            demolish = newDemolishState;
         }
 
         private void OnApplicationFocus(bool hasFocus)
