@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using TMPro;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -75,6 +77,21 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Tooltip("Player follow camera")]
+        public CinemachineVirtualCamera playerFollowCamera;
+
+        [Tooltip("Player follow camera")]
+        public float camMinDistance;
+
+        [Tooltip("Player follow camera")]
+        public float camMaxDistance;
+
+        [Tooltip("Player follow camera")]
+        public float camDefaultDistance;
+
+        [Tooltip("Player follow camera")]
+        public float camScrollSpeed;
+
         [Tooltip("For determining mouse world position")]
         public LayerMask aimColliderLayerMask = new LayerMask();
 
@@ -105,6 +122,8 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+
+        private float _targetCameraDistance;
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -158,6 +177,8 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            _targetCameraDistance = camDefaultDistance;
         }
 
         private void Update()
@@ -168,6 +189,7 @@ namespace StarterAssets
             GroundedCheck();
             Move();
             updateMouseWorldPosition();
+            ZoomCamera();
         }
 
         private void LateUpdate()
@@ -413,6 +435,20 @@ namespace StarterAssets
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawSphere(mouseWorldPosition, 0.2f);
+        }
+
+        private void ZoomCamera()
+        {
+            float camDistance = playerFollowCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance;
+            if (_input.scroll > 10)
+            {
+                _targetCameraDistance = Mathf.Max(camDistance - camScrollSpeed, camMinDistance);
+            }
+            else if (_input.scroll < -10)
+            {
+                _targetCameraDistance = Mathf.Min(camDistance + camScrollSpeed, camMaxDistance);
+            }
+            playerFollowCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = Mathf.Lerp(camDistance, _targetCameraDistance, Time.deltaTime * 15f);
         }
     }
 }
