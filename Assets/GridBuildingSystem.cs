@@ -139,7 +139,6 @@ public class GridBuildingSystem : MonoBehaviour
     private void RotateStructure()
     {
         dir = PlacedObjectTypeSO.GetNextDir(dir);
-        UtilsClass.CreateWorldTextPopup(" " + dir, thirdPersonController.mouseWorldPosition);
     }
 
     private void DemolishStructure()

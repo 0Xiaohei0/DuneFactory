@@ -16,6 +16,7 @@ namespace StarterAssets
         public bool confirm;
         public bool rotate;
         public bool demolish;
+        public bool rightClick;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -63,6 +64,10 @@ namespace StarterAssets
         {
             DemolishInput(value.isPressed);
         }
+        public void OnRightClick(InputValue value)
+        {
+            RightClickInput(value.isPressed);
+        }
 #endif
 
 
@@ -101,10 +106,14 @@ namespace StarterAssets
         {
             demolish = newDemolishState;
         }
+        public void RightClickInput(bool newRightClickState)
+        {
+            rightClick = newRightClickState;
+        }
 
         private void OnApplicationFocus(bool hasFocus)
         {
-            SetCursorState(cursorLocked);
+            //SetCursorState(cursorLocked);
         }
 
         private void SetCursorState(bool newState)

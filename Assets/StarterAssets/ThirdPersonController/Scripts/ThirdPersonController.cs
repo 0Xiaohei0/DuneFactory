@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -75,7 +76,10 @@ namespace StarterAssets
         public float CameraAngleOverride = 0.0f;
 
         [Tooltip("For locking the camera position on all axis")]
-        public bool LockCameraPosition = false;
+        public bool LockCameraPosition = true;
+
+        [Tooltip("For camera sensitivity")]
+        public float cameraSensitivity = 1;
 
         [Tooltip("Player follow camera")]
         public CinemachineVirtualCamera playerFollowCamera;
@@ -190,6 +194,7 @@ namespace StarterAssets
             Move();
             updateMouseWorldPosition();
             ZoomCamera();
+            RotateCamera();
         }
 
         private void LateUpdate()
@@ -229,8 +234,8 @@ namespace StarterAssets
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * cameraSensitivity;
+                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * cameraSensitivity;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -423,8 +428,8 @@ namespace StarterAssets
         private void updateMouseWorldPosition()
         {
 
-            Vector2 screenCentrePoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
-            Ray ray = Camera.main.ScreenPointToRay(screenCentrePoint);
+            Vector2 mousePosition = Input.mousePosition;
+            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask)) { }
             {
                 hit = raycastHit;
@@ -449,6 +454,20 @@ namespace StarterAssets
                 _targetCameraDistance = Mathf.Min(camDistance + camScrollSpeed, camMaxDistance);
             }
             playerFollowCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = Mathf.Lerp(camDistance, _targetCameraDistance, Time.deltaTime * 15f);
+        }
+
+        private void RotateCamera()
+        {
+            if (_input.rightClick)
+            {
+                LockCameraPosition = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                LockCameraPosition = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
     }
 }
