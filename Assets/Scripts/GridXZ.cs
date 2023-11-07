@@ -14,11 +14,11 @@ public class GridXZ<TGridObject>
         public int z;
     }
 
-    private int width;
-    private int height;
-    private float cellSize;
-    private Vector3 originPosition;
-    private TGridObject[,] gridArray;
+    public int width;
+    public int height;
+    public float cellSize;
+    public Vector3 originPosition;
+    public TGridObject[,] gridArray;
 
     public GridXZ(int width, int height, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridObject)
     {

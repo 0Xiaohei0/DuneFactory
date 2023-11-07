@@ -36,7 +36,6 @@ public class BuildingGhost : MonoBehaviour
             visual = null;
         }
 
-        print(GridBuildingSystem.Instance);
         PlacedObjectTypeSO placedObjectTypeSO = GridBuildingSystem.Instance.GetPlacedObjectTypeSO();
 
         if (placedObjectTypeSO != null)

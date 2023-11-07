@@ -118,10 +118,6 @@ public class GridBuildingSystem : MonoBehaviour
             Vector2Int rotationOffset = placedObjectTypeSO.GetRotationOffset(dir);
             Vector3 placedObjectWorldPosition = grid.GetWorldPosition(x, z) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * grid.GetCellSize();
 
-            print(placedObjectWorldPosition);
-            print(new Vector2Int(x, z));
-            print(dir);
-            print(placedObjectTypeSO);
             PlacedObject placedObject = PlacedObject.Create(placedObjectWorldPosition, new Vector2Int(x, z), dir, placedObjectTypeSO);
 
             foreach (Vector2Int gridPosition in gridPositionList)
