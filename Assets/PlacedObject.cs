@@ -32,4 +32,18 @@ public class PlacedObject : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public PlacedObjectTypeSO GetPlacedObjectTypeSO()
+    {
+        return placedObjectTypeSO;
+    }
+    public Vector2Int GetOrigin()
+    {
+        return origin;
+    }
+
+    public PlacedObjectTypeSO.Dir GetDir()
+    {
+        return dir;
+    }
 }

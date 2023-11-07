@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,9 @@ public class PlacedObjectTypeSO : ScriptableObject
     }
 
     public string nameString;
+    [JsonIgnore]
     public Transform prefab;
+    [JsonIgnore]
     public Transform visual;
     public int width;
     public int height;

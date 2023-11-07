@@ -25,10 +25,11 @@ public class GridBuildingSystem : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        int gridWidth = 100;
-        int gridHeight = 100;
+        int gridWidth = 10;
+        int gridHeight = 10;
         float cellSize = 1f;
-        Vector3 origin = new Vector3(-gridWidth / 2 * cellSize, 0, -gridHeight / 2 * cellSize);
+        //Vector3 origin = new Vector3(-gridWidth / 2 * cellSize, 0, -gridHeight / 2 * cellSize);
+        Vector3 origin = Vector3.zero;
         grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, origin, (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
 
         thirdPersonController = FindFirstObjectByType<ThirdPersonController>();
@@ -59,8 +60,8 @@ public class GridBuildingSystem : MonoBehaviour
     public class GridObject
     {
         private GridXZ<GridObject> grid;
-        private int x;
-        private int z;
+        public int x;
+        public int z;
         private PlacedObject placedObject;
 
         public GridObject(GridXZ<GridObject> grid, int x, int z)
