@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57aee7775b75209468c7de0c892dc659, type: 3}
-  m_Name: IronOreDeposit
+  m_Name: Iron Ore Deposit
   m_EditorClassIdentifier: 
   nameString: Iron Ore Deposit
   prefab: {fileID: 6691444833179978045, guid: 6602b31369e725a41b848fb81cf9258f, type: 3}

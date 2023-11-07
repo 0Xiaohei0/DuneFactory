@@ -15,8 +15,8 @@ public class GridBuildingSystem : MonoBehaviour
     public event EventHandler OnObjectPlaced;
 
     public GridXZ<GridObject> grid;
-    [SerializeField] private List<PlacedObjectTypeSO> placedObjectTypeSOList;
-    private PlacedObjectTypeSO placedObjectTypeSO;
+    public List<PlacedObjectTypeSO> placedObjectTypeSOList;
+    public PlacedObjectTypeSO placedObjectTypeSO;
 
     private PlacedObjectTypeSO.Dir dir = PlacedObjectTypeSO.Dir.Down;
     public ThirdPersonController thirdPersonController;

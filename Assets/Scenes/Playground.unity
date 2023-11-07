@@ -3930,9 +3930,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedObjectTypeSOList:
-  - {fileID: 11400000, guid: a1912e896d825054bac621dce80168b6, type: 2}
   - {fileID: 11400000, guid: 5ad5049d2923a3b46829d0a991460f24, type: 2}
+  - {fileID: 11400000, guid: a1912e896d825054bac621dce80168b6, type: 2}
   - {fileID: 11400000, guid: 1b766db6bfb442642952e25c100e94b2, type: 2}
+  placedObjectTypeSO: {fileID: 0}
   thirdPersonController: {fileID: 0}
   _input: {fileID: 0}
 --- !u!4 &1016642511

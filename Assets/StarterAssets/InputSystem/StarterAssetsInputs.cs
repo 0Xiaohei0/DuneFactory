@@ -18,6 +18,7 @@ namespace StarterAssets
         public bool demolish;
         public bool rightClick;
         public bool save;
+        public bool load;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -73,6 +74,10 @@ namespace StarterAssets
         {
             SaveInput(value.isPressed);
         }
+        public void OnLoad(InputValue value)
+        {
+            LoadInput(value.isPressed);
+        }
 #endif
 
 
@@ -118,6 +123,10 @@ namespace StarterAssets
         public void SaveInput(bool newSaveState)
         {
             save = newSaveState;
+        }
+        public void LoadInput(bool newLoadState)
+        {
+            load = newLoadState;
         }
 
         private void OnApplicationFocus(bool hasFocus)
