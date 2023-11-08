@@ -19,6 +19,18 @@ public class PlacedObjectTypeSO : ScriptableObject
         }
     }
 
+    public static Vector2Int GetDirForwardVector(Dir dir)
+    {
+        switch (dir)
+        {
+            default:
+            case Dir.Down: return new Vector2Int(0, -1);
+            case Dir.Left: return new Vector2Int(-1, 0);
+            case Dir.Up: return new Vector2Int(0, +1);
+            case Dir.Right: return new Vector2Int(+1, 0);
+        }
+    }
+
     public enum Dir
     {
         Down,

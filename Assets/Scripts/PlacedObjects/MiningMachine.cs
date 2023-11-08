@@ -8,7 +8,7 @@ public class MiningMachine : PlacedObject, IItemStorage
 
     public event EventHandler OnItemStorageCountChanged;
 
-    private ItemSO miningResourceItem;
+    [SerializeField] private ItemSO miningResourceItem;
 
     [SerializeField] private float miningTimer;
     [SerializeField] private int storedItemCount;
@@ -27,6 +27,7 @@ public class MiningMachine : PlacedObject, IItemStorage
                 if (GridBuildingSystem.Instance.IsValidGridPosition(gridPosition))
                 {
                     PlacedObject placedObject = GridBuildingSystem.Instance.GetGridObject(gridPosition).GetPlacedObject();
+                    print(placedObject);
                     if (placedObject != null)
                     {
                         if (placedObject is ResourceNode)

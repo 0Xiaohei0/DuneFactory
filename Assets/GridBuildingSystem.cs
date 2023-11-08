@@ -241,4 +241,9 @@ public class GridBuildingSystem : MonoBehaviour
         //Debug.Log("Building selected: " + selectedBuilding.nameString);
         SetPlacedObjectTypeSO(selectedBuilding);
     }
+
+    public Vector3 GetWorldPosition(Vector2Int gridPosition)
+    {
+        return grid.GetWorldPosition(gridPosition.x, gridPosition.y);
+    }
 }

@@ -15,6 +15,8 @@ public class PlacedObject : MonoBehaviour
         placedObject.origin = origin;
         placedObject.dir = dir;
 
+        placedObject.Setup();
+
         return placedObject;
     }
 

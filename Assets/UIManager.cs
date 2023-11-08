@@ -53,7 +53,6 @@ public class UIManager : MonoBehaviour
     void OnBuildingSelected(PlacedObjectTypeSO selectedType)
     {
         // Handle the selection of a placed object type (e.g., set the current type to be placed)
-        Debug.Log("Selected: " + selectedType.name);
         EventManager.BuildingSelected(selectedType);
 
     }

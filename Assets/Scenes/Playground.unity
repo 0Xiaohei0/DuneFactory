@@ -4366,6 +4366,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a1912e896d825054bac621dce80168b6, type: 2}
   - {fileID: 11400000, guid: 5ad5049d2923a3b46829d0a991460f24, type: 2}
   - {fileID: 11400000, guid: 1b766db6bfb442642952e25c100e94b2, type: 2}
+  - {fileID: 11400000, guid: d1d13464ae9f76543a9a6b95ab825f10, type: 2}
   placedObjectTypeSO: {fileID: 0}
   thirdPersonController: {fileID: 0}
   _input: {fileID: 0}

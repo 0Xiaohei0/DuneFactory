@@ -8,7 +8,7 @@ public class Belt : MonoBehaviour
     private static int _beltID = 0;
 
     public Belt beltInSequence;
-    public BeltItem beltItem;
+    public WorldItem beltItem;
     public bool isSpaceTaken;
 
     private BeltManager _beltManager;
