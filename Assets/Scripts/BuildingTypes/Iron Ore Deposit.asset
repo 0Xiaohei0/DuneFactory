@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Iron Ore Deposit
   prefab: {fileID: 6691444833179978045, guid: 6602b31369e725a41b848fb81cf9258f, type: 3}
-  visual: {fileID: 6691444833179978045, guid: 6602b31369e725a41b848fb81cf9258f, type: 3}
+  visual: {fileID: 6691444833179978045, guid: a5db6af68f88f9a45bba84f4dc8a87cc, type: 3}
   width: 2
   height: 2

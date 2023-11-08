@@ -92,13 +92,23 @@ public class SaveManager : MonoBehaviour
     {
         GameData gameData = SaveSystem.LoadGameData();
         print(gameData);
-        // load grid data
+        // clear placed objects on grid
         PlacedObject[] allPlacedObjects = FindObjectsOfType<PlacedObject>();
         foreach (PlacedObject placedObject in allPlacedObjects)
         {
-            Destroy(placedObject.gameObject);
+            placedObject.DestroySelf();
+            for (int x = 0; x < gridBuildingSystem.grid.GetWidth(); x++)
+            {
+                for (int z = 0; z < gridBuildingSystem.grid.GetHeight(); z++)
+                {
+                    gridBuildingSystem.grid.gridArray[x, z] = new GridObject(gridBuildingSystem.grid, x, z);
+                }
+
+            }
         }
 
+
+        // load grid data
         gridBuildingSystem.grid = new GridXZ<GridObject>(gameData.gridData.width, gameData.gridData.height, gameData.gridData.cellSize, gameData.gridData.originPosition, (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
         for (int x = 0; x < gameData.gridData.gridArray.GetLength(0); x++)
         {
