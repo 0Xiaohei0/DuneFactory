@@ -8,12 +8,24 @@ public class MiningMachine : PlacedObject, IItemStorage
 
     public event EventHandler OnItemStorageCountChanged;
 
+
     [SerializeField] private ItemSO miningResourceItem;
 
     [SerializeField] private float miningTimer;
     [SerializeField] private int storedItemCount;
 
+    protected override void Setup()
+    {
+        //Debug.Log("MiningMachine.Setup()");
+        GridBuildingSystem.Instance.OnObjectPlaced += FindResourcesWithinRange;
+    }
+
     public override void GridSetupDone()
+    {
+        FindResourcesWithinRange();
+    }
+
+    public void FindResourcesWithinRange(object sender = null, EventArgs e = null)
     {
         int resourceNodeSearchWidth = 2;
         int resourceNodeSearchHeight = 2;
@@ -27,7 +39,6 @@ public class MiningMachine : PlacedObject, IItemStorage
                 if (GridBuildingSystem.Instance.IsValidGridPosition(gridPosition))
                 {
                     PlacedObject placedObject = GridBuildingSystem.Instance.GetGridObject(gridPosition).GetPlacedObject();
-                    print(placedObject);
                     if (placedObject != null)
                     {
                         if (placedObject is ResourceNode)
@@ -40,7 +51,6 @@ public class MiningMachine : PlacedObject, IItemStorage
             }
         }
     }
-
     public override string ToString()
     {
         if (miningResourceItem == null)
@@ -65,6 +75,7 @@ public class MiningMachine : PlacedObject, IItemStorage
 
             storedItemCount += 1;
             OnItemStorageCountChanged?.Invoke(this, EventArgs.Empty);
+            TriggerGridObjectChanged();
         }
     }
 
@@ -80,7 +91,8 @@ public class MiningMachine : PlacedObject, IItemStorage
 
     public bool TryGetStoredItem(ItemSO[] filterItemSO, out ItemSO itemSO)
     {
-        if (ItemSO.IsItemSOInFilter(miningResourceItem, filterItemSO))
+        if (ItemSO.IsItemSOInFilter(GameAssets.i.itemSO_Refs.any, filterItemSO) ||
+            ItemSO.IsItemSOInFilter(miningResourceItem, filterItemSO))
         {
             // If filter matches any or filter matches this itemType
             if (storedItemCount > 0)
@@ -88,6 +100,7 @@ public class MiningMachine : PlacedObject, IItemStorage
                 storedItemCount--;
                 itemSO = miningResourceItem;
                 OnItemStorageCountChanged?.Invoke(this, EventArgs.Empty);
+                TriggerGridObjectChanged();
                 return true;
             }
             else
@@ -105,7 +118,7 @@ public class MiningMachine : PlacedObject, IItemStorage
 
     public ItemSO[] GetItemSOThatCanStore()
     {
-        return new ItemSO[] { };
+        return new ItemSO[] { GameAssets.i.itemSO_Refs.none };
     }
 
     public bool TryStoreItem(ItemSO itemScriptableObject)

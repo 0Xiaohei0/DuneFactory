@@ -38,7 +38,7 @@ public class PlacedObject : MonoBehaviour
         return placedObjectTypeSO.GetGridPositionList(origin, dir);
     }
 
-    public void DestroySelf()
+    public virtual void DestroySelf()
     {
         Destroy(gameObject);
     }
@@ -55,5 +55,12 @@ public class PlacedObject : MonoBehaviour
     public PlacedObjectTypeSO.Dir GetDir()
     {
         return dir;
+    }
+    protected virtual void TriggerGridObjectChanged()
+    {
+        foreach (Vector2Int gridPosition in GetGridPositionList())
+        {
+            GridBuildingSystem.Instance.GetGridObject(gridPosition).TriggerGridObjectChanged();
+        }
     }
 }

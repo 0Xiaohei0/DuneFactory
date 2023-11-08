@@ -108,6 +108,10 @@ public class GridBuildingSystem : MonoBehaviour
         {
             return x + ", " + z + "/n" + placedObject;
         }
+        public void TriggerGridObjectChanged()
+        {
+            grid.TriggerGridObjectChanged(x, z);
+        }
     }
 
     public void SpawnStructure(Vector3 position)
@@ -245,5 +249,10 @@ public class GridBuildingSystem : MonoBehaviour
     public Vector3 GetWorldPosition(Vector2Int gridPosition)
     {
         return grid.GetWorldPosition(gridPosition.x, gridPosition.y);
+    }
+
+    public Vector3 GetWorldPositionCentre(Vector2Int gridPosition)
+    {
+        return grid.GetWorldPositionCentre(gridPosition.x, gridPosition.y);
     }
 }
