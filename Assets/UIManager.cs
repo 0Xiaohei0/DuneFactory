@@ -1,68 +1,82 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    /* public BuildingCategorySO[] categories; // Your array of categories
-     public GameObject categoryPrefab; // Your UI prefab for categories
-     public GameObject buildingPrefab; // Your UI prefab for buildings
-     public Transform buildingUIParent; // The parent transform in your UI where the elements should be instantiated
-     public Transform categoryUIParent; // The parent transform in your UI where the elements should be instantiated
+    public BuildingCategorySO[] categories; // Your array of categories
+    public GameObject buildingPrefab; // Your UI prefab for buildings
+    public GameObject categoryPrefab; // Your UI prefab for buildings
+    public GameObject categoriesParent; // The parent transform for category buttons
+    public GameObject buildingsParent; // The parent transform for building UI elements
 
-     void Start()
-     {
-         CreateUIElements();
-     }
-     void CreateCategoryUIElements()
-     {
-         foreach (var category in categories)
-         {
-             // Instantiate the category prefab
-             GameObject categoryElement = Instantiate(categoryPrefab, categoryUIParent);
+    private BuildingCategorySO activeCategory = null;
 
-             // Parent for buildings under this category, could be a panel or a designated container
-             Transform buildingsParent = categoryElement.transform.Find("BuildingsContainer");
+    // Start is assumed to set up category buttons, each with an appropriate listener
+    void Start()
+    {
+        SetupCategoryButtons();
+    }
 
-             // Now instantiate UI elements for each building in this category
-             foreach (var placedObjectType in category.placedObjects)
-             {
-                 GameObject buildingElement = Instantiate(buildingPrefab, buildingsParent);
+    void SetupCategoryButtons()
+    {
+        // Clear existing categories
+        foreach (Transform child in categoriesParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (var category in categories)
+        {
+            // Assume you have a method to create buttons for each category
+            GameObject categoryElement = Instantiate(categoryPrefab, categoriesParent.transform);
+            categoryElement.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => OnCategorySelected(category));
+            categoryElement.transform.Find("Button").GetComponent<Image>().sprite = category.icon;
+        }
+    }
 
-                 // Assign the name and icon from the ScriptableObject to the building UI element
-                 buildingElement.transform.Find("BuildingNameText").GetComponent<Text>().text = placedObjectType.objectName;
-                 buildingElement.transform.Find("BuildingIconImage").GetComponent<Image>().sprite = placedObjectType.icon;
+    void OnCategorySelected(BuildingCategorySO category)
+    {
+        if (activeCategory == category)
+        {
+            // Toggle the visibility of the buildings panel
+            buildingsParent.SetActive(!buildingsParent.activeSelf);
+        }
+        else
+        {
+            buildingsParent.SetActive(true); // Make sure the panel is open
+            activeCategory = category; // Set the new active category
+            PopulateBuildings(category); // Populate with new category's buildings
+        }
+    }
 
-                 // Set up button listener or other interactive components...
-             }
-         }
-     }
-     void CreateUIElements()
-     {
-         foreach (var placedObjectType in placedObjectTypes)
-         {
-             // Instantiate the UI prefab as a child of `uiParent`
-             GameObject uiElement = Instantiate(uiPrefab, uiParent);
+    void OnBuildingSelected(PlacedObjectTypeSO selectedType)
+    {
+        // Handle the selection of a placed object type (e.g., set the current type to be placed)
+        Debug.Log("Selected: " + selectedType.name);
+        EventManager.BuildingSelected(selectedType);
 
-             // Assign the name and icon from the ScriptableObject to the UI element
-             uiElement.transform.Find("NameText").GetComponent<TMP_Text>().text = placedObjectType.nameString;
-             uiElement.transform.Find("IconImage").GetComponent<Image>().sprite = placedObjectType.icon;
+    }
 
-             // Optionally, you could add a button listener here if you have a button component
-             // in your prefab and you want to do something when it's clicked
-             Button button = uiElement.GetComponentInChildren<Button>();
-             if (button != null)
-             {
-                 button.onClick.AddListener(() => OnPlacedObjectTypeSelected(placedObjectType));
-             }
-         }
-         uiPrefab.SetActive(false);
-     }
+    void PopulateBuildings(BuildingCategorySO category)
+    {
+        // Clear existing buildings
+        foreach (Transform child in buildingsParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
 
-     void OnPlacedObjectTypeSelected(PlacedObjectTypeSO selectedType)
-     {
-         // Handle the selection of a placed object type (e.g., set the current type to be placed)
-         Debug.Log("Selected: " + selectedType.name);
-     }*/
+        // Instantiate new building UI elements
+        foreach (var building in category.placedObjects)
+        {
+            GameObject buildingElement = Instantiate(buildingPrefab, buildingsParent.transform);
+            buildingElement.transform.Find("NameText").GetComponent<TMP_Text>().text = building.nameString;
+            buildingElement.transform.Find("IconImage").GetComponent<Image>().sprite = building.icon;
+            buildingElement.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                OnBuildingSelected(building);
+            });
+            // Optionally add button listeners to these building elements...
+        }
+    }
 }
-

@@ -39,11 +39,23 @@ public class GridBuildingSystem : MonoBehaviour
         placedObjectTypeSO = placedObjectTypeSOList[0];
     }
 
+    private void OnEnable()
+    {
+        EventManager.OnBuildingSelected += HandleBuildingSelected;
+    }
+    void OnDisable()
+    {
+        EventManager.OnBuildingSelected -= HandleBuildingSelected;
+    }
+
     private void Update()
     {
-        if (_input.confirm && !EventSystem.current.IsPointerOverGameObject())
+        if (_input.confirm)
         {
-            SpawnStructure(thirdPersonController.mouseWorldPosition);
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                SpawnStructure(thirdPersonController.mouseWorldPosition);
+            }
             _input.confirm = false;
         }
         if (_input.rotate)
@@ -201,6 +213,12 @@ public class GridBuildingSystem : MonoBehaviour
         return placedObjectTypeSO;
     }
 
+    public void SetPlacedObjectTypeSO(PlacedObjectTypeSO type)
+    {
+        placedObjectTypeSO = type;
+        RefreshSelectedObjectType();
+    }
+
     public bool IsValidGridPosition(Vector2Int gridPosition)
     {
         return grid.IsValidGridPosition(gridPosition);
@@ -214,5 +232,13 @@ public class GridBuildingSystem : MonoBehaviour
     public GridObject GetGridObject(Vector3 worldPosition)
     {
         return grid.GetGridObject(worldPosition);
+    }
+
+    private void HandleBuildingSelected(PlacedObjectTypeSO selectedBuilding)
+    {
+        // Handle the building selection here
+        // For example, you could instantiate the building in the game world
+        //Debug.Log("Building selected: " + selectedBuilding.nameString);
+        SetPlacedObjectTypeSO(selectedBuilding);
     }
 }
