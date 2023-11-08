@@ -34,7 +34,6 @@ public class BushPlacement : MonoBehaviour
 
     private void Instance_OnObjectPlaced(object sender, System.EventArgs e)
     {
-        print(sender);
         PlacedObject placedObject = sender as PlacedObject;
 
         for (int i = 0; i < spawnedTransformList.Count; i++)

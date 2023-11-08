@@ -143,4 +143,19 @@ public class GridXZ<TGridObject>
         );
     }
 
+    public bool IsValidGridPosition(Vector2Int gridPosition)
+    {
+        int x = gridPosition.x;
+        int z = gridPosition.y;
+
+        if (x >= 0 && z >= 0 && x < width && z < height)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

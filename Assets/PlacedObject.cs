@@ -19,9 +19,17 @@ public class PlacedObject : MonoBehaviour
     }
 
 
-    private PlacedObjectTypeSO placedObjectTypeSO;
-    private Vector2Int origin;
-    private PlacedObjectTypeSO.Dir dir;
+    public PlacedObjectTypeSO placedObjectTypeSO;
+    public Vector2Int origin;
+    public PlacedObjectTypeSO.Dir dir;
+
+    protected virtual void Setup()
+    {
+    }
+
+    public virtual void GridSetupDone()
+    {
+    }
 
     public List<Vector2Int> GetGridPositionList()
     {

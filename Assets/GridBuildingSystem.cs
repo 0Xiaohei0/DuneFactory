@@ -125,6 +125,7 @@ public class GridBuildingSystem : MonoBehaviour
             {
                 grid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
             }
+            placedObject.GridSetupDone();
 
             OnObjectPlaced?.Invoke(placedObject, EventArgs.Empty);
         }
@@ -197,5 +198,20 @@ public class GridBuildingSystem : MonoBehaviour
     public PlacedObjectTypeSO GetPlacedObjectTypeSO()
     {
         return placedObjectTypeSO;
+    }
+
+    public bool IsValidGridPosition(Vector2Int gridPosition)
+    {
+        return grid.IsValidGridPosition(gridPosition);
+    }
+
+    public GridObject GetGridObject(Vector2Int gridPosition)
+    {
+        return grid.GetGridObject(gridPosition.x, gridPosition.y);
+    }
+
+    public GridObject GetGridObject(Vector3 worldPosition)
+    {
+        return grid.GetGridObject(worldPosition);
     }
 }
