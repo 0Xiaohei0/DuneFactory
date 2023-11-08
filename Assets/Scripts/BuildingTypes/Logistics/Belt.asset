@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57aee7775b75209468c7de0c892dc659, type: 3}
-  m_Name: Extractor
+  m_Name: Belt
   m_EditorClassIdentifier: 
-  nameString: Extractor
-  prefab: {fileID: 6025988682447340519, guid: 88a34a4f2365bf54bb60400f938bd370, type: 3}
-  visual: {fileID: 6025988682447340519, guid: 8490d1eb9d0b0b540930464a21f3a95d, type: 3}
-  width: 2
-  height: 2
+  nameString: Belt
+  prefab: {fileID: 3881722449101587327, guid: 4c0f642a8b7488e47a06cf6b091daeaf, type: 3}
+  visual: {fileID: 3881722449101587327, guid: cd6470f78e0177745a8bee5e0f4f3a10, type: 3}
+  width: 1
+  height: 1
+  icon: {fileID: 21300000, guid: d182169a25e204a45b51654e91764ed6, type: 3}
+  categoryName: Logistics

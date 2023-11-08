@@ -34,6 +34,8 @@ public class PlacedObjectTypeSO : ScriptableObject
     public Transform visual;
     public int width;
     public int height;
+    public Sprite icon;
+    public string categoryName;
 
 
     public int GetRotationAngle(Dir dir)

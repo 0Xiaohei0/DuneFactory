@@ -3,6 +3,7 @@ using StarterAssets;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -40,7 +41,7 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void Update()
     {
-        if (_input.confirm)
+        if (_input.confirm && !EventSystem.current.IsPointerOverGameObject())
         {
             SpawnStructure(thirdPersonController.mouseWorldPosition);
             _input.confirm = false;
