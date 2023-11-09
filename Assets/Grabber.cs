@@ -124,7 +124,6 @@ public class Grabber : PlacedObject
             case State.MovingToDropItem:
                 timer -= Time.deltaTime;
                 float percentageComplete = TIME_TO_DROP_ITEM - timer / TIME_TO_DROP_ITEM;
-                print(percentageComplete);
                 holdingItem.transform.position = Vector3.Lerp(grabWorldPosition, dropWorldPosition, percentageComplete);
                 if (percentageComplete >= 1f)
                 {

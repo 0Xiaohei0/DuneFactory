@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7533f558660e4a5498b7f16a72df6035, type: 3}
-  m_Name: Iron Ore
+  m_Script: {fileID: 11500000, guid: e35e0866de6ed064e9b77db3f50a7e58, type: 3}
+  m_Name: Processing
   m_EditorClassIdentifier: 
-  itemName: Iron Ore
-  sprite: {fileID: 0}
-  maxStackAmount: 100
-  miningTimer: 1
+  categoryName: Processing
+  placedObjects:
+  - {fileID: 11400000, guid: 45c4867a7499a3a4cade0c6cc9695c17, type: 2}
+  icon: {fileID: 0}
