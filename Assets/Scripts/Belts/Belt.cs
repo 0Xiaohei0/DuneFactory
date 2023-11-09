@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Belt : MonoBehaviour
@@ -10,8 +8,10 @@ public class Belt : MonoBehaviour
     public Belt beltInSequence;
     public WorldItem beltItem;
     public bool isSpaceTaken;
+    public float bufferDistance = 0.5f; // The minimum distance between items.
 
     private BeltManager _beltManager;
+    private float moveTime;
 
     private void Start()
     {
@@ -19,6 +19,7 @@ public class Belt : MonoBehaviour
         beltInSequence = null;
         beltInSequence = FindNextBelt();
         gameObject.name = $"Belt: {_beltID++}";
+        moveTime = 1 / _beltManager.speed; // Assuming _beltManager.speed is a measure of units per second.
     }
 
     private void Update()
@@ -26,8 +27,38 @@ public class Belt : MonoBehaviour
         if (beltInSequence == null)
             beltInSequence = FindNextBelt();
 
-        if (beltItem != null && beltItem.item != null && beltInSequence != null && beltInSequence.beltItem == null)
-            StartCoroutine(StartBeltMove());
+        if (beltItem != null && beltItem.item != null && beltInSequence != null && !beltInSequence.isSpaceTaken)
+        {
+            beltInSequence.isSpaceTaken = true;
+            MoveItemToNextBelt(beltItem, beltInSequence);
+            beltItem = null; // This item is now considered moved.
+        }
+    }
+
+    private void MoveItemToNextBelt(WorldItem item, Belt nextBelt)
+    {
+        StartCoroutine(MoveItem(item, nextBelt));
+    }
+
+    private IEnumerator MoveItem(WorldItem item, Belt targetBelt)
+    {
+        Vector3 startPosition = item.item.transform.position;
+        Vector3 endPosition = targetBelt.GetItemPosition();
+        float elapsedTime = 0;
+
+        while (elapsedTime < moveTime)
+        {
+            item.item.transform.position = Vector3.Lerp(startPosition, endPosition, (elapsedTime / moveTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Snap to the final position to ensure it's exactly in place.
+        item.item.transform.position = endPosition;
+        targetBelt.beltItem = item;
+        isSpaceTaken = false; // This belt is now free.
+
+        Debug.DrawLine(startPosition, endPosition, Color.green, 2f);
     }
 
     public Vector3 GetItemPosition()
@@ -35,34 +66,6 @@ public class Belt : MonoBehaviour
         var padding = 0.3f;
         var position = transform.position;
         return new Vector3(position.x, position.y + padding, position.z);
-    }
-
-    private IEnumerator StartBeltMove()
-    {
-        isSpaceTaken = true;
-
-        if (beltItem.item != null && beltInSequence != null && beltInSequence.isSpaceTaken == false)
-        {
-            Vector3 toPosition = beltInSequence.GetItemPosition();
-
-            beltInSequence.isSpaceTaken = true;
-
-            var step = _beltManager.speed * Time.deltaTime;
-
-            while (beltItem.item.transform.position != toPosition)
-            {
-                beltItem.item.transform.position =
-                    Vector3.MoveTowards(beltItem.transform.position, toPosition, step);
-
-                yield return null;
-            }
-
-            isSpaceTaken = false;
-            beltInSequence.beltItem = beltItem;
-            beltItem = null;
-
-            Debug.DrawLine(GetItemPosition(), toPosition);
-        }
     }
 
     private Belt FindNextBelt()
