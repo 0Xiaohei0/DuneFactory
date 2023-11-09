@@ -20,7 +20,7 @@ public class WorldItem : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, GridBuildingSystem.Instance.GetWorldPosition(gridPosition), Time.deltaTime * 10f);
+        // transform.position = Vector3.Lerp(transform.position, GridBuildingSystem.Instance.GetWorldPosition(gridPosition), Time.deltaTime * 10f);
     }
 
     public void SetGridPosition(Vector2Int gridPosition)

@@ -26,9 +26,10 @@ public class Grabber : PlacedObject
     protected override void Setup()
     {
         //Debug.Log("Grabber.Setup()");
+        Vector2Int offset = new Vector2Int((int)(GridBuildingSystem.Instance.grid.cellSize * 0.5f), (int)(GridBuildingSystem.Instance.grid.cellSize * 0.5f));
 
-        grabPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir) * -1;
-        dropPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir);
+        grabPosition = origin + offset + PlacedObjectTypeSO.GetDirForwardVector(dir) * -1;
+        dropPosition = origin + offset + PlacedObjectTypeSO.GetDirForwardVector(dir);
 
         state = State.Cooldown;
         /*

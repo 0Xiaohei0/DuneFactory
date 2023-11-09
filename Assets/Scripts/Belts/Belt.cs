@@ -51,7 +51,7 @@ public class Belt : MonoBehaviour
 
             while (beltItem.item.transform.position != toPosition)
             {
-                beltItem.item.transform.position = 
+                beltItem.item.transform.position =
                     Vector3.MoveTowards(beltItem.transform.position, toPosition, step);
 
                 yield return null;
@@ -60,6 +60,9 @@ public class Belt : MonoBehaviour
             isSpaceTaken = false;
             beltInSequence.beltItem = beltItem;
             beltItem = null;
+
+            print("GetItemPosition(), toPosition" + GetItemPosition() + toPosition);
+            Debug.DrawLine(GetItemPosition(), toPosition);
         }
     }
 

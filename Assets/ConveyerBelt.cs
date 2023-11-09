@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ConveyerBelt : PlacedObject, IWorldItemSlot
 {
-    public Belt Belt;
+    public Belt belt;
 
     void Start()
     {
-        Belt = GetComponentInChildren<Belt>();
+        belt = GetComponentInChildren<Belt>();
     }
 
     void Update()
@@ -16,30 +16,23 @@ public class ConveyerBelt : PlacedObject, IWorldItemSlot
 
     }
 
-    public bool IsSpaceTaken()
-    {
-        return Belt.isSpaceTaken;
-    }
-    public void SetBeltItem(WorldItem item)
-    {
-        Belt.beltItem = item;
-    }
 
     public WorldItem GetWorldItem()
     {
-        return Belt.beltItem;
+        return belt.beltItem;
     }
 
     public bool IsEmpty()
     {
-        return Belt.beltItem == null;
+        return !belt.isSpaceTaken;
     }
 
     public bool TrySetWorldItem(WorldItem worldItem)
     {
+        print("IsEmpty(): " + IsEmpty());
         if (IsEmpty())
         {
-            this.Belt.beltItem = worldItem;
+            belt.beltItem = worldItem;
             return true;
         }
         else
@@ -50,14 +43,15 @@ public class ConveyerBelt : PlacedObject, IWorldItemSlot
 
     public void RemoveWorldItem()
     {
-        Belt.beltItem = null;
+        belt.beltItem.DestroySelf();
+        belt.beltItem = null;
     }
 
     public override void DestroySelf()
     {
         if (!IsEmpty())
         {
-            Belt.beltItem.DestroySelf();
+            belt.beltItem.DestroySelf();
         }
         base.DestroySelf();
     }
