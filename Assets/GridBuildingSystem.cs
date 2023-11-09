@@ -36,7 +36,7 @@ public class GridBuildingSystem : MonoBehaviour
         thirdPersonController = FindFirstObjectByType<ThirdPersonController>();
         _input = FindFirstObjectByType<StarterAssetsInputs>();
 
-        placedObjectTypeSO = placedObjectTypeSOList[0];
+        placedObjectTypeSO = null;
     }
 
     private void OnEnable()
@@ -50,7 +50,7 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void Update()
     {
-        if (_input.confirm)
+        if (_input.confirm && placedObjectTypeSO != null)
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
@@ -58,15 +58,50 @@ public class GridBuildingSystem : MonoBehaviour
             }
             _input.confirm = false;
         }
-        if (_input.rotate)
+        else if (_input.confirm && placedObjectTypeSO == null)
         {
-            RotateStructure();
-            _input.rotate = false;
-        }
-        if (_input.demolish)
-        {
-            DemolishStructure();
-            _input.demolish = false;
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                if (Instance.GetGridObject(thirdPersonController.mouseWorldPosition) != null)
+                {
+                    PlacedObject placedObject = Instance.GetGridObject(thirdPersonController.mouseWorldPosition).GetPlacedObject();
+                    if (placedObject != null)
+                    {
+                        // Clicked on something
+                        /*if (placedObject is Smelter)
+                        {
+                            SmelterUI.Instance.Show(placedObject as Smelter);
+                        }*/
+                        if (placedObject is MiningMachine)
+                        {
+                            MiningMachineUI.Instance.Show(placedObject as MiningMachine);
+                        }
+                        /*if (placedObject is Assembler)
+                        {
+                            AssemblerUI.Instance.Show(placedObject as Assembler);
+                        }
+                        if (placedObject is Storage)
+                        {
+                            StorageUI.Instance.Show(placedObject as Storage);
+                        }
+                        if (placedObject is Grabber)
+                        {
+                            GrabberUI.Instance.Show(placedObject as Grabber);
+                        }*/
+                    }
+                }
+                _input.confirm = false;
+            }
+            if (_input.rotate)
+            {
+                RotateStructure();
+                _input.rotate = false;
+            }
+            if (_input.demolish)
+            {
+                DemolishStructure();
+                _input.demolish = false;
+            }
         }
     }
 

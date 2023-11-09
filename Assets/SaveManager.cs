@@ -125,6 +125,6 @@ public class SaveManager : MonoBehaviour
                 gridBuildingSystem.SpawnStructure(gridBuildingSystem.grid.GetWorldPosition(x, z));
             }
         }
-        gridBuildingSystem.placedObjectTypeSO = gridBuildingSystem.placedObjectTypeSOList[0];
+        gridBuildingSystem.placedObjectTypeSO = null;
     }
 }
