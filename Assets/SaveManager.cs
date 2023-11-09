@@ -63,6 +63,7 @@ public class SaveManager : MonoBehaviour
                 public int z;
                 public string placedObjectName;
                 public Vector2Int placedObjectOrigin;
+                public PlacedObjectTypeSO.Dir dir;
             }
         }
     }
@@ -84,6 +85,7 @@ public class SaveManager : MonoBehaviour
                 if (gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject() == null) continue;
                 gameData.gridData.gridArray[x, z].placedObjectName = gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject().GetPlacedObjectTypeSO().nameString;
                 gameData.gridData.gridArray[x, z].placedObjectOrigin = gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject().GetOrigin();
+                gameData.gridData.gridArray[x, z].dir = gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject().GetDir();
             }
         }
         SaveSystem.SaveGameData(gameData);
@@ -119,6 +121,7 @@ public class SaveManager : MonoBehaviour
                 // Find the PlacedObjectTypeSO with matching name
                 gridBuildingSystem.placedObjectTypeSO = gridBuildingSystem.placedObjectTypeSOList.Find(
                     (PlacedObjectTypeSO placedObjectTypeSO) => placedObjectTypeSO.name == gameData.gridData.gridArray[x, z].placedObjectName);
+                gridBuildingSystem.dir = gameData.gridData.gridArray[x, z].dir;
                 gridBuildingSystem.SpawnStructure(gridBuildingSystem.grid.GetWorldPosition(x, z));
             }
         }

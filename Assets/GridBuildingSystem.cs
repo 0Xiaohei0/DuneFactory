@@ -19,7 +19,7 @@ public class GridBuildingSystem : MonoBehaviour
     public List<PlacedObjectTypeSO> placedObjectTypeSOList;
     public PlacedObjectTypeSO placedObjectTypeSO;
 
-    private PlacedObjectTypeSO.Dir dir = PlacedObjectTypeSO.Dir.Down;
+    public PlacedObjectTypeSO.Dir dir = PlacedObjectTypeSO.Dir.Down;
     public ThirdPersonController thirdPersonController;
     public StarterAssetsInputs _input;
 
