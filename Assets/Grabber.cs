@@ -15,6 +15,9 @@ public class Grabber : PlacedObject
 
     [SerializeField] private Vector2Int grabPosition;
     [SerializeField] private Vector2Int dropPosition;
+    [SerializeField] Vector3 grabWorldPosition;
+    [SerializeField] Vector3 dropWorldPosition;
+    [SerializeField] float padding = 0.3f;
     [SerializeField] private WorldItem holdingItem;
     [SerializeField] private ItemSO grabFilterItemSO;
     [SerializeField] private float timer;
@@ -22,14 +25,15 @@ public class Grabber : PlacedObject
     [SerializeField] private State state;
 
 
+    public float TIME_TO_DROP_ITEM = 0.5f;
 
     protected override void Setup()
     {
-        //Debug.Log("Grabber.Setup()");
-        Vector2Int offset = new Vector2Int((int)(GridBuildingSystem.Instance.grid.cellSize * 0.5f), (int)(GridBuildingSystem.Instance.grid.cellSize * 0.5f));
+        grabPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir) * -1;
+        dropPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir);
 
-        grabPosition = origin + offset + PlacedObjectTypeSO.GetDirForwardVector(dir) * -1;
-        dropPosition = origin + offset + PlacedObjectTypeSO.GetDirForwardVector(dir);
+        grabWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(grabPosition) + new Vector3(0, padding, 0);
+        dropWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0);
 
         state = State.Cooldown;
         /*
@@ -64,51 +68,42 @@ public class Grabber : PlacedObject
                 if (grabPlacedObject != null && dropPlacedObject != null)
                 {
                     // Objects exist on both places
-                    print("Objects exist on both places");
                     // Type of object that can be dropped
                     ItemSO[] dropFilterItemSO = new ItemSO[] { GameAssets.i.itemSO_Refs.none };
 
                     if (dropPlacedObject is IItemStorage)
                     {
-                        print("dropPlacedObject is IItemStorage");
                         dropFilterItemSO = (dropPlacedObject as IItemStorage).GetItemSOThatCanStore();
                     }
                     if (dropPlacedObject is IWorldItemSlot)
                     {
-                        print("dropPlacedObject is IWorldItemSlot");
                         dropFilterItemSO = (dropPlacedObject as IWorldItemSlot).GetItemSOThatCanStore();
                     }
 
                     ItemSO.DebugFilter(dropFilterItemSO);
-                    print("grabFilterItemSO: " + grabFilterItemSO);
                     // Combine Drop and Grab filters
                     dropFilterItemSO = ItemSO.GetCombinedFilter(new ItemSO[] { grabFilterItemSO }, dropFilterItemSO);
 
                     if (ItemSO.IsItemSOInFilter(GameAssets.i.itemSO_Refs.none, dropFilterItemSO))
                     {
                         // Cannot drop any item, so dont grab anything
-                        print("Cannot drop any item, so dont grab anything");
                         break;
                     }
 
                     // Is Grab PlacedObject a Item Storage?
                     if (grabPlacedObject is IItemStorage)
                     {
-                        print("Grab PlacedObject a Item Storage");
                         IItemStorage itemStorage = grabPlacedObject as IItemStorage;
                         if (itemStorage.TryGetStoredItem(dropFilterItemSO, out ItemSO itemScriptableObject))
                         {
-                            print("Got Stored Item");
                             holdingItem = WorldItem.Create(grabPosition, itemScriptableObject);
                             holdingItem.SetGridPosition(grabPosition);
 
                             state = State.MovingToDropItem;
-                            float TIME_TO_DROP_ITEM = .5f;
                             timer = TIME_TO_DROP_ITEM;
                         }
                         else
                         {
-                            print("Failed to get Stored Item");
                         }
                     }
 
@@ -121,7 +116,6 @@ public class Grabber : PlacedObject
                             holdingItem.SetGridPosition(grabPosition);
 
                             state = State.MovingToDropItem;
-                            float TIME_TO_DROP_ITEM = .5f;
                             timer = TIME_TO_DROP_ITEM;
                         }
                     }
@@ -129,7 +123,10 @@ public class Grabber : PlacedObject
                 break;
             case State.MovingToDropItem:
                 timer -= Time.deltaTime;
-                if (timer <= 0f)
+                float percentageComplete = TIME_TO_DROP_ITEM - timer / TIME_TO_DROP_ITEM;
+                print(percentageComplete);
+                holdingItem.transform.position = Vector3.Lerp(grabWorldPosition, dropWorldPosition, percentageComplete);
+                if (percentageComplete >= 1f)
                 {
                     state = State.DroppingItem;
                 }
@@ -142,12 +139,10 @@ public class Grabber : PlacedObject
                     // Is it a World Item Slot?
                     if (dropPlacedObject is IWorldItemSlot)
                     {
-                        print("dropPlacedObject is IWorldItemSlot");
                         IWorldItemSlot worldItemSlot = dropPlacedObject as IWorldItemSlot;
                         // Try to Set World Item
                         if (worldItemSlot.TrySetWorldItem(holdingItem))
                         {
-                            print("It worked, drop item");
                             // It worked, drop item
                             holdingItem.SetGridPosition(worldItemSlot.GetGridPosition());
                             holdingItem = null;
@@ -155,10 +150,10 @@ public class Grabber : PlacedObject
                             state = State.Cooldown;
                             float COOLDOWN_TIME = .2f;
                             timer = COOLDOWN_TIME;
+
                         }
                         else
                         {
-                            print("Cannot drop, slot must be full");
                             // Cannot drop, slot must be full
                             // Continue trying...
                         }

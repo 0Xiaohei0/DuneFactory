@@ -29,10 +29,10 @@ public class ConveyerBelt : PlacedObject, IWorldItemSlot
 
     public bool TrySetWorldItem(WorldItem worldItem)
     {
-        print("IsEmpty(): " + IsEmpty());
         if (IsEmpty())
         {
             belt.beltItem = worldItem;
+            belt.isSpaceTaken = true;
             return true;
         }
         else

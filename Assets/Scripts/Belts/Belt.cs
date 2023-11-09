@@ -26,7 +26,7 @@ public class Belt : MonoBehaviour
         if (beltInSequence == null)
             beltInSequence = FindNextBelt();
 
-        if (beltItem != null && beltItem.item != null)
+        if (beltItem != null && beltItem.item != null && beltInSequence != null && beltInSequence.beltItem == null)
             StartCoroutine(StartBeltMove());
     }
 
@@ -61,7 +61,6 @@ public class Belt : MonoBehaviour
             beltInSequence.beltItem = beltItem;
             beltItem = null;
 
-            print("GetItemPosition(), toPosition" + GetItemPosition() + toPosition);
             Debug.DrawLine(GetItemPosition(), toPosition);
         }
     }
