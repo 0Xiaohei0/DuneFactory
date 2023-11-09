@@ -361,6 +361,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 0}
   beltItem: {fileID: 0}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &25788874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1367,6 +1368,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 0}
   beltItem: {fileID: 0}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &271606085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1925,6 +1927,9 @@ MonoBehaviour:
   pfBeltDebugVisualLine: {fileID: 0}
   fxBuildingPlaced: {fileID: 0}
   sndBuilding: {fileID: 0}
+  LightRingMaterialOn: {fileID: 2100000, guid: 123678b1f22ad0f4f8fa840c95c5da98, type: 2}
+  LightRingMaterialOff: {fileID: 2100000, guid: adc4f60ccc649c348b78dd30357660e2,
+    type: 2}
 --- !u!4 &414573841
 Transform:
   m_ObjectHideFlags: 0
@@ -2079,7 +2084,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  bufferDistance: 0.1
 --- !u!1 &520017225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,6 +2574,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 0}
   beltItem: {fileID: 0}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &607940871
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7132,6 +7137,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 0}
   beltItem: {fileID: 0}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &1421699520
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7255,6 +7261,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 0}
   beltItem: {fileID: 0}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &1460651301
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7431,6 +7438,79 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464049407}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1464489278
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9015558
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000047683716
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.7446423
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1461304994638716399, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 903d73397684cea45ad8a0ea701518dd, type: 2}
+    - target: {fileID: 919132149155446097, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947,
+        type: 3}
+      propertyPath: m_Name
+      value: minerNew
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63a4f03c5d2f94d4eb3cde96bdb1c947, type: 3}
 --- !u!1001 &1467310432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7683,7 +7763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1492214428
 Transform:
   m_ObjectHideFlags: 0
@@ -8078,6 +8158,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 0}
   beltItem: {fileID: 0}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &1534604459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8339,6 +8420,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 0}
   beltItem: {fileID: 1877766957}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &1647770620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9045,6 +9127,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 0}
   beltItem: {fileID: 0}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &1722199450
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10443,6 +10526,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 2133004410}
   beltItem: {fileID: 0}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &2033821249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10705,6 +10789,7 @@ MonoBehaviour:
   beltInSequence: {fileID: 1722199449}
   beltItem: {fileID: 0}
   isSpaceTaken: 0
+  bufferDistance: 0.5
 --- !u!65 &2133004411
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11633,3 +11718,4 @@ SceneRoots:
   - {fileID: 853305026}
   - {fileID: 1796147647}
   - {fileID: 414573841}
+  - {fileID: 1464489278}

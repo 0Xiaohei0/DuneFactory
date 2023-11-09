@@ -82,4 +82,7 @@ public class GameAssets : MonoBehaviour
     public Transform fxBuildingPlaced;
 
     public Transform sndBuilding;
+
+    public Material LightRingMaterialOn;
+    public Material LightRingMaterialOff;
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniGLTF;
 using UnityEngine;
 
 public class MiningMachine : PlacedObject, IItemStorage
@@ -13,11 +14,13 @@ public class MiningMachine : PlacedObject, IItemStorage
 
     [SerializeField] private float miningTimer;
     [SerializeField] private int storedItemCount;
+    [SerializeField] private GameObject lightRingObject;
 
     protected override void Setup()
     {
-        //Debug.Log("MiningMachine.Setup()");
+        lightRingObject = transform.FindDescendant("LightRing.001").gameObject;
         GridBuildingSystem.Instance.OnObjectPlaced += FindResourcesWithinRange;
+
     }
 
     public override void GridSetupDone()
@@ -50,6 +53,7 @@ public class MiningMachine : PlacedObject, IItemStorage
                 }
             }
         }
+        lightRingObject.GetComponent<MeshRenderer>().material = miningResourceItem == null ? GameAssets.i.LightRingMaterialOff : GameAssets.i.LightRingMaterialOn;
     }
     public override string ToString()
     {
@@ -65,6 +69,7 @@ public class MiningMachine : PlacedObject, IItemStorage
         if (miningResourceItem == null)
         {
             // No resources in range!
+
             return;
         }
 
