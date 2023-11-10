@@ -19,7 +19,8 @@ public class Grabber : PlacedObject
     [SerializeField] Vector3 dropWorldPosition;
     [SerializeField] float padding = 0.3f;
     [SerializeField] private WorldItem holdingItem;
-    [SerializeField] private ItemSO grabFilterItemSO;
+    [SerializeField] public ItemSO grabFilterItemSO;
+    [SerializeField] public ItemSO[] dropFilterItemSO;
     [SerializeField] private float timer;
     [SerializeField] private string textString = "";
     [SerializeField] private State state;
@@ -69,7 +70,7 @@ public class Grabber : PlacedObject
                 {
                     // Objects exist on both places
                     // Type of object that can be dropped
-                    ItemSO[] dropFilterItemSO = new ItemSO[] { GameAssets.i.itemSO_Refs.none };
+                    dropFilterItemSO = new ItemSO[] { GameAssets.i.itemSO_Refs.none };
 
                     if (dropPlacedObject is IItemStorage)
                     {
@@ -80,7 +81,7 @@ public class Grabber : PlacedObject
                         dropFilterItemSO = (dropPlacedObject as IWorldItemSlot).GetItemSOThatCanStore();
                     }
 
-                    ItemSO.DebugFilter(dropFilterItemSO);
+                    //ItemSO.DebugFilter(dropFilterItemSO);
                     // Combine Drop and Grab filters
                     dropFilterItemSO = ItemSO.GetCombinedFilter(new ItemSO[] { grabFilterItemSO }, dropFilterItemSO);
 
@@ -124,7 +125,10 @@ public class Grabber : PlacedObject
             case State.MovingToDropItem:
                 timer -= Time.deltaTime;
                 float percentageComplete = TIME_TO_DROP_ITEM - timer / TIME_TO_DROP_ITEM;
-                holdingItem.transform.position = Vector3.Lerp(grabWorldPosition, dropWorldPosition, percentageComplete);
+                if (holdingItem != null)
+                {
+                    holdingItem.transform.position = Vector3.Lerp(grabWorldPosition, dropWorldPosition, percentageComplete);
+                }
                 if (percentageComplete >= 1f)
                 {
                     state = State.DroppingItem;

@@ -15,4 +15,4 @@ MonoBehaviour:
   categoryName: Processing
   placedObjects:
   - {fileID: 11400000, guid: 45c4867a7499a3a4cade0c6cc9695c17, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7569cb71e1a9c1342accf2a87e50cee6, type: 3}

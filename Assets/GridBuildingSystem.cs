@@ -68,10 +68,10 @@ public class GridBuildingSystem : MonoBehaviour
                     if (placedObject != null)
                     {
                         // Clicked on something
-                        /*if (placedObject is Smelter)
+                        if (placedObject is Smelter)
                         {
                             SmelterUI.Instance.Show(placedObject as Smelter);
-                        }*/
+                        }
                         if (placedObject is MiningMachine)
                         {
                             MiningMachineUI.Instance.Show(placedObject as MiningMachine);
@@ -83,25 +83,25 @@ public class GridBuildingSystem : MonoBehaviour
                         if (placedObject is Storage)
                         {
                             StorageUI.Instance.Show(placedObject as Storage);
-                        }
+                        }*/
                         if (placedObject is Grabber)
                         {
                             GrabberUI.Instance.Show(placedObject as Grabber);
-                        }*/
+                        }
                     }
                 }
                 _input.confirm = false;
             }
-            if (_input.rotate)
-            {
-                RotateStructure();
-                _input.rotate = false;
-            }
-            if (_input.demolish)
-            {
-                DemolishStructure();
-                _input.demolish = false;
-            }
+        }
+        if (_input.rotate)
+        {
+            RotateStructure();
+            _input.rotate = false;
+        }
+        if (_input.demolish)
+        {
+            DemolishStructure();
+            _input.demolish = false;
         }
     }
 
@@ -189,6 +189,7 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void RotateStructure()
     {
+        print("rotating structure");
         dir = PlacedObjectTypeSO.GetNextDir(dir);
     }
 

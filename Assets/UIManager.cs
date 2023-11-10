@@ -41,6 +41,10 @@ public class UIManager : MonoBehaviour
         {
             // Toggle the visibility of the buildings panel
             buildingsParent.SetActive(!buildingsParent.activeSelf);
+            if (!buildingsParent.activeSelf)
+            {
+                GridBuildingSystem.Instance.SetPlacedObjectTypeSO(null);
+            }
         }
         else
         {

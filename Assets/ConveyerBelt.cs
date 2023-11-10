@@ -11,12 +11,6 @@ public class ConveyerBelt : PlacedObject, IWorldItemSlot
         belt = GetComponentInChildren<Belt>();
     }
 
-    void Update()
-    {
-
-    }
-
-
     public WorldItem GetWorldItem()
     {
         return belt.beltItem;
@@ -24,7 +18,7 @@ public class ConveyerBelt : PlacedObject, IWorldItemSlot
 
     public bool IsEmpty()
     {
-        return !belt.isSpaceTaken;
+        return belt.beltItem == null;
     }
 
     public bool TrySetWorldItem(WorldItem worldItem)
@@ -43,8 +37,8 @@ public class ConveyerBelt : PlacedObject, IWorldItemSlot
 
     public void RemoveWorldItem()
     {
-        belt.beltItem.DestroySelf();
         belt.beltItem = null;
+        belt.isSpaceTaken = false;
     }
 
     public override void DestroySelf()
