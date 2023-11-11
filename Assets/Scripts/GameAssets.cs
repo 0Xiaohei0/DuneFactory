@@ -43,6 +43,31 @@ public class GameAssets : MonoBehaviour
         public PlacedObjectTypeSO assembler;
         public PlacedObjectTypeSO storage;
 
+        public PlacedObjectTypeSO FindPlacedObjectTypeSOByName(string name)
+        {
+            // Use reflection to get all fields of PlacedObjectTypeSO_Refs
+            FieldInfo[] fields = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (var field in fields)
+            {
+                // Check if the field is of the type PlacedObjectTypeSO
+                if (field.FieldType == typeof(PlacedObjectTypeSO))
+                {
+                    // Cast the field value to PlacedObjectTypeSO
+                    PlacedObjectTypeSO placedObjTypeSO = field.GetValue(this) as PlacedObjectTypeSO;
+
+                    // Check if the name property matches the provided name
+                    if (placedObjTypeSO != null && placedObjTypeSO.nameString == name)  // Replace 'name' with the actual property you want to compare
+                    {
+                        return placedObjTypeSO;
+                    }
+                }
+            }
+
+            // Return null if no match is found
+            return null;
+        }
+
     }
 
     public PlacedObjectTypeSO_Refs placedObjectTypeSO_Refs;
@@ -96,20 +121,45 @@ public class GameAssets : MonoBehaviour
 
 
 
-    /*    [System.Serializable]
-        public class ItemRecipeSO_Refs
-        {
+    [System.Serializable]
+    public class ItemRecipeSO_Refs
+    {
 
-            public ItemRecipeSO ironIngot;
-            public ItemRecipeSO goldIngot;
-            public ItemRecipeSO computer;
-            public ItemRecipeSO microchip;
-            public ItemRecipeSO copperIngot;
+        public ItemRecipeSO ironBar;
+        public ItemRecipeSO copperBar;
+        public ItemRecipeSO circuitBoard;
+        public ItemRecipeSO siliconBar;
+        public ItemRecipeSO solarCell;
+
+        public ItemRecipeSO FindItemRecipeSOByName(string name)
+        {
+            // Use reflection to get all fields of ItemRecipeSO_Refs
+            FieldInfo[] fields = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (var field in fields)
+            {
+                // Check if the field is of the type ItemRecipeSO
+                if (field.FieldType == typeof(ItemRecipeSO))
+                {
+                    // Cast the field value to ItemRecipeSO
+                    ItemRecipeSO itemRecipeSO = field.GetValue(this) as ItemRecipeSO;
+
+                    // Check if the recipeName property matches the provided name
+                    if (itemRecipeSO != null && itemRecipeSO.recipeName == name)  // Replace 'recipeName' with the actual property you want to compare
+                    {
+                        return itemRecipeSO;
+                    }
+                }
+            }
+
+            // Return null if no match is found
+            return null;
         }
+    }
 
 
     public ItemRecipeSO_Refs itemRecipeSO_Refs;
-    */
+
 
     public Transform pfWorldItem;
     public Transform pfBeltDebugVisualNode;

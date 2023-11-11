@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8e98e87839c674eacd8e7b139fd307, type: 3}
   m_Name: Circuit Board
   m_EditorClassIdentifier: 
+  recipeName: Circuit Board
   outputItemList:
   - item: {fileID: 11400000, guid: cace00a0f6ab1fd47bf330ea1cf82376, type: 2}
     amount: 1

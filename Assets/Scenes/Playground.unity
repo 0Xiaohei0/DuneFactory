@@ -2980,6 +2980,12 @@ MonoBehaviour:
     solarCell: {fileID: 11400000, guid: 51ffdbbb12be16e4bb63cac7583d5546, type: 2}
     any: {fileID: 11400000, guid: f67fc602bd3131446934fb6e23eeef0f, type: 2}
     none: {fileID: 11400000, guid: 88717a9be081f8a40b8eeddad1b4a0e3, type: 2}
+  itemRecipeSO_Refs:
+    ironBar: {fileID: 11400000, guid: 91be299dd14394c4fb5446581d0eb212, type: 2}
+    copperBar: {fileID: 11400000, guid: f61386ae90105864caf20075c0a725f8, type: 2}
+    circuitBoard: {fileID: 11400000, guid: 0590e7a3def82e441bd7c1ac153509f2, type: 2}
+    siliconBar: {fileID: 11400000, guid: fad8a26ce8fc1cc4e988fde0dd2b5f97, type: 2}
+    solarCell: {fileID: 11400000, guid: 3b6b6a8787d28b84ca6b10d43a200f23, type: 2}
   pfWorldItem: {fileID: 4564539339344671884, guid: f6371d6d994dffc4492be3ed0eea529c,
     type: 3}
   pfBeltDebugVisualNode: {fileID: 0}

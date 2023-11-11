@@ -90,15 +90,21 @@ public class SaveManager : MonoBehaviour
                 gameData.gridData.gridArray[x, z].placedObjectOrigin = placedObject.GetOrigin();
                 gameData.gridData.gridArray[x, z].dir = placedObject.GetDir();
 
-                /*                if (placedObject is Assembler)
-                                {
-                                    Assembler assembler = (Assembler)placedObject;
-                                    gameData.gridData.gridArray[x, z].itemRecipeSO = assembler.GetItemRecipeSO();
-                                }*/
+
                 if (placedObject is MiningMachine)
                 {
                     MiningMachine miningMachine = placedObject as MiningMachine;
                     gameData.gridData.gridArray[x, z].miningResourceItemName = miningMachine.GetMiningResourceItem().itemName;
+                }
+                else if (placedObject is Assembler)
+                {
+                    Assembler assembler = placedObject as Assembler;
+                    gameData.gridData.gridArray[x, z].itemRecipeName = assembler.GetItemRecipeSO().recipeName;
+                }
+                else if (placedObject is Smelter)
+                {
+                    Smelter smelter = placedObject as Smelter;
+                    gameData.gridData.gridArray[x, z].itemRecipeName = smelter.GetItemRecipeSO().recipeName;
                 }
             }
         }
@@ -131,20 +137,26 @@ public class SaveManager : MonoBehaviour
             {
                 GridObjectData gridObjectData = gameData.gridData.gridArray[x, z];
                 if (gridObjectData.placedObjectName == null) continue;
-
                 // Find the PlacedObjectTypeSO with matching name
-                gridBuildingSystem.placedObjectTypeSO = gridBuildingSystem.placedObjectTypeSOList.Find(
-                    (PlacedObjectTypeSO placedObjectTypeSO) =>
-                    {
-                        return placedObjectTypeSO.name == gridObjectData.placedObjectName;
-                    });
+                PlacedObjectTypeSO placedObjectSO = GameAssets.i.placedObjectTypeSO_Refs.FindPlacedObjectTypeSOByName(gridObjectData.placedObjectName);
+                gridBuildingSystem.placedObjectTypeSO = placedObjectSO;
                 gridBuildingSystem.dir = gameData.gridData.gridArray[x, z].dir;
                 PlacedObject placedObject = gridBuildingSystem.SpawnStructure(gridBuildingSystem.grid.GetWorldPosition(x, z));
                 if (placedObject == null) continue;
-                if (gridObjectData.placedObjectName == "Extractor")
+                if (placedObject is MiningMachine)
                 {
                     MiningMachine miningMachine = placedObject as MiningMachine;
                     miningMachine.SetMiningResourceItem(GameAssets.i.itemSO_Refs.FindItemSOByName(gameData.gridData.gridArray[x, z].miningResourceItemName));
+                }
+                else if (placedObject is Assembler)
+                {
+                    Assembler assembler = placedObject as Assembler;
+                    assembler.SetItemRecipeScriptableObject(GameAssets.i.itemRecipeSO_Refs.FindItemRecipeSOByName(gameData.gridData.gridArray[x, z].itemRecipeName));
+                }
+                else if (placedObject is Smelter)
+                {
+                    Smelter smelter = placedObject as Smelter;
+                    smelter.SetItemRecipeScriptableObject(GameAssets.i.itemRecipeSO_Refs.FindItemRecipeSOByName(gameData.gridData.gridArray[x, z].itemRecipeName));
                 }
             }
         }

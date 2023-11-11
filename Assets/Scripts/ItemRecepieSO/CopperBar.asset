@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8e98e87839c674eacd8e7b139fd307, type: 3}
   m_Name: CopperBar
   m_EditorClassIdentifier: 
+  recipeName: CopperBar
   outputItemList:
   - item: {fileID: 11400000, guid: d9a39654ffa361241b21cdb55077992a, type: 2}
     amount: 1

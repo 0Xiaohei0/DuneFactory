@@ -9,10 +9,10 @@ public class Smelter : PlacedObject, IItemStorage
     public event EventHandler OnItemStorageCountChanged;
 
 
-    private ItemRecipeSO itemRecipeSO;
-    private ItemStackList inputItemStackList;
-    private ItemStackList outputItemStackList;
-    private float craftingProgress;
+    [SerializeField] private ItemRecipeSO itemRecipeSO;
+    [SerializeField] private ItemStackList inputItemStackList;
+    [SerializeField] private ItemStackList outputItemStackList;
+    [SerializeField] private float craftingProgress;
 
     protected override void Setup()
     {
