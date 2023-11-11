@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class ItemRecipeSO : ScriptableObject
 {
+    public string recipeName;
     [JsonIgnore]
     public List<RecipeItem> outputItemList;
     [JsonIgnore]

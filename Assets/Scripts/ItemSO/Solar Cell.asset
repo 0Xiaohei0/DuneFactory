@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Solar Cell
   m_EditorClassIdentifier: 
   itemName: Solar Cell
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: eef6ebc7491fa6047b356ba712a9cc78, type: 3}
   maxStackAmount: 100
   miningTimer: 1
   color: {r: 0.5990566, g: 0.628756, b: 1, a: 1}

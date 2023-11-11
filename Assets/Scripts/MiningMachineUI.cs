@@ -94,7 +94,6 @@ public class MiningMachineUI : MonoBehaviour
     }
     private void UpdateSelectedRecipe()
     {
-        int index = 0;
         foreach (ItemSO itemScriptableObject in recipeButtonDic.Keys)
         {
             if (miningMachine != null && miningMachine.GetMiningResourceItem() == itemScriptableObject)
@@ -141,6 +140,7 @@ public class MiningMachineUI : MonoBehaviour
     private void MiningMachine_OnItemStorageCountChanged(object sender, System.EventArgs e)
     {
         UpdateText();
+        UpdateOutputs();
     }
 
     private void UpdateText()
@@ -171,6 +171,8 @@ public class MiningMachineUI : MonoBehaviour
         }
 
         UpdateText();
+        UpdateSelectedRecipe();
+        UpdateOutputs();
     }
 
     public void Hide()

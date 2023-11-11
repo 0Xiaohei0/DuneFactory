@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class GameAssets : MonoBehaviour
@@ -53,16 +54,41 @@ public class GameAssets : MonoBehaviour
     {
 
         public ItemSO ironOre;
-        public ItemSO goldOre;
-        public ItemSO ironIngot;
-        public ItemSO goldIngot;
-        public ItemSO computer;
         public ItemSO copperOre;
-        public ItemSO copperIngot;
-        public ItemSO microchip;
+        public ItemSO ironBar;
+        public ItemSO copperBar;
+        public ItemSO circuitBoard;
+        public ItemSO sand;
+        public ItemSO siliconBar;
+        public ItemSO solarCell;
 
         public ItemSO any;
         public ItemSO none;
+
+        public ItemSO FindItemSOByName(string name)
+        {
+            // Use reflection to get all fields of ItemSO_Refs
+            FieldInfo[] fields = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (var field in fields)
+            {
+                // Check if the field is of the type ItemSO
+                if (field.FieldType == typeof(ItemSO))
+                {
+                    // Cast the field value to ItemSO
+                    ItemSO itemSO = field.GetValue(this) as ItemSO;
+
+                    // Check if the itemName matches the provided name
+                    if (itemSO != null && itemSO.itemName == name)
+                    {
+                        return itemSO;
+                    }
+                }
+            }
+
+            // Return null if no match is found
+            return null;
+        }
     }
 
 

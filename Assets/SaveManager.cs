@@ -64,8 +64,8 @@ public class SaveManager : MonoBehaviour
                 public string placedObjectName;
                 public Vector2Int placedObjectOrigin;
                 public PlacedObjectTypeSO.Dir dir;
-                public ItemRecipeSO itemRecipeSO; // Assembler
-                public ItemSO miningResourceItem; // Miner
+                public string itemRecipeName; // Assembler
+                public string miningResourceItemName; // Miner
             }
         }
     }
@@ -98,7 +98,7 @@ public class SaveManager : MonoBehaviour
                 if (placedObject is MiningMachine)
                 {
                     MiningMachine miningMachine = placedObject as MiningMachine;
-                    gameData.gridData.gridArray[x, z].miningResourceItem = miningMachine.GetMiningResourceItem();
+                    gameData.gridData.gridArray[x, z].miningResourceItemName = miningMachine.GetMiningResourceItem().itemName;
                 }
             }
         }
@@ -140,11 +140,11 @@ public class SaveManager : MonoBehaviour
                     });
                 gridBuildingSystem.dir = gameData.gridData.gridArray[x, z].dir;
                 PlacedObject placedObject = gridBuildingSystem.SpawnStructure(gridBuildingSystem.grid.GetWorldPosition(x, z));
-
+                if (placedObject == null) continue;
                 if (gridObjectData.placedObjectName == "Extractor")
                 {
                     MiningMachine miningMachine = placedObject as MiningMachine;
-                    miningMachine.SetMiningResourceItem(gameData.gridData.gridArray[x, z].miningResourceItem);
+                    miningMachine.SetMiningResourceItem(GameAssets.i.itemSO_Refs.FindItemSOByName(gameData.gridData.gridArray[x, z].miningResourceItemName));
                 }
             }
         }
