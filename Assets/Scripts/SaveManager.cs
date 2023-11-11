@@ -24,7 +24,7 @@ public class SaveManager : MonoBehaviour
         gridBuildingSystem = FindObjectOfType<GridBuildingSystem>();
         _input = FindObjectOfType<StarterAssetsInputs>();
         SavePath = Path.Combine(Application.persistentDataPath, "save.json");
-
+        loadNewGame();
     }
 
     // Update is called once per frame
@@ -114,19 +114,7 @@ public class SaveManager : MonoBehaviour
     {
         GameData gameData = SaveSystem.LoadGameData();
         print(gameData);
-        // clear placed objects on grid
-        PlacedObject[] allPlacedObjects = FindObjectsOfType<PlacedObject>();
-        foreach (PlacedObject placedObject in allPlacedObjects)
-        {
-            placedObject.DestroySelf();
-            for (int x = 0; x < gridBuildingSystem.grid.GetWidth(); x++)
-            {
-                for (int z = 0; z < gridBuildingSystem.grid.GetHeight(); z++)
-                {
-                    gridBuildingSystem.grid.gridArray[x, z] = new GridObject(gridBuildingSystem.grid, x, z);
-                }
-            }
-        }
+        ClearPlacableObjects();
 
 
         // load grid data
@@ -161,5 +149,32 @@ public class SaveManager : MonoBehaviour
             }
         }
         gridBuildingSystem.placedObjectTypeSO = null;
+    }
+
+    private void ClearPlacableObjects()
+    {
+        // clear placed objects on grid
+        PlacedObject[] allPlacedObjects = FindObjectsOfType<PlacedObject>();
+        foreach (PlacedObject placedObject in allPlacedObjects)
+        {
+            placedObject.DestroySelf();
+            for (int x = 0; x < gridBuildingSystem.grid.GetWidth(); x++)
+            {
+                for (int z = 0; z < gridBuildingSystem.grid.GetHeight(); z++)
+                {
+                    gridBuildingSystem.grid.gridArray[x, z] = new GridObject(gridBuildingSystem.grid, x, z);
+                }
+            }
+        }
+    }
+
+    public void loadNewGame()
+    {
+        ClearPlacableObjects();
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, 10);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.smelter, 10);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 10);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 10);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 100);
     }
 }

@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         SetupCategoryButtons();
+        buildingsParent.SetActive(false);
+        GlobalStorage.OnBuildingAmountChanged += UpdateBuildingAmount;
     }
 
     void SetupCategoryButtons()
@@ -70,16 +72,22 @@ public class UIManager : MonoBehaviour
         }
 
         // Instantiate new building UI elements
-        foreach (var building in category.placedObjects)
+        foreach (PlacedObjectTypeSO building in category.placedObjects)
         {
             GameObject buildingElement = Instantiate(buildingPrefab, buildingsParent.transform);
             buildingElement.transform.Find("NameText").GetComponent<TMP_Text>().text = building.nameString;
             buildingElement.transform.Find("IconImage").GetComponent<Image>().sprite = building.icon;
+            buildingElement.transform.Find("AmountText").GetComponent<TMP_Text>().text = "x" + GlobalStorage.GetBuildingCount(building);
             buildingElement.GetComponent<Button>().onClick.AddListener(() =>
             {
                 OnBuildingSelected(building);
             });
             // Optionally add button listeners to these building elements...
         }
+    }
+    void UpdateBuildingAmount(object sender, System.EventArgs e)
+    {
+        if (activeCategory == null) return;
+        PopulateBuildings(activeCategory);
     }
 }

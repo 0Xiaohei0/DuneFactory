@@ -167,11 +167,19 @@ public class GridBuildingSystem : MonoBehaviour
         PlacedObject placedObject = null;
 
         bool canBuild = true;
+        // check if has enough items
+        if (GlobalStorage.GetBuildingCount(placedObjectTypeSO) < 0)
+        {
+            canBuild = false;
+            UtilsClass.CreateWorldTextPopup("No building left!", position);
+        }
+        // check if placement location is empty
         foreach (Vector2Int gridPosition in gridPositionList)
         {
             if (!grid.GetGridObject(gridPosition.x, gridPosition.y).CanBuild())
             {
                 canBuild = false;
+                UtilsClass.CreateWorldTextPopup("Cannot build here!", position);
                 break;
             }
         }
@@ -187,12 +195,11 @@ public class GridBuildingSystem : MonoBehaviour
                 grid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
             }
             placedObject.GridSetupDone();
-
+            GlobalStorage.RemoveBuilding(placedObjectTypeSO);
             OnObjectPlaced?.Invoke(placedObject, EventArgs.Empty);
         }
         else
         {
-            UtilsClass.CreateWorldTextPopup("Cannot build here!", position);
         }
         return placedObject;
     }
