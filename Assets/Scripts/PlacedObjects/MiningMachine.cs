@@ -19,13 +19,13 @@ public class MiningMachine : PlacedObject, IItemStorage
     protected override void Setup()
     {
         lightRingObject = transform.FindDescendant("LightRing.001").gameObject;
-        GridBuildingSystem.Instance.OnObjectPlaced += FindResourcesWithinRange;
+        //GridBuildingSystem.Instance.OnObjectPlaced += FindResourcesWithinRange;
 
     }
 
     public override void GridSetupDone()
     {
-        FindResourcesWithinRange();
+        //FindResourcesWithinRange();
     }
 
     public void FindResourcesWithinRange(object sender = null, EventArgs e = null)
@@ -84,6 +84,18 @@ public class MiningMachine : PlacedObject, IItemStorage
         }
     }
 
+    public float GetCraftingProgressNormalized()
+    {
+        if (miningResourceItem != null)
+        {
+            return (miningResourceItem.miningTimer - miningTimer) / miningResourceItem.miningTimer;
+        }
+        else
+        {
+            return 0f;
+        }
+    }
+
     public ItemSO GetMiningResourceItem()
     {
         return miningResourceItem;
@@ -129,6 +141,11 @@ public class MiningMachine : PlacedObject, IItemStorage
     public bool TryStoreItem(ItemSO itemScriptableObject)
     {
         return false;
+    }
+
+    public void SetMiningResourceItem(ItemSO itemSO)
+    {
+        miningResourceItem = itemSO;
     }
 
 }
