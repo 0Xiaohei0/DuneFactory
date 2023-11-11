@@ -48,8 +48,18 @@ MonoBehaviour:
   placedObjectTypeSO: {fileID: 0}
   origin: {x: 0, y: 0}
   dir: 0
-  WorldItemPrefab: {fileID: 4564539339344671856, guid: f6371d6d994dffc4492be3ed0eea529c,
-    type: 3}
+  grabPosition: {x: 0, y: 0}
+  dropPosition: {x: 0, y: 0}
+  grabWorldPosition: {x: 0, y: 0, z: 0}
+  dropWorldPosition: {x: 0, y: 0, z: 0}
+  padding: 0.3
+  holdingItem: {fileID: 0}
+  grabFilterItemSO: {fileID: 0}
+  dropFilterItemSO: []
+  timer: 0
+  textString: 
+  state: 0
+  TIME_TO_DROP_ITEM: 0.5
 --- !u!1001 &2830982507764116011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,7 +126,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6097901440628631290, guid: 7a451e9498693cf4ebb6205f4b49b14a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1888175488376249705}
   m_SourcePrefab: {fileID: 100100000, guid: 7a451e9498693cf4ebb6205f4b49b14a, type: 3}
 --- !u!4 &1339554357359929684 stripped
 Transform:
@@ -124,3 +138,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2830982507764116011}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8352403359111367889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6097901440628631290, guid: 7a451e9498693cf4ebb6205f4b49b14a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2830982507764116011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1888175488376249705
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8352403359111367889}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}

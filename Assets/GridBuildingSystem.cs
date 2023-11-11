@@ -62,9 +62,17 @@ public class GridBuildingSystem : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                if (Instance.GetGridObject(thirdPersonController.mouseWorldPosition) != null)
+                Vector2 mousePosition = Input.mousePosition;
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f)) { }
                 {
-                    PlacedObject placedObject = Instance.GetGridObject(thirdPersonController.mouseWorldPosition).GetPlacedObject();
+                    hit = raycastHit;
+                }
+                if (hit.collider != null)
+                {
+                    PlacedObject placedObject = hit.collider.gameObject.GetComponentInParent<PlacedObject>();
+
                     if (placedObject != null)
                     {
                         // Clicked on something
@@ -76,22 +84,22 @@ public class GridBuildingSystem : MonoBehaviour
                         {
                             MiningMachineUI.Instance.Show(placedObject as MiningMachine);
                         }
-                        /*if (placedObject is Assembler)
+                        if (placedObject is Assembler)
                         {
                             AssemblerUI.Instance.Show(placedObject as Assembler);
-                        }
-                        if (placedObject is Storage)
-                        {
-                            StorageUI.Instance.Show(placedObject as Storage);
-                        }*/
+                        }/*
+                    if (placedObject is Storage)
+                    {
+                        StorageUI.Instance.Show(placedObject as Storage);
+                    }*/
                         if (placedObject is Grabber)
                         {
                             GrabberUI.Instance.Show(placedObject as Grabber);
                         }
                     }
                 }
-                _input.confirm = false;
             }
+            _input.confirm = false;
         }
         if (_input.rotate)
         {
