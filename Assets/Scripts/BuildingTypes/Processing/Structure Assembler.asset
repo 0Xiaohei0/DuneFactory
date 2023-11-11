@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57aee7775b75209468c7de0c892dc659, type: 3}
+  m_Name: Structure Assembler
+  m_EditorClassIdentifier: 
+  nameString: Structure Assembler
+  prefab: {fileID: 856061676552548374, guid: f39fe6d3d7f05d544b756f955d2b25a7, type: 3}
+  visual: {fileID: 856061676552548374, guid: 8cb7e6448ea51164c83e4bdc663e21ee, type: 3}
+  width: 4
+  height: 4
+  icon: {fileID: 21300000, guid: aebd471fec6398542805d27f31d2b965, type: 3}
+  categoryName: Processing

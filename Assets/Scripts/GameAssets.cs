@@ -41,6 +41,7 @@ public class GameAssets : MonoBehaviour
         public PlacedObjectTypeSO smelter;
         public PlacedObjectTypeSO grabber;
         public PlacedObjectTypeSO assembler;
+        public PlacedObjectTypeSO structureAssembler;
         public PlacedObjectTypeSO storage;
 
         public PlacedObjectTypeSO FindPlacedObjectTypeSOByName(string name)

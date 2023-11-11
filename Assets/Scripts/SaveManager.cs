@@ -176,5 +176,6 @@ public class SaveManager : MonoBehaviour
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 10);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 10);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 100);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 5);
     }
 }
