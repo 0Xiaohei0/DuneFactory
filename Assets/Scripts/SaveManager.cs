@@ -129,7 +129,7 @@ public class SaveManager : MonoBehaviour
                 PlacedObjectTypeSO placedObjectSO = GameAssets.i.placedObjectTypeSO_Refs.FindPlacedObjectTypeSOByName(gridObjectData.placedObjectName);
                 gridBuildingSystem.placedObjectTypeSO = placedObjectSO;
                 gridBuildingSystem.dir = gameData.gridData.gridArray[x, z].dir;
-                PlacedObject placedObject = gridBuildingSystem.SpawnStructure(gridBuildingSystem.grid.GetWorldPosition(x, z));
+                PlacedObject placedObject = gridBuildingSystem.SpawnStructure(gridBuildingSystem.grid.GetWorldPosition(x, z), false);
                 if (placedObject == null) continue;
                 if (placedObject is MiningMachine)
                 {

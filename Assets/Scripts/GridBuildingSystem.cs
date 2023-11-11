@@ -157,7 +157,7 @@ public class GridBuildingSystem : MonoBehaviour
         }
     }
 
-    public PlacedObject SpawnStructure(Vector3 position)
+    public PlacedObject SpawnStructure(Vector3 position, bool useItem = true)
     {
         grid.GetXZ(position, out int x, out int z);
 
@@ -195,7 +195,10 @@ public class GridBuildingSystem : MonoBehaviour
                 grid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
             }
             placedObject.GridSetupDone();
-            GlobalStorage.RemoveBuilding(placedObjectTypeSO);
+            if (useItem)
+            {
+                GlobalStorage.RemoveBuilding(placedObjectTypeSO);
+            }
             OnObjectPlaced?.Invoke(placedObject, EventArgs.Empty);
         }
         else
