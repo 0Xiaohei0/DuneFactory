@@ -16,3 +16,4 @@ MonoBehaviour:
   sprite: {fileID: 0}
   maxStackAmount: 100
   miningTimer: 1
+  color: {r: 0.5990566, g: 0.628756, b: 1, a: 1}

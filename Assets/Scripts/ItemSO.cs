@@ -10,6 +10,7 @@ public class ItemSO : ScriptableObject
     public Sprite sprite;
     public int maxStackAmount;
     public float miningTimer;
+    public Color color;
 
     public static bool IsItemSOInFilter(ItemSO itemSO, ItemSO[] filterItemSOArray)
     {

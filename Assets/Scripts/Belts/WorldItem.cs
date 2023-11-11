@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WorldItem : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class WorldItem : MonoBehaviour
         WorldItem worldItem = worldItemTransform.GetComponent<WorldItem>();
         worldItem.SetGridPosition(gridPosition);
         worldItem.itemSO = itemScriptableObject;
+
+        worldItem.transform.Find("Canvas").Find("Image").GetComponent<Image>().sprite = itemScriptableObject.sprite;
+        worldItem.transform.Find("Mesh").GetComponent<Renderer>().material.color = itemScriptableObject.color;
 
         return worldItem;
     }
