@@ -157,13 +157,14 @@ public class GridBuildingSystem : MonoBehaviour
         }
     }
 
-    public void SpawnStructure(Vector3 position)
+    public PlacedObject SpawnStructure(Vector3 position)
     {
         grid.GetXZ(position, out int x, out int z);
 
         List<Vector2Int> gridPositionList = placedObjectTypeSO.GetGridPositionList(new Vector2Int(x, z), dir);
 
         GridObject gridObject = grid.GetGridObject(x, z);
+        PlacedObject placedObject = null;
 
         bool canBuild = true;
         foreach (Vector2Int gridPosition in gridPositionList)
@@ -179,7 +180,7 @@ public class GridBuildingSystem : MonoBehaviour
             Vector2Int rotationOffset = placedObjectTypeSO.GetRotationOffset(dir);
             Vector3 placedObjectWorldPosition = grid.GetWorldPosition(x, z) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * grid.GetCellSize();
 
-            PlacedObject placedObject = PlacedObject.Create(placedObjectWorldPosition, new Vector2Int(x, z), dir, placedObjectTypeSO);
+            placedObject = PlacedObject.Create(placedObjectWorldPosition, new Vector2Int(x, z), dir, placedObjectTypeSO);
 
             foreach (Vector2Int gridPosition in gridPositionList)
             {
@@ -193,6 +194,7 @@ public class GridBuildingSystem : MonoBehaviour
         {
             UtilsClass.CreateWorldTextPopup("Cannot build here!", position);
         }
+        return placedObject;
     }
 
     private void RotateStructure()

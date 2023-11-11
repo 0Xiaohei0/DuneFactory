@@ -94,10 +94,12 @@ public class MiningMachineUI : MonoBehaviour
     }
     private void UpdateSelectedRecipe()
     {
+        int index = 0;
         foreach (ItemSO itemScriptableObject in recipeButtonDic.Keys)
         {
             if (miningMachine != null && miningMachine.GetMiningResourceItem() == itemScriptableObject)
             {
+
                 // This one is selected
                 recipeButtonDic[itemScriptableObject].Find("Selected").gameObject.SetActive(true);
             }

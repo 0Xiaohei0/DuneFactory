@@ -64,6 +64,8 @@ public class SaveManager : MonoBehaviour
                 public string placedObjectName;
                 public Vector2Int placedObjectOrigin;
                 public PlacedObjectTypeSO.Dir dir;
+                public ItemRecipeSO itemRecipeSO; // Assembler
+                public ItemSO miningResourceItem; // Miner
             }
         }
     }
@@ -82,10 +84,22 @@ public class SaveManager : MonoBehaviour
                 gameData.gridData.gridArray[x, z] = new GridObjectData();
                 gameData.gridData.gridArray[x, z].x = gridBuildingSystem.grid.gridArray[x, z].x;
                 gameData.gridData.gridArray[x, z].z = gridBuildingSystem.grid.gridArray[x, z].z;
-                if (gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject() == null) continue;
-                gameData.gridData.gridArray[x, z].placedObjectName = gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject().GetPlacedObjectTypeSO().nameString;
-                gameData.gridData.gridArray[x, z].placedObjectOrigin = gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject().GetOrigin();
-                gameData.gridData.gridArray[x, z].dir = gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject().GetDir();
+                PlacedObject placedObject = gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject();
+                if (placedObject == null) continue;
+                gameData.gridData.gridArray[x, z].placedObjectName = placedObject.GetPlacedObjectTypeSO().nameString;
+                gameData.gridData.gridArray[x, z].placedObjectOrigin = placedObject.GetOrigin();
+                gameData.gridData.gridArray[x, z].dir = placedObject.GetDir();
+
+                /*                if (placedObject is Assembler)
+                                {
+                                    Assembler assembler = (Assembler)placedObject;
+                                    gameData.gridData.gridArray[x, z].itemRecipeSO = assembler.GetItemRecipeSO();
+                                }*/
+                if (placedObject is MiningMachine)
+                {
+                    MiningMachine miningMachine = placedObject as MiningMachine;
+                    gameData.gridData.gridArray[x, z].miningResourceItem = miningMachine.GetMiningResourceItem();
+                }
             }
         }
         SaveSystem.SaveGameData(gameData);
@@ -105,7 +119,6 @@ public class SaveManager : MonoBehaviour
                 {
                     gridBuildingSystem.grid.gridArray[x, z] = new GridObject(gridBuildingSystem.grid, x, z);
                 }
-
             }
         }
 
@@ -116,13 +129,23 @@ public class SaveManager : MonoBehaviour
         {
             for (int z = 0; z < gameData.gridData.gridArray.GetLength(1); z++)
             {
-                if (gameData.gridData.gridArray[x, z].placedObjectName == null) continue;
+                GridObjectData gridObjectData = gameData.gridData.gridArray[x, z];
+                if (gridObjectData.placedObjectName == null) continue;
 
                 // Find the PlacedObjectTypeSO with matching name
                 gridBuildingSystem.placedObjectTypeSO = gridBuildingSystem.placedObjectTypeSOList.Find(
-                    (PlacedObjectTypeSO placedObjectTypeSO) => placedObjectTypeSO.name == gameData.gridData.gridArray[x, z].placedObjectName);
+                    (PlacedObjectTypeSO placedObjectTypeSO) =>
+                    {
+                        return placedObjectTypeSO.name == gridObjectData.placedObjectName;
+                    });
                 gridBuildingSystem.dir = gameData.gridData.gridArray[x, z].dir;
-                gridBuildingSystem.SpawnStructure(gridBuildingSystem.grid.GetWorldPosition(x, z));
+                PlacedObject placedObject = gridBuildingSystem.SpawnStructure(gridBuildingSystem.grid.GetWorldPosition(x, z));
+
+                if (gridObjectData.placedObjectName == "Extractor")
+                {
+                    MiningMachine miningMachine = placedObject as MiningMachine;
+                    miningMachine.SetMiningResourceItem(gameData.gridData.gridArray[x, z].miningResourceItem);
+                }
             }
         }
         gridBuildingSystem.placedObjectTypeSO = null;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,13 @@ public class ItemSO : ScriptableObject
 {
 
     public string itemName;
+    [JsonIgnore]
     public Sprite sprite;
+    [JsonIgnore]
     public int maxStackAmount;
+    [JsonIgnore]
     public float miningTimer;
+    [JsonIgnore]
     public Color color;
 
     public static bool IsItemSOInFilter(ItemSO itemSO, ItemSO[] filterItemSOArray)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameAssets : MonoBehaviour
@@ -19,6 +20,15 @@ public class GameAssets : MonoBehaviour
         _i = this;
     }
 
+    public enum PlacedObjectName
+    {
+        CONVEYER_BELT,
+        MINING_MACHINE,
+        SMELTER,
+        GRABBER,
+        ASSEMBLER,
+        STORAGE
+    }
 
 
     [System.Serializable]
