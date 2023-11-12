@@ -19,3 +19,7 @@ MonoBehaviour:
   height: 1
   icon: {fileID: 21300000, guid: d182169a25e204a45b51654e91764ed6, type: 3}
   categoryName: Logistics
+  inputItemList:
+  - item: {fileID: 11400000, guid: 9fe1d1e61eb84244e83ddbd6017d83d4, type: 2}
+    amount: 1
+  craftingEffort: 0.5

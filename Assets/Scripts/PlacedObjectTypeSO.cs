@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ItemRecipeSO;
 
 [CreateAssetMenu()]
 public class PlacedObjectTypeSO : ScriptableObject
@@ -48,6 +49,8 @@ public class PlacedObjectTypeSO : ScriptableObject
     public int height;
     public Sprite icon;
     public string categoryName;
+    public List<RecipeItem> inputItemList;
+    public float craftingEffort;
 
 
     public int GetRotationAngle(Dir dir)

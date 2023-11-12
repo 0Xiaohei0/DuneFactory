@@ -80,19 +80,23 @@ public class GridBuildingSystem : MonoBehaviour
                         {
                             SmelterUI.Instance.Show(placedObject as Smelter);
                         }
-                        if (placedObject is MiningMachine)
+                        else if (placedObject is MiningMachine)
                         {
                             MiningMachineUI.Instance.Show(placedObject as MiningMachine);
                         }
-                        if (placedObject is Assembler)
+                        else if (placedObject is Assembler)
                         {
                             AssemblerUI.Instance.Show(placedObject as Assembler);
+                        }
+                        else if (placedObject is StructureAssembler)
+                        {
+                            StructureAssemblerUI.Instance.Show(placedObject as StructureAssembler);
                         }/*
-                    if (placedObject is Storage)
+                    else if (placedObject is Storage)
                     {
                         StorageUI.Instance.Show(placedObject as Storage);
                     }*/
-                        if (placedObject is Grabber)
+                        else if (placedObject is Grabber)
                         {
                             GrabberUI.Instance.Show(placedObject as Grabber);
                         }
@@ -219,6 +223,7 @@ public class GridBuildingSystem : MonoBehaviour
         PlacedObject placedObject = gridObject.GetPlacedObject();
         if (placedObject != null)
         {
+            GlobalStorage.AddBuilding(placedObject.placedObjectTypeSO);
             placedObject.DestroySelf();
 
             List<Vector2Int> gridPositionList = placedObject.GetGridPositionList();

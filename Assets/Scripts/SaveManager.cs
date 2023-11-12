@@ -94,17 +94,22 @@ public class SaveManager : MonoBehaviour
                 if (placedObject is MiningMachine)
                 {
                     MiningMachine miningMachine = placedObject as MiningMachine;
-                    gameData.gridData.gridArray[x, z].miningResourceItemName = miningMachine.GetMiningResourceItem().itemName;
+                    gameData.gridData.gridArray[x, z].miningResourceItemName = miningMachine.GetMiningResourceItem()?.itemName;
                 }
                 else if (placedObject is Assembler)
                 {
                     Assembler assembler = placedObject as Assembler;
-                    gameData.gridData.gridArray[x, z].itemRecipeName = assembler.GetItemRecipeSO().recipeName;
+                    gameData.gridData.gridArray[x, z].itemRecipeName = assembler.GetItemRecipeSO()?.recipeName;
                 }
                 else if (placedObject is Smelter)
                 {
                     Smelter smelter = placedObject as Smelter;
-                    gameData.gridData.gridArray[x, z].itemRecipeName = smelter.GetItemRecipeSO().recipeName;
+                    gameData.gridData.gridArray[x, z].itemRecipeName = smelter.GetItemRecipeSO()?.recipeName;
+                }
+                else if (placedObject is StructureAssembler)
+                {
+                    StructureAssembler structureAssembler = placedObject as StructureAssembler;
+                    gameData.gridData.gridArray[x, z].itemRecipeName = structureAssembler.GetItemRecipeSO()?.nameString;
                 }
             }
         }
@@ -146,6 +151,11 @@ public class SaveManager : MonoBehaviour
                     Smelter smelter = placedObject as Smelter;
                     smelter.SetItemRecipeScriptableObject(GameAssets.i.itemRecipeSO_Refs.FindItemRecipeSOByName(gameData.gridData.gridArray[x, z].itemRecipeName));
                 }
+                else if (placedObject is StructureAssembler)
+                {
+                    StructureAssembler structureAssembler = placedObject as StructureAssembler;
+                    structureAssembler.SetItemRecipeScriptableObject(GameAssets.i.placedObjectTypeSO_Refs.FindPlacedObjectTypeSOByName(gameData.gridData.gridArray[x, z].itemRecipeName));
+                }
             }
         }
         gridBuildingSystem.placedObjectTypeSO = null;
@@ -171,11 +181,11 @@ public class SaveManager : MonoBehaviour
     public void loadNewGame()
     {
         ClearPlacableObjects();
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, 10);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.smelter, 10);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 10);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 10);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 100);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 5);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, 100);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.smelter, 100);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 100);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 100);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 1000);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 50);
     }
 }
