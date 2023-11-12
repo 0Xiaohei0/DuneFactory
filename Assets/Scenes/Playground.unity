@@ -3223,6 +3223,7 @@ MonoBehaviour:
     structureAssembler: {fileID: 11400000, guid: 76d00406c68a6ab43b76db2af3c5670c,
       type: 2}
     storage: {fileID: 0}
+    longInserter: {fileID: 11400000, guid: a54bff2989f66d04e96b95a25b0f6909, type: 2}
   itemSO_Refs:
     ironOre: {fileID: 11400000, guid: 7580fd3495234f3409eeb4f34543eb1a, type: 2}
     copperOre: {fileID: 11400000, guid: ab9d158bd97690b4fa707734b710a6ac, type: 2}
@@ -7668,6 +7669,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 45c4867a7499a3a4cade0c6cc9695c17, type: 2}
   - {fileID: 11400000, guid: ca2b8f3211c7e9b40a5aaa1b8cb8a36f, type: 2}
   - {fileID: 11400000, guid: 76d00406c68a6ab43b76db2af3c5670c, type: 2}
+  - {fileID: 11400000, guid: a54bff2989f66d04e96b95a25b0f6909, type: 2}
   placedObjectTypeSO: {fileID: 0}
   dir: 0
   thirdPersonController: {fileID: 0}

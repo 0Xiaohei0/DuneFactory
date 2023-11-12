@@ -43,6 +43,7 @@ public class GameAssets : MonoBehaviour
         public PlacedObjectTypeSO assembler;
         public PlacedObjectTypeSO structureAssembler;
         public PlacedObjectTypeSO storage;
+        public PlacedObjectTypeSO longInserter;
 
         public PlacedObjectTypeSO FindPlacedObjectTypeSOByName(string name)
         {
