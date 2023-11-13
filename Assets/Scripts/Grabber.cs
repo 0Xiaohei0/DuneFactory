@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniGLTF;
 using UnityEngine;
 
 public class Grabber : PlacedObject
@@ -24,17 +25,14 @@ public class Grabber : PlacedObject
     [SerializeField] private float timer;
     [SerializeField] private string textString = "";
     [SerializeField] private State state;
+    [SerializeField] private int range;
 
 
     public float TIME_TO_DROP_ITEM = 0.5f;
 
     protected override void Setup()
     {
-        grabPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir) * -1;
-        dropPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir);
-
-        grabWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(grabPosition) + new Vector3(0, padding, 0);
-        dropWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0);
+        SetRange(1);
 
         state = State.Cooldown;
         /*
@@ -52,6 +50,7 @@ public class Grabber : PlacedObject
 
     private void Update()
     {
+        Debug.DrawLine(transform.position, GridBuildingSystem.Instance.GetWorldPositionCentre(grabPosition) + new Vector3(0, padding, 0));
         switch (state)
         {
             default:
@@ -196,6 +195,24 @@ public class Grabber : PlacedObject
     public void SetGrabFilterItemSO(ItemSO grabFilterItemSO)
     {
         this.grabFilterItemSO = grabFilterItemSO;
+    }
+
+    public void SetRange(int range)
+    {
+        this.range = range;
+        grabPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir) * -range;
+        dropPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir) * range;
+
+        grabWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(grabPosition) + new Vector3(0, padding, 0);
+        dropWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0);
+
+        state = State.Cooldown;
+        transform.FindDescendant("Cube").position = grabWorldPosition;
+        transform.FindDescendant("Cube1").position = dropWorldPosition;
+    }
+    public int getRange()
+    {
+        return this.range;
     }
 
 }

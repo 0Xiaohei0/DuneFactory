@@ -13,8 +13,10 @@ public class GrabberUI : MonoBehaviour
 
 
     [SerializeField] private List<ItemSO> itemSOList;
+    [SerializeField] private List<int> rangeList;
 
     private Dictionary<ItemSO, Transform> filterButtonDic;
+    private Dictionary<int, Transform> rangeButtonDic;
     private Grabber grabber;
 
 
@@ -28,8 +30,50 @@ public class GrabberUI : MonoBehaviour
         };
 
         SetupFilter();
+        rangeList = new List<int>() { 1, 2, 3 };
+        SetupRange();
 
         Hide();
+    }
+    private void SetupRange()
+    {
+        Transform rangeContainer = transform.Find("RangeContainer");
+        Transform rangeTemplate = rangeContainer.Find("Template");
+        rangeTemplate.gameObject.SetActive(false);
+
+        // Destory old transforms
+        foreach (Transform transform in rangeContainer)
+        {
+            if (transform != rangeTemplate)
+            {
+                Destroy(transform.gameObject);
+            }
+        }
+
+        rangeButtonDic = new Dictionary<int, Transform>();
+
+        // Build transforms
+        for (int i = 0; i < rangeList.Count; i++)
+        {
+            int range = rangeList[i];
+            Transform rangeTransform = Instantiate(rangeTemplate, rangeContainer);
+            rangeTransform.gameObject.SetActive(true);
+
+            rangeButtonDic[range] = rangeTransform;
+
+            rangeTransform.Find("Text").GetComponent<TMP_Text>().text = range.ToString();
+
+            rangeTransform.GetComponent<Button_UI>().ClickFunc = () =>
+            {
+                if (grabber != null)
+                {
+                    grabber.SetRange(range);
+                    UpdateRange();
+                }
+            };
+        }
+
+        UpdateRange();
     }
 
     private void SetupFilter()
@@ -90,6 +134,23 @@ public class GrabberUI : MonoBehaviour
         }
     }
 
+    private void UpdateRange()
+    {
+        foreach (int range in rangeButtonDic.Keys)
+        {
+            if (grabber != null && grabber.getRange() == range)
+            {
+                // This one is selected
+                rangeButtonDic[range].Find("Selected").gameObject.SetActive(true);
+            }
+            else
+            {
+                // Not selected
+                rangeButtonDic[range].Find("Selected").gameObject.SetActive(false);
+            }
+        }
+    }
+
     public void Show(Grabber grabber)
     {
         gameObject.SetActive(true);
@@ -97,11 +158,13 @@ public class GrabberUI : MonoBehaviour
         this.grabber = grabber;
 
         UpdateFilter();
+        UpdateRange();
     }
 
     public void Hide()
     {
         gameObject.SetActive(false);
     }
+
 
 }

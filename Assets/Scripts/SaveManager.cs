@@ -66,6 +66,7 @@ public class SaveManager : MonoBehaviour
                 public PlacedObjectTypeSO.Dir dir;
                 public string itemRecipeName; // Assembler
                 public string miningResourceItemName; // Miner
+                public int grabberRange;
             }
         }
     }
@@ -111,6 +112,11 @@ public class SaveManager : MonoBehaviour
                     StructureAssembler structureAssembler = placedObject as StructureAssembler;
                     gameData.gridData.gridArray[x, z].itemRecipeName = structureAssembler.GetItemRecipeSO()?.nameString;
                 }
+                else if (placedObject is Grabber)
+                {
+                    Grabber grabber = placedObject as Grabber;
+                    gameData.gridData.gridArray[x, z].grabberRange = grabber.getRange();
+                }
             }
         }
         SaveSystem.SaveGameData(gameData);
@@ -155,6 +161,14 @@ public class SaveManager : MonoBehaviour
                 {
                     StructureAssembler structureAssembler = placedObject as StructureAssembler;
                     structureAssembler.SetItemRecipeScriptableObject(GameAssets.i.placedObjectTypeSO_Refs.FindPlacedObjectTypeSOByName(gameData.gridData.gridArray[x, z].itemRecipeName));
+                }
+                else if (placedObject is Grabber)
+                {
+                    Grabber grabber = placedObject as Grabber;
+                    if (gameData.gridData.gridArray[x, z].grabberRange < 1)
+                        grabber.SetRange(1);
+                    else
+                        grabber.SetRange(gameData.gridData.gridArray[x, z].grabberRange);
                 }
             }
         }
