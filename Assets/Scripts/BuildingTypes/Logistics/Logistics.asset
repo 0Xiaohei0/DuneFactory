@@ -16,5 +16,4 @@ MonoBehaviour:
   placedObjects:
   - {fileID: 11400000, guid: 1b766db6bfb442642952e25c100e94b2, type: 2}
   - {fileID: 11400000, guid: d1d13464ae9f76543a9a6b95ab825f10, type: 2}
-  - {fileID: 11400000, guid: a54bff2989f66d04e96b95a25b0f6909, type: 2}
   icon: {fileID: 21300000, guid: d182169a25e204a45b51654e91764ed6, type: 3}
