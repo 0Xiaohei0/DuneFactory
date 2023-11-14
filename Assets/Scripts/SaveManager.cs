@@ -13,7 +13,6 @@ using System.Runtime.CompilerServices;
 
 public class SaveManager : MonoBehaviour
 {
-    private static string SavePath;
 
     public GridBuildingSystem gridBuildingSystem;
     private StarterAssetsInputs _input;
@@ -23,7 +22,6 @@ public class SaveManager : MonoBehaviour
     {
         gridBuildingSystem = FindObjectOfType<GridBuildingSystem>();
         _input = FindObjectOfType<StarterAssetsInputs>();
-        SavePath = Path.Combine(Application.persistentDataPath, "save.json");
         loadNewGame();
     }
 
@@ -200,7 +198,6 @@ public class SaveManager : MonoBehaviour
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 100);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 100);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 1000);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 50);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.longInserter, 50);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 50);
     }
 }

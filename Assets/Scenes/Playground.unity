@@ -3685,7 +3685,7 @@ MonoBehaviour:
     structureAssembler: {fileID: 11400000, guid: 76d00406c68a6ab43b76db2af3c5670c,
       type: 2}
     storage: {fileID: 0}
-    longInserter: {fileID: 11400000, guid: a54bff2989f66d04e96b95a25b0f6909, type: 2}
+    solarPanel: {fileID: 11400000, guid: d82c087e719e35f449a71222eaddece3, type: 2}
   itemSO_Refs:
     ironOre: {fileID: 11400000, guid: 7580fd3495234f3409eeb4f34543eb1a, type: 2}
     copperOre: {fileID: 11400000, guid: ab9d158bd97690b4fa707734b710a6ac, type: 2}
@@ -16462,6 +16462,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37110b2304f068e419fb78727bfef957, type: 2}
   - {fileID: 11400000, guid: 476a92dd398b3b94bb35c672697d4097, type: 2}
   - {fileID: 11400000, guid: edb6e0eceed912744bf26cb88a853389, type: 2}
+  - {fileID: 11400000, guid: dde079f98902d6f4bb526bf655ed7753, type: 2}
   buildingPrefab: {fileID: 3963586651918111173, guid: 86c84ade7eb315342ac7044fc7bbd094,
     type: 3}
   categoryPrefab: {fileID: 3426971404090899547, guid: 4d8cc74e7b447a244bddcfd3caac97e4,
@@ -19067,7 +19068,7 @@ PrefabInstance:
     - target: {fileID: 9030789604497230168, guid: 585ac5736bfe76446965409ba30792d4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19374,6 +19375,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d054d9f5e313a74488407546c8e3ff25, type: 3}
+--- !u!1001 &4682655979748452593
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490920631717355727, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214428075729527008, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_Name
+      value: SolarPanelPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214428075729527008, guid: bdc68937023330949a2b94c4523e4402,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bdc68937023330949a2b94c4523e4402, type: 3}
 --- !u!1001 &5792173107395067616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20024,3 +20098,4 @@ SceneRoots:
   - {fileID: 1259068567341615078}
   - {fileID: 4031021714903351143}
   - {fileID: 1795923904824523196}
+  - {fileID: 4682655979748452593}

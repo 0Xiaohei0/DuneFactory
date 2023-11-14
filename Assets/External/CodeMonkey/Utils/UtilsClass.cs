@@ -135,13 +135,14 @@ namespace CodeMonkey.Utils
         // Create a Text Popup in the World, no parent
         public static void CreateWorldTextPopup(string text, Vector3 localPosition, float popupTime = 1f)
         {
-            CreateWorldTextPopup(null, text, localPosition, 40, Color.white, localPosition + new Vector3(0, 20), popupTime);
+            CreateWorldTextPopup(null, text, localPosition, 40, Color.black, localPosition + new Vector3(0, 3), popupTime);
         }
 
         // Create a Text Popup in the World
         public static void CreateWorldTextPopup(Transform parent, string text, Vector3 localPosition, int fontSize, Color color, Vector3 finalPopupPosition, float popupTime)
         {
             TextMesh textMesh = CreateWorldText(parent, text, localPosition, fontSize, color, TextAnchor.LowerLeft, TextAlignment.Left, sortingOrderDefault);
+            textMesh.characterSize = 0.05f;
             Transform transform = textMesh.transform;
             Vector3 moveAmount = (finalPopupPosition - localPosition) / popupTime;
             FunctionUpdater.Create(delegate ()
