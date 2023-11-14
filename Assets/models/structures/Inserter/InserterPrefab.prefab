@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6011844984154668394}
   - component: {fileID: 4185078759921774670}
+  - component: {fileID: 1577340356288031785}
   m_Layer: 0
   m_Name: InserterPrefab
   m_TagString: Untagged
@@ -228,6 +229,19 @@ MonoBehaviour:
   state: 0
   range: 0
   TIME_TO_DROP_ITEM: 0.5
+--- !u!114 &1577340356288031785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909621133524829242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdee367d2ade1c64f92969decf8f0893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyRate: 1
 --- !u!1001 &2830982507764116011
 PrefabInstance:
   m_ObjectHideFlags: 0

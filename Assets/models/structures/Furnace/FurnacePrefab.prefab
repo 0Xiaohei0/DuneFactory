@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 583224808093294541}
   - component: {fileID: 4677373869088951070}
+  - component: {fileID: -5319899887225682011}
   m_Layer: 0
   m_Name: FurnacePrefab
   m_TagString: Untagged
@@ -48,6 +49,21 @@ MonoBehaviour:
   placedObjectTypeSO: {fileID: 0}
   origin: {x: 0, y: 0}
   dir: 0
+  itemRecipeSO: {fileID: 0}
+  craftingProgress: 0
+--- !u!114 &-5319899887225682011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030789604497230168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdee367d2ade1c64f92969decf8f0893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyRate: 5
 --- !u!1001 &5262500276725913084
 PrefabInstance:
   m_ObjectHideFlags: 0

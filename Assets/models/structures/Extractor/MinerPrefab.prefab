@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6025988682447340519}
   - component: {fileID: -8464953025988813561}
+  - component: {fileID: -7683190296946552204}
   m_Layer: 0
   m_Name: MinerPrefab
   m_TagString: Untagged
@@ -52,6 +53,19 @@ MonoBehaviour:
   miningTimer: 0
   storedItemCount: 0
   lightRingObject: {fileID: 0}
+--- !u!114 &-7683190296946552204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5175507060290847788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdee367d2ade1c64f92969decf8f0893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyRate: 5
 --- !u!1001 &6246775648889522425
 PrefabInstance:
   m_ObjectHideFlags: 0

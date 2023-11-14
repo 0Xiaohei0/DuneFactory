@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7490920631717355727}
   - component: {fileID: 5661457856289339070}
+  - component: {fileID: 3477116439377192590}
   m_Layer: 0
   m_Name: SolarPanelPrefab
   m_TagString: Untagged
@@ -48,6 +49,19 @@ MonoBehaviour:
   placedObjectTypeSO: {fileID: 0}
   origin: {x: 0, y: 0}
   dir: 0
+--- !u!114 &3477116439377192590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214428075729527008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8928809486714b4a9785712cfc86fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyRate: 1.5
 --- !u!1001 &1710699608419697500
 PrefabInstance:
   m_ObjectHideFlags: 0

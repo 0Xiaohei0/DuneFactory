@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using UniGLTF;
+using CodeMonkey.Utils;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class UIManager : MonoBehaviour
     public GameObject categoryPrefab; // Your UI prefab for buildings
     public GameObject categoriesParent; // The parent transform for category buttons
     public GameObject buildingsParent; // The parent transform for building UI elements
+    public GameObject statsParent; // The parent transform for stat UI
+    public GameObject statsButton;
 
     private BuildingCategorySO activeCategory = null;
 
@@ -17,8 +21,29 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         SetupCategoryButtons();
+        SetupStatButtons();
         buildingsParent.SetActive(false);
         GlobalStorage.OnBuildingAmountChanged += UpdateBuildingAmount;
+    }
+
+    private void Update()
+    {
+    }
+
+    void SetupStatButtons()
+    {
+        transform.FindDescendant("EnergyStat").Find("Button").GetComponent<Button>().onClick.AddListener(() => OnEnergyStatSelected());
+        statsParent = transform.FindDescendant("StatPanel").gameObject;
+        statsParent.transform.Find("CloseBtn").GetComponent<Button_UI>().ClickFunc = () =>
+        {
+            statsParent.SetActive(false);
+        };
+        statsParent.SetActive(false);
+    }
+
+    void OnEnergyStatSelected()
+    {
+        statsParent.SetActive(!statsParent.activeSelf);
     }
 
     void SetupCategoryButtons()
@@ -90,4 +115,6 @@ public class UIManager : MonoBehaviour
         if (activeCategory == null) return;
         PopulateBuildings(activeCategory);
     }
+
+
 }
