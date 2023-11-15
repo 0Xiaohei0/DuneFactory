@@ -17,6 +17,7 @@ public class SmelterUI : MonoBehaviour
     private Dictionary<ItemRecipeSO, Transform> recipeButtonDic;
     private Smelter smelter;
     private Image craftingProgressBar;
+    private TextMeshProUGUI powerSatisfactionText;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class SmelterUI : MonoBehaviour
 
         craftingProgressBar = transform.Find("CraftingProgressBar").Find("Bar").GetComponent<Image>();
         craftingProgressBar.fillAmount = 0f;
+        powerSatisfactionText = transform.Find("PowerSatisfiedContainer").Find("PowerSatisfiedText").GetComponent<TextMeshProUGUI>();
 
         SetupRecipes();
 
@@ -38,6 +40,19 @@ public class SmelterUI : MonoBehaviour
     private void Update()
     {
         UpdateCraftingProgress();
+        UpdatePowerSatisfaction();
+    }
+
+    private void UpdatePowerSatisfaction()
+    {
+        if (smelter != null)
+        {
+            powerSatisfactionText.text = Mathf.RoundToInt(smelter.powerSaticfactionMultiplier * 100) + "%";
+        }
+        else
+        {
+            powerSatisfactionText.text = 0 + "%";
+        }
     }
 
     private void UpdateCraftingProgress()

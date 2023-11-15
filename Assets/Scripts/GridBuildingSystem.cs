@@ -23,6 +23,9 @@ public class GridBuildingSystem : MonoBehaviour
     public ThirdPersonController thirdPersonController;
     public StarterAssetsInputs _input;
 
+    // ignores layers that interfers with building select
+    public LayerMask ignoreLayers;
+
     private void Awake()
     {
         Instance = this;
@@ -60,51 +63,50 @@ public class GridBuildingSystem : MonoBehaviour
         }
         else if (_input.confirm && placedObjectTypeSO == null)
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                Vector2 mousePosition = Input.mousePosition;
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f)) { }
-                {
-                    hit = raycastHit;
-                }
-                if (hit.collider != null)
-                {
-                    PlacedObject placedObject = hit.collider.gameObject.GetComponentInParent<PlacedObject>();
 
-                    if (placedObject != null)
+            Vector2 mousePosition = Input.mousePosition;
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, ~ignoreLayers)) { }
+            {
+                hit = raycastHit;
+            }
+            if (hit.collider != null)
+            {
+                PlacedObject placedObject = hit.collider.gameObject.GetComponentInParent<PlacedObject>();
+
+                if (placedObject != null)
+                {
+                    // Clicked on something
+                    if (placedObject is Smelter)
                     {
-                        // Clicked on something
-                        if (placedObject is Smelter)
-                        {
-                            SmelterUI.Instance.Show(placedObject as Smelter);
-                        }
-                        else if (placedObject is MiningMachine)
-                        {
-                            MiningMachineUI.Instance.Show(placedObject as MiningMachine);
-                        }
-                        else if (placedObject is Assembler)
-                        {
-                            AssemblerUI.Instance.Show(placedObject as Assembler);
-                        }
-                        else if (placedObject is StructureAssembler)
-                        {
-                            StructureAssemblerUI.Instance.Show(placedObject as StructureAssembler);
-                        }/*
+                        SmelterUI.Instance.Show(placedObject as Smelter);
+                    }
+                    else if (placedObject is MiningMachine)
+                    {
+                        MiningMachineUI.Instance.Show(placedObject as MiningMachine);
+                    }
+                    else if (placedObject is Assembler)
+                    {
+                        AssemblerUI.Instance.Show(placedObject as Assembler);
+                    }
+                    else if (placedObject is StructureAssembler)
+                    {
+                        StructureAssemblerUI.Instance.Show(placedObject as StructureAssembler);
+                    }/*
                     else if (placedObject is Storage)
                     {
                         StorageUI.Instance.Show(placedObject as Storage);
                     }*/
-                        else if (placedObject is Grabber)
-                        {
-                            GrabberUI.Instance.Show(placedObject as Grabber);
-                        }
+                    else if (placedObject is Grabber)
+                    {
+                        GrabberUI.Instance.Show(placedObject as Grabber);
                     }
                 }
             }
-            _input.confirm = false;
         }
+        _input.confirm = false;
+
         if (_input.rotate)
         {
             RotateStructure();

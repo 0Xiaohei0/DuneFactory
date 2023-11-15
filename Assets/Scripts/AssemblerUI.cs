@@ -17,6 +17,7 @@ public class AssemblerUI : MonoBehaviour
     private Dictionary<ItemRecipeSO, Transform> recipeButtonDic;
     private Assembler assembler;
     private Image craftingProgressBar;
+    private TextMeshProUGUI powerSatisfactionText;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class AssemblerUI : MonoBehaviour
 
         craftingProgressBar = transform.Find("CraftingProgressBar").Find("Bar").GetComponent<Image>();
         craftingProgressBar.fillAmount = 0f;
+        powerSatisfactionText = transform.Find("PowerSatisfiedContainer").Find("PowerSatisfiedText").GetComponent<TextMeshProUGUI>();
 
         SetupRecipes();
 
@@ -38,6 +40,19 @@ public class AssemblerUI : MonoBehaviour
     private void Update()
     {
         UpdateCraftingProgress();
+        UpdatePowerSatisfaction();
+    }
+
+    private void UpdatePowerSatisfaction()
+    {
+        if (assembler != null)
+        {
+            powerSatisfactionText.text = Mathf.RoundToInt(assembler.powerSaticfactionMultiplier * 100) + "%";
+        }
+        else
+        {
+            powerSatisfactionText.text = 0 + "%";
+        }
     }
 
     private void UpdateCraftingProgress()

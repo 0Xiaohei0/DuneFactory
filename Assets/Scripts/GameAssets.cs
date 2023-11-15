@@ -167,6 +167,7 @@ public class GameAssets : MonoBehaviour
     public Transform pfBeltDebugVisualLine;
 
     public Transform fxBuildingPlaced;
+    public Transform iconNoPower;
 
     public Transform sndBuilding;
 

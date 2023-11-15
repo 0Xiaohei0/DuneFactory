@@ -73,7 +73,7 @@ public class MiningMachine : PlacedObject, IItemStorage
             return;
         }
 
-        miningTimer -= Time.deltaTime;
+        miningTimer -= Time.deltaTime * powerSaticfactionMultiplier;
         if (miningTimer <= 0f)
         {
             miningTimer += miningResourceItem.miningTimer;

@@ -18,7 +18,7 @@ public class GrabberUI : MonoBehaviour
     private Dictionary<ItemSO, Transform> filterButtonDic;
     private Dictionary<int, Transform> rangeButtonDic;
     private Grabber grabber;
-
+    private TextMeshProUGUI powerSatisfactionText;
 
     private void Awake()
     {
@@ -32,8 +32,26 @@ public class GrabberUI : MonoBehaviour
         SetupFilter();
         rangeList = new List<int>() { 1, 2, 3 };
         SetupRange();
+        powerSatisfactionText = transform.Find("PowerSatisfiedContainer").Find("PowerSatisfiedText").GetComponent<TextMeshProUGUI>();
 
         Hide();
+    }
+
+    private void Update()
+    {
+        UpdatePowerSatisfaction();
+    }
+
+    private void UpdatePowerSatisfaction()
+    {
+        if (grabber != null)
+        {
+            powerSatisfactionText.text = Mathf.RoundToInt(grabber.powerSaticfactionMultiplier * 100) + "%";
+        }
+        else
+        {
+            powerSatisfactionText.text = 0 + "%";
+        }
     }
     private void SetupRange()
     {

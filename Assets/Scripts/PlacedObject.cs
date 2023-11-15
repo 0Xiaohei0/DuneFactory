@@ -14,6 +14,7 @@ public class PlacedObject : MonoBehaviour
         placedObject.placedObjectTypeSO = placedObjectTypeSO;
         placedObject.origin = origin;
         placedObject.dir = dir;
+        placedObject.powerSaticfactionMultiplier = 1.0f;
 
         placedObject.Setup();
 
@@ -24,6 +25,7 @@ public class PlacedObject : MonoBehaviour
     public PlacedObjectTypeSO placedObjectTypeSO;
     public Vector2Int origin;
     public PlacedObjectTypeSO.Dir dir;
+    public float powerSaticfactionMultiplier;
 
     protected virtual void Setup()
     {
@@ -62,5 +64,9 @@ public class PlacedObject : MonoBehaviour
         {
             GridBuildingSystem.Instance.GetGridObject(gridPosition).TriggerGridObjectChanged();
         }
+    }
+    public void SetEffciencyMultiplier(float effciencyMultiplier)
+    {
+        powerSaticfactionMultiplier = effciencyMultiplier;
     }
 }

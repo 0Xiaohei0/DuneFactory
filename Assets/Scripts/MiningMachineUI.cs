@@ -15,6 +15,7 @@ public class MiningMachineUI : MonoBehaviour
     private MiningMachine miningMachine;
     private TextMeshProUGUI miningItemText;
     private Image craftingProgressBar;
+    private TextMeshProUGUI powerSatisfactionText;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class MiningMachineUI : MonoBehaviour
         miningItemText = transform.Find("MiningItem").Find("Text").GetComponent<TextMeshProUGUI>();
         craftingProgressBar = transform.Find("CraftingProgressBar").Find("Bar").GetComponent<Image>();
         craftingProgressBar.fillAmount = 0f;
+        powerSatisfactionText = transform.Find("PowerSatisfiedContainer").Find("PowerSatisfiedText").GetComponent<TextMeshProUGUI>();
 
         SetupRecipes();
 
@@ -37,8 +39,20 @@ public class MiningMachineUI : MonoBehaviour
     private void Update()
     {
         UpdateCraftingProgress();
+        UpdatePowerSatisfaction();
     }
 
+    private void UpdatePowerSatisfaction()
+    {
+        if (miningMachine != null)
+        {
+            powerSatisfactionText.text = Mathf.RoundToInt(miningMachine.powerSaticfactionMultiplier * 100) + "%";
+        }
+        else
+        {
+            powerSatisfactionText.text = 0 + "%";
+        }
+    }
     private void UpdateCraftingProgress()
     {
         if (miningMachine != null)
