@@ -35,7 +35,7 @@ public class Smelter : PlacedObject, IItemStorage
 
         if (HasEnoughItemsToCraft())
         {
-            craftingProgress += Time.deltaTime;
+            craftingProgress += Time.deltaTime * powerSaticfactionMultiplier;
 
             if (craftingProgress >= itemRecipeSO.craftingEffort)
             {

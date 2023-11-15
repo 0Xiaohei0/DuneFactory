@@ -100,7 +100,7 @@ public class Grabber : PlacedObject
                             holdingItem.SetGridPosition(grabPosition);
 
                             state = State.MovingToDropItem;
-                            timer = TIME_TO_DROP_ITEM;
+                            timer = TIME_TO_DROP_ITEM * powerSaticfactionMultiplier;
                         }
                         else
                         {
@@ -205,6 +205,12 @@ public class Grabber : PlacedObject
 
         grabWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(grabPosition) + new Vector3(0, padding, 0);
         dropWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0);
+
+        if (holdingItem != null)
+        {
+            holdingItem.DestroySelf();
+            holdingItem = null;
+        }
 
         state = State.Cooldown;
         transform.FindDescendant("Cube").position = grabWorldPosition;

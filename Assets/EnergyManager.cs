@@ -62,7 +62,7 @@ public class EnergyManager : MonoBehaviour
         foreach (var consumer in FindObjectsOfType<EnergyConsumer>())
         {
             consumer.SetPowerStatus(efficiencyRatio >= 0.75f); // True if enough power, false otherwise
-            consumer.gameObject.GetComponent<PlacedObject>().SetEffciencyMultiplier(efficiencyRatio);
+            consumer.gameObject.GetComponent<PlacedObject>().SetEffciencyMultiplier(Mathf.Min(efficiencyRatio, 1));
         }
     }
 
