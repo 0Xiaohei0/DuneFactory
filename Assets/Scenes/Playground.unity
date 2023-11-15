@@ -9837,6 +9837,7 @@ MonoBehaviour:
   dir: 0
   thirdPersonController: {fileID: 0}
   _input: {fileID: 0}
+  wasConfirm: 0
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 20518
@@ -20962,6 +20963,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: iconCanvasPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525794134898887089, guid: faa1beaf7fe104e4abbbe0c618779578,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4497428376317259354, guid: faa1beaf7fe104e4abbbe0c618779578,
         type: 3}

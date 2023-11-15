@@ -170,6 +170,7 @@ public class Grabber : PlacedObject
                         if (itemStorage.TryStoreItem(holdingItem.GetItemSO()))
                         {
                             // It worked, drop item, destroy world item
+                            holdingItem.DestroySelf();
                             holdingItem = null;
 
                             state = State.Cooldown;
@@ -205,7 +206,7 @@ public class Grabber : PlacedObject
 
         grabWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(grabPosition) + new Vector3(0, padding, 0);
         dropWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0) +
-            new Vector3(-PlacedObjectTypeSO.GetDirForwardVector(dir).x, -PlacedObjectTypeSO.GetDirForwardVector(dir).y) * 0.5f;
+            new Vector3(-PlacedObjectTypeSO.GetDirForwardVector(dir).x, 0, -PlacedObjectTypeSO.GetDirForwardVector(dir).y) * 0.5f;
 
         Vector3 dropWorldPositionUnpadded = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0);
 
