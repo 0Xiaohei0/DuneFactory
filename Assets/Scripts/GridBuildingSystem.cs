@@ -23,6 +23,7 @@ public class GridBuildingSystem : MonoBehaviour
     public ThirdPersonController thirdPersonController;
     public StarterAssetsInputs _input;
 
+    [SerializeField] private bool wasConfirm = false;
     // ignores layers that interfers with building select
     public LayerMask ignoreLayers;
 
@@ -57,9 +58,8 @@ public class GridBuildingSystem : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                SpawnStructure(thirdPersonController.mouseWorldPosition);
+                SpawnStructure(thirdPersonController.mouseWorldPosition, showpopup: !wasConfirm);
             }
-            _input.confirm = false;
         }
         else if (_input.confirm && placedObjectTypeSO == null)
         {
@@ -104,8 +104,9 @@ public class GridBuildingSystem : MonoBehaviour
                     }
                 }
             }
+            _input.confirm = false;
         }
-        _input.confirm = false;
+
 
         if (_input.rotate)
         {
@@ -117,6 +118,8 @@ public class GridBuildingSystem : MonoBehaviour
             DemolishStructure();
             _input.demolish = false;
         }
+
+        wasConfirm = _input.confirm;
     }
 
     public class GridObject
@@ -163,7 +166,7 @@ public class GridBuildingSystem : MonoBehaviour
         }
     }
 
-    public PlacedObject SpawnStructure(Vector3 position, bool useItem = true)
+    public PlacedObject SpawnStructure(Vector3 position, bool useItem = true, bool showpopup = true)
     {
         grid.GetXZ(position, out int x, out int z);
 
@@ -177,7 +180,8 @@ public class GridBuildingSystem : MonoBehaviour
         if (GlobalStorage.GetBuildingCount(placedObjectTypeSO) < 0)
         {
             canBuild = false;
-            UtilsClass.CreateWorldTextPopup("No building left!", position);
+            if (showpopup) { UtilsClass.CreateWorldTextPopup("No building left!", position); }
+
         }
         // check if placement location is empty
         foreach (Vector2Int gridPosition in gridPositionList)
@@ -185,7 +189,8 @@ public class GridBuildingSystem : MonoBehaviour
             if (!grid.GetGridObject(gridPosition.x, gridPosition.y).CanBuild())
             {
                 canBuild = false;
-                UtilsClass.CreateWorldTextPopup("Cannot build here!", position);
+                if (showpopup) { UtilsClass.CreateWorldTextPopup("Cannot build here!", position); }
+
                 break;
             }
         }

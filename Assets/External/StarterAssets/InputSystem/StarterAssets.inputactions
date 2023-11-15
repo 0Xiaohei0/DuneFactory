@@ -43,7 +43,7 @@
                 },
                 {
                     "name": "confirm",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "7659863e-c330-4514-bf40-d1dee40c8642",
                     "expectedControlType": "Button",
                     "processors": "",
