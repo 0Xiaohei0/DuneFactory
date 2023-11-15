@@ -146,6 +146,7 @@ public class Grabber : PlacedObject
                         if (worldItemSlot.TrySetWorldItem(holdingItem))
                         {
                             // It worked, drop item
+                            holdingItem.transform.position = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0);
                             holdingItem.SetGridPosition(worldItemSlot.GetGridPosition());
                             holdingItem = null;
 
@@ -169,11 +170,10 @@ public class Grabber : PlacedObject
                         if (itemStorage.TryStoreItem(holdingItem.GetItemSO()))
                         {
                             // It worked, drop item, destroy world item
-                            holdingItem.DestroySelf();
                             holdingItem = null;
 
                             state = State.Cooldown;
-                            float COOLDOWN_TIME = .2f;
+                            float COOLDOWN_TIME = 0f;
                             timer = COOLDOWN_TIME;
                         }
                         else
@@ -204,7 +204,10 @@ public class Grabber : PlacedObject
         dropPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir) * range;
 
         grabWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(grabPosition) + new Vector3(0, padding, 0);
-        dropWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0);
+        dropWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0) +
+            new Vector3(-PlacedObjectTypeSO.GetDirForwardVector(dir).x, -PlacedObjectTypeSO.GetDirForwardVector(dir).y) * 0.5f;
+
+        Vector3 dropWorldPositionUnpadded = GridBuildingSystem.Instance.GetWorldPositionCentre(dropPosition) + new Vector3(0, padding, 0);
 
         if (holdingItem != null)
         {
@@ -214,7 +217,7 @@ public class Grabber : PlacedObject
 
         state = State.Cooldown;
         transform.FindDescendant("Cube").position = grabWorldPosition;
-        transform.FindDescendant("Cube1").position = dropWorldPosition;
+        transform.FindDescendant("Cube1").position = dropWorldPositionUnpadded;
     }
     public int getRange()
     {
