@@ -5,6 +5,21 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SocketMat.002
+    second: {fileID: 2100000, guid: 0261a371e7071bd4fa741f63fe331fd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SteelFrameMat
+    second: {fileID: 2100000, guid: 6678becba44cfdd4d84d333fce54b254, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lightRingMat
+    second: {fileID: 2100000, guid: 32973a649ad30df41af13696f286826d, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: BuildingAssemblerTex

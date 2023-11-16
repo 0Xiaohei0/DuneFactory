@@ -3,7 +3,17 @@ guid: bcf0f7d1a405e5247bb14efacceef068
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CrafterMat.001
+    second: {fileID: 2100000, guid: 0782d726862565c48b81641cb44ef5bb, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: CrafterTex
+    second: {fileID: 2800000, guid: fadbe23a309d6b245b3aa80bff5e81e5, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
