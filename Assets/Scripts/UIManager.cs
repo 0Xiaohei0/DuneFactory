@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public GameObject buildingsParent; // The parent transform for building UI elements
     public GameObject statsParent; // The parent transform for stat UI
     public GameObject statsButton;
+    public GameObject researchParent; // The parent transform for stat UI
+    public GameObject researchButton;
 
     private BuildingCategorySO activeCategory = null;
 
@@ -39,11 +41,24 @@ public class UIManager : MonoBehaviour
             statsParent.SetActive(false);
         };
         statsParent.SetActive(false);
+
+        transform.FindDescendant("ResearchStat").Find("Button").GetComponent<Button>().onClick.AddListener(() => OnResearchStatSelected());
+        researchParent = transform.FindDescendant("ResearchPanel").gameObject;
+        researchParent.transform.Find("CloseBtn").GetComponent<Button_UI>().ClickFunc = () =>
+        {
+            researchParent.SetActive(false);
+        };
+
+        researchParent.SetActive(false);
     }
 
     void OnEnergyStatSelected()
     {
         statsParent.SetActive(!statsParent.activeSelf);
+    }
+    void OnResearchStatSelected()
+    {
+        researchParent.SetActive(!researchParent.activeSelf);
     }
 
     void SetupCategoryButtons()

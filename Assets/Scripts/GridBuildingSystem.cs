@@ -220,7 +220,6 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void RotateStructure()
     {
-        print("rotating structure");
         dir = PlacedObjectTypeSO.GetNextDir(dir);
     }
 
