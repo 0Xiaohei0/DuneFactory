@@ -57,8 +57,6 @@ public class SaveManager : MonoBehaviour
 
             public class GridObjectData
             {
-                public int x;
-                public int z;
                 public string placedObjectName;
                 public Vector2Int placedObjectOrigin;
                 public PlacedObjectTypeSO.Dir dir;
@@ -80,11 +78,9 @@ public class SaveManager : MonoBehaviour
         {
             for (int z = 0; z < gameData.gridData.gridArray.GetLength(1); z++)
             {
-                gameData.gridData.gridArray[x, z] = new GridObjectData();
-                gameData.gridData.gridArray[x, z].x = gridBuildingSystem.grid.gridArray[x, z].x;
-                gameData.gridData.gridArray[x, z].z = gridBuildingSystem.grid.gridArray[x, z].z;
                 PlacedObject placedObject = gridBuildingSystem.grid.gridArray[x, z].GetPlacedObject();
                 if (placedObject == null) continue;
+                gameData.gridData.gridArray[x, z] = new GridObjectData();
                 gameData.gridData.gridArray[x, z].placedObjectName = placedObject.GetPlacedObjectTypeSO().nameString;
                 gameData.gridData.gridArray[x, z].placedObjectOrigin = placedObject.GetOrigin();
                 gameData.gridData.gridArray[x, z].dir = placedObject.GetDir();
@@ -133,7 +129,7 @@ public class SaveManager : MonoBehaviour
             for (int z = 0; z < gameData.gridData.gridArray.GetLength(1); z++)
             {
                 GridObjectData gridObjectData = gameData.gridData.gridArray[x, z];
-                if (gridObjectData.placedObjectName == null) continue;
+                if (gridObjectData == null) continue;
                 // Find the PlacedObjectTypeSO with matching name
                 PlacedObjectTypeSO placedObjectSO = GameAssets.i.placedObjectTypeSO_Refs.FindPlacedObjectTypeSOByName(gridObjectData.placedObjectName);
                 gridBuildingSystem.placedObjectTypeSO = placedObjectSO;
@@ -199,5 +195,8 @@ public class SaveManager : MonoBehaviour
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 100);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 1000);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 50);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 50);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 50);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 50);
     }
 }

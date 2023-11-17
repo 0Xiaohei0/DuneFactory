@@ -4662,6 +4662,10 @@ MonoBehaviour:
       type: 2}
     storage: {fileID: 0}
     solarPanel: {fileID: 11400000, guid: d82c087e719e35f449a71222eaddece3, type: 2}
+    AtmosphericExtractor: {fileID: 11400000, guid: 24d1972e18971ff42906bf69fd2fc086,
+      type: 2}
+    GeoThermalGenerator: {fileID: 11400000, guid: 2f3c8d0f267f75b45ad98ebf5bf87999,
+      type: 2}
   itemSO_Refs:
     ironOre: {fileID: 11400000, guid: 7580fd3495234f3409eeb4f34543eb1a, type: 2}
     copperOre: {fileID: 11400000, guid: ab9d158bd97690b4fa707734b710a6ac, type: 2}
