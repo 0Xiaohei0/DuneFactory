@@ -15,4 +15,5 @@ MonoBehaviour:
   categoryName: Energy
   placedObjects:
   - {fileID: 11400000, guid: d82c087e719e35f449a71222eaddece3, type: 2}
+  - {fileID: 11400000, guid: 2f3c8d0f267f75b45ad98ebf5bf87999, type: 2}
   icon: {fileID: 21300000, guid: 03518916a3c343943ad615f898f659d9, type: 3}
