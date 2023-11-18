@@ -427,7 +427,7 @@ namespace StarterAssets
 
         private void updateMouseWorldPosition()
         {
-
+            if (Camera.main == null) return;
             Vector2 mousePosition = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask)) { }

@@ -22,6 +22,7 @@ public class GridBuildingSystem : MonoBehaviour
     public PlacedObjectTypeSO.Dir dir = PlacedObjectTypeSO.Dir.Down;
     public ThirdPersonController thirdPersonController;
     public StarterAssetsInputs _input;
+    public bool processInput = true;
 
     [SerializeField] private bool wasConfirm = false;
     // ignores layers that interfers with building select
@@ -54,6 +55,7 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void Update()
     {
+        if (!processInput) { return; }
         if (_input.confirm && placedObjectTypeSO != null)
         {
             if (!EventSystem.current.IsPointerOverGameObject())
@@ -63,7 +65,6 @@ public class GridBuildingSystem : MonoBehaviour
         }
         else if (_input.confirm && placedObjectTypeSO == null)
         {
-            print(EventSystem.current.IsPointerOverGameObject());
             if (EventSystem.current.IsPointerOverGameObject()) return;
             Vector2 mousePosition = Input.mousePosition;
             RaycastHit hit;
@@ -71,8 +72,6 @@ public class GridBuildingSystem : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, ~ignoreLayers)) { }
             {
                 hit = raycastHit;
-                if (hit.collider != null)
-                    print(hit.collider.gameObject.name);
             }
             if (hit.collider != null)
             {
@@ -108,6 +107,10 @@ public class GridBuildingSystem : MonoBehaviour
                     else if (placedObject is AtmosphericExtractor)
                     {
                         AtmosphericExtractorUI.Instance.Show(placedObject as AtmosphericExtractor);
+                    }
+                    else if (placedObject is GeothermalGenerator)
+                    {
+                        GeothermalGeneratorUI.Instance.Show(placedObject as GeothermalGenerator);
                     }
                 }
             }

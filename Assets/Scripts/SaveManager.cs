@@ -36,7 +36,7 @@ public class SaveManager : MonoBehaviour
         else if (_input.load)
         {
             _input.load = false;
-            LoadGameSave();
+            LoadGameSave(SaveSystem.LoadGameData());
         }
     }
 
@@ -115,9 +115,8 @@ public class SaveManager : MonoBehaviour
         }
         SaveSystem.SaveGameData(gameData);
     }
-    public void LoadGameSave()
+    public void LoadGameSave(GameData gameData)
     {
-        GameData gameData = SaveSystem.LoadGameData();
         print(gameData);
         ClearPlacableObjects();
 

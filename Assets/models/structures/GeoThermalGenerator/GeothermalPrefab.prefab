@@ -50,6 +50,8 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  itemRecipeSO: {fileID: 11400000, guid: f5f7719b96a82654eadf5f8eff743e95, type: 2}
+  craftingProgress: 0
 --- !u!114 &1238568428315953026
 MonoBehaviour:
   m_ObjectHideFlags: 0

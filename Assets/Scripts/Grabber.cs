@@ -201,7 +201,7 @@ public class Grabber : PlacedObject
     public void SetRange(int range)
     {
         this.range = range;
-        grabPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir) * -range;
+        grabPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir) * -1;
         dropPosition = origin + PlacedObjectTypeSO.GetDirForwardVector(dir) * range;
 
         grabWorldPosition = GridBuildingSystem.Instance.GetWorldPositionCentre(grabPosition) + new Vector3(0, padding, 0);
