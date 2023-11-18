@@ -105,6 +105,10 @@ public class GridBuildingSystem : MonoBehaviour
                     {
                         GrabberUI.Instance.Show(placedObject as Grabber);
                     }
+                    else if (placedObject is AtmosphericExtractor)
+                    {
+                        AtmosphericExtractorUI.Instance.Show(placedObject as AtmosphericExtractor);
+                    }
                 }
             }
             _input.confirm = false;
