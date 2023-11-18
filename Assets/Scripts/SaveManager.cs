@@ -201,5 +201,10 @@ public class SaveManager : MonoBehaviour
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 50);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 50);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 50);
+        BushPlacement bushPlacement = FindAnyObjectByType<BushPlacement>();
+        if (bushPlacement != null)
+        {
+            bushPlacement.SpawnBushes();
+        }
     }
 }
