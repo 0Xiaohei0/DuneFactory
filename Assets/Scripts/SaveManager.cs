@@ -36,7 +36,7 @@ public class SaveManager : MonoBehaviour
         else if (_input.load)
         {
             _input.load = false;
-            LoadGameSave(SaveSystem.LoadGameData());
+            LoadGameSave(SaveSystem.LoadGameData(0));
         }
     }
 
@@ -113,17 +113,13 @@ public class SaveManager : MonoBehaviour
                 }
             }
         }
-        SaveSystem.SaveGameData(gameData);
+        SaveSystem.SaveGameData(gameData, 0);
     }
     public void LoadGameSave(GameData gameData)
     {
         print(gameData);
         ClearPlacableObjects();
-        BushPlacement bushPlacement = FindAnyObjectByType<BushPlacement>();
-        if (bushPlacement != null)
-        {
-            bushPlacement.SpawnBushes();
-        }
+
 
         // load grid data
         gridBuildingSystem.grid = new GridXZ<GridObject>(gameData.gridData.width, gameData.gridData.height, gameData.gridData.cellSize, gameData.gridData.originPosition, (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
@@ -201,10 +197,6 @@ public class SaveManager : MonoBehaviour
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 50);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 50);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 50);
-        BushPlacement bushPlacement = FindAnyObjectByType<BushPlacement>();
-        if (bushPlacement != null)
-        {
-            bushPlacement.SpawnBushes();
-        }
+
     }
 }

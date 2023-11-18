@@ -5,10 +5,11 @@ using static SaveManager;
 
 public static class SaveSystem
 {
-    private static readonly string SavePath = Path.Combine(Application.persistentDataPath, "save.json");
+    private static readonly string SavePath = Path.Combine(Application.persistentDataPath, "save{0}.json");
 
-    public static void SaveGameData(GameData data)
+    public static void SaveGameData(GameData data, int slot)
     {
+        string slotSavePath = string.Format(SavePath, slot);
         var settings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.Auto,
@@ -17,39 +18,32 @@ public static class SaveSystem
         };
 
         string json = JsonConvert.SerializeObject(data, settings);
-        File.WriteAllText(SavePath, json);
-        Debug.Log("Game data saved to " + SavePath);
+        File.WriteAllText(slotSavePath, json);
+        Debug.Log("Game data saved to " + slotSavePath);
     }
 
-    public static GameData LoadGameData()
+    public static GameData LoadGameData(int slot)
     {
-        if (File.Exists(SavePath))
+        string slotSavePath = string.Format(SavePath, slot);
+        if (File.Exists(slotSavePath))
         {
-            string json = File.ReadAllText(SavePath);
+            string json = File.ReadAllText(slotSavePath);
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             GameData data = JsonConvert.DeserializeObject<GameData>(json, settings);
-            Debug.Log("Game data loaded from " + SavePath);
+            Debug.Log("Game data loaded from " + slotSavePath);
             return data;
         }
         else
         {
-            Debug.LogWarning("Save file not found in " + SavePath);
+            Debug.LogWarning("Save file not found in " + slotSavePath);
             return new GameData(); // Return a new instance if no save file exists.
         }
     }
     public static GameData LoadGameDataFromString(string json)
     {
-        if (File.Exists(SavePath))
-        {
-            var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
-            GameData data = JsonConvert.DeserializeObject<GameData>(json, settings);
-            Debug.Log("Game data loaded from " + SavePath);
-            return data;
-        }
-        else
-        {
-            Debug.LogWarning("Save file not found in " + SavePath);
-            return new GameData(); // Return a new instance if no save file exists.
-        }
+        var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
+        GameData data = JsonConvert.DeserializeObject<GameData>(json, settings);
+        Debug.Log("Game data loaded from JSON");
+        return data;
     }
 }

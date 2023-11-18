@@ -14,6 +14,10 @@ public class BushPlacement : MonoBehaviour
 
     private List<Transform> spawnedTransformList;
 
+    private void Start()
+    {
+        SpawnBushes();
+    }
     public void SpawnBushes()
     {
         spawnedTransformList = new List<Transform>();
