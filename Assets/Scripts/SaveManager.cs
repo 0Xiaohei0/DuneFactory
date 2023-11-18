@@ -119,7 +119,11 @@ public class SaveManager : MonoBehaviour
     {
         print(gameData);
         ClearPlacableObjects();
-
+        BushPlacement bushPlacement = FindAnyObjectByType<BushPlacement>();
+        if (bushPlacement != null)
+        {
+            bushPlacement.SpawnBushes();
+        }
 
         // load grid data
         gridBuildingSystem.grid = new GridXZ<GridObject>(gameData.gridData.width, gameData.gridData.height, gameData.gridData.cellSize, gameData.gridData.originPosition, (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));

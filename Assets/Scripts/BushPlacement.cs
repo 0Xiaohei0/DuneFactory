@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GridBuildingSystem;
 
 public class BushPlacement : MonoBehaviour
 {
@@ -13,10 +14,10 @@ public class BushPlacement : MonoBehaviour
 
     private List<Transform> spawnedTransformList;
 
-    private void Awake()
+    public void SpawnBushes()
     {
         spawnedTransformList = new List<Transform>();
-
+        Instance.OnObjectPlaced += Instance_OnObjectPlaced;
         for (int i = 0; i < amount; i++)
         {
             Transform prefab = prefabArray[Random.Range(0, prefabArray.Length)];
@@ -25,11 +26,6 @@ public class BushPlacement : MonoBehaviour
 
             spawnedTransformList.Add(spawnedTransform);
         }
-    }
-
-    private void Start()
-    {
-        GridBuildingSystem.Instance.OnObjectPlaced += Instance_OnObjectPlaced;
     }
 
     private void Instance_OnObjectPlaced(object sender, System.EventArgs e)
@@ -49,5 +45,4 @@ public class BushPlacement : MonoBehaviour
             }
         }
     }
-
 }
