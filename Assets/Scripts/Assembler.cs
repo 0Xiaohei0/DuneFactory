@@ -16,7 +16,6 @@ public class Assembler : PlacedObject, IItemStorage
 
     protected override void Setup()
     {
-        Debug.Log("Assembler.Setup()");
         inputItemStackList = new List<ItemStack>();
         outputItemStackList = new List<ItemStack>();
     }

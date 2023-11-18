@@ -63,13 +63,16 @@ public class GridBuildingSystem : MonoBehaviour
         }
         else if (_input.confirm && placedObjectTypeSO == null)
         {
-
+            print(EventSystem.current.IsPointerOverGameObject());
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             Vector2 mousePosition = Input.mousePosition;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, ~ignoreLayers)) { }
             {
                 hit = raycastHit;
+                if (hit.collider != null)
+                    print(hit.collider.gameObject.name);
             }
             if (hit.collider != null)
             {
