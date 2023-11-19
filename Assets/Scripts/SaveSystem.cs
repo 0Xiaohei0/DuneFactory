@@ -20,6 +20,7 @@ public static class SaveSystem
         string json = JsonConvert.SerializeObject(data, settings);
         File.WriteAllText(slotSavePath, json);
         Debug.Log("Game data saved to " + slotSavePath);
+        PopupManager.Instance.ShowPopup("Game data saved to " + slotSavePath);
     }
 
     public static GameData LoadGameData(int slot)
@@ -31,6 +32,7 @@ public static class SaveSystem
             var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
             GameData data = JsonConvert.DeserializeObject<GameData>(json, settings);
             Debug.Log("Game data loaded from " + slotSavePath);
+            PopupManager.Instance.ShowPopup("Game data loaded from " + slotSavePath);
             return data;
         }
         else
@@ -44,6 +46,7 @@ public static class SaveSystem
         var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
         GameData data = JsonConvert.DeserializeObject<GameData>(json, settings);
         Debug.Log("Game data loaded from JSON");
+        PopupManager.Instance.ShowPopup("Game data loaded from JSON");
         return data;
     }
 }
