@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbe71d1b57adfa44b23833158fffbb4, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  levelCost: 3000
+  unlockBuildings:
+  - {fileID: 11400000, guid: 24d1972e18971ff42906bf69fd2fc086, type: 2}
+  - {fileID: 11400000, guid: 2f3c8d0f267f75b45ad98ebf5bf87999, type: 2}
+  unlockItems:
+  - {fileID: 11400000, guid: 7e3bccf3dba2e5a449f1f00f45bf6255, type: 2}
+  - {fileID: 11400000, guid: 653fa9297df478942b7400ebf80cadf2, type: 2}

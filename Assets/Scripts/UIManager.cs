@@ -7,6 +7,7 @@ using CodeMonkey.Utils;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
     public BuildingCategorySO[] categories; // Your array of categories
     public GameObject buildingPrefab; // Your UI prefab for buildings
     public GameObject categoryPrefab; // Your UI prefab for buildings
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour
     // Start is assumed to set up category buttons, each with an appropriate listener
     void Start()
     {
+        Instance = this;
         SetupCategoryButtons();
         SetupStatButtons();
         buildingsParent.SetActive(false);

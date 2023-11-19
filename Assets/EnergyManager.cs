@@ -7,6 +7,8 @@ public class EnergyManager : MonoBehaviour
     public float TotalEnergy { get; private set; }
     public float MaxEnergy = 1000; // Max energy capacity
     public float TickInterval = 1.0f; // Time in seconds for each tick
+    public float ExcessEnergy = 0;
+    public float ExcessEnergyRate = 0;
 
     [SerializeField] public float energyProducedThisTick = 0;
     [SerializeField] public float energyConsumedThisTick = 0;
@@ -44,6 +46,8 @@ public class EnergyManager : MonoBehaviour
         }
         else if (TotalEnergy > MaxEnergy)
         {
+            ExcessEnergyRate = TotalEnergy - MaxEnergy;
+            ExcessEnergy += ExcessEnergyRate;
             TotalEnergy = MaxEnergy;
         }
 

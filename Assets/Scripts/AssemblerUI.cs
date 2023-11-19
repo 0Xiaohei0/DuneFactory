@@ -12,7 +12,7 @@ public class AssemblerUI : MonoBehaviour
 
 
 
-    [SerializeField] private List<ItemRecipeSO> itemRecipeScriptableObjectList;
+    [SerializeField] public List<ItemRecipeSO> itemRecipeScriptableObjectList;
 
     private Dictionary<ItemRecipeSO, Transform> recipeButtonDic;
     private Assembler assembler;
@@ -212,7 +212,7 @@ public class AssemblerUI : MonoBehaviour
             // Sub for item changes
             assembler.OnItemStorageCountChanged += Assembler_OnItemStorageCountChanged;
         }
-
+        SetupRecipes();
         UpdateSelectedRecipe();
     }
 

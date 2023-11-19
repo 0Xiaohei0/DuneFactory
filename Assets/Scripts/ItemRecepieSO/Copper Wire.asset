@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Copper Wire
   outputItemList:
-  - item: {fileID: 0}
+  - item: {fileID: 11400000, guid: 8ec20fbf57994dd4ba161d123da315a7, type: 2}
     amount: 3
   inputItemList:
   - item: {fileID: 11400000, guid: d9a39654ffa361241b21cdb55077992a, type: 2}
     amount: 1
-  craftingEffort: 0
+  craftingEffort: 1

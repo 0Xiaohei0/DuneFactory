@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Magnetic Ring
   m_EditorClassIdentifier: 
   recipeName: Magnetic Ring
-  outputItemList: []
-  inputItemList: []
-  craftingEffort: 3
+  outputItemList:
+  - item: {fileID: 11400000, guid: 47471e76326554243a3409b5e172a648, type: 2}
+    amount: 1
+  inputItemList:
+  - item: {fileID: 11400000, guid: 8ec20fbf57994dd4ba161d123da315a7, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 508b5aa69a5d87640832fa1d02bb5a60, type: 2}
+    amount: 1
+  craftingEffort: 1

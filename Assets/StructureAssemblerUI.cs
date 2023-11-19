@@ -12,7 +12,7 @@ public class StructureAssemblerUI : MonoBehaviour
 
 
 
-    [SerializeField] private List<PlacedObjectTypeSO> itemRecipeScriptableObjectList;
+    [SerializeField] public List<PlacedObjectTypeSO> itemRecipeScriptableObjectList;
 
     private Dictionary<PlacedObjectTypeSO, Transform> recipeButtonDic;
     private StructureAssembler structureAssembler;
@@ -178,7 +178,7 @@ public class StructureAssemblerUI : MonoBehaviour
             // Sub for item changes
             structureAssembler.OnItemStorageCountChanged += Assembler_OnItemStorageCountChanged;
         }
-
+        SetupRecipes();
         UpdateSelectedRecipe();
     }
 

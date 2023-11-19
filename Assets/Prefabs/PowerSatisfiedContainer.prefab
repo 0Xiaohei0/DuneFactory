@@ -144,8 +144,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 521e9d3f48e63cb42a0bfaf90fdb597f, type: 2}
+  m_sharedMaterial: {fileID: 3441806855933985859, guid: 521e9d3f48e63cb42a0bfaf90fdb597f,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -245,8 +246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 103.16147, y: -0.000014305}
-  m_SizeDelta: {x: 198.2653, y: 31.1115}
+  m_AnchoredPosition: {x: 117.1602, y: 0.00010777}
+  m_SizeDelta: {x: 210.5855, y: 31.111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5716253662943439534
 CanvasRenderer:
@@ -278,8 +279,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Power Satisfied:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 521e9d3f48e63cb42a0bfaf90fdb597f, type: 2}
+  m_sharedMaterial: {fileID: 3441806855933985859, guid: 521e9d3f48e63cb42a0bfaf90fdb597f,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

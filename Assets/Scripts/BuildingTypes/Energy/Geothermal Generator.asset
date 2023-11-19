@@ -24,6 +24,6 @@ MonoBehaviour:
     amount: 1
   - item: {fileID: 11400000, guid: 508b5aa69a5d87640832fa1d02bb5a60, type: 2}
     amount: 1
-  - item: {fileID: 11400000, guid: cc9a719192f87ba4b9ad753e11ac3eb7, type: 2}
+  - item: {fileID: 11400000, guid: 47471e76326554243a3409b5e172a648, type: 2}
     amount: 1
   craftingEffort: 10
