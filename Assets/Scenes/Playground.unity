@@ -646,6 +646,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &58363961
 Transform:
   m_ObjectHideFlags: 0
@@ -695,6 +696,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &63210674
 Transform:
   m_ObjectHideFlags: 0
@@ -1296,6 +1298,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &125467833
 Transform:
   m_ObjectHideFlags: 0
@@ -7092,6 +7095,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &590739399
 Transform:
   m_ObjectHideFlags: 0
@@ -7615,6 +7619,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &612063432
 Transform:
   m_ObjectHideFlags: 0
@@ -8135,6 +8140,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &652012828
 Transform:
   m_ObjectHideFlags: 0
@@ -9811,6 +9817,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &853690623
 Transform:
   m_ObjectHideFlags: 0
@@ -13617,6 +13624,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &1185133600
 Transform:
   m_ObjectHideFlags: 0
@@ -13767,6 +13775,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &1201451101
 Transform:
   m_ObjectHideFlags: 0
@@ -17766,6 +17775,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &1476361183
 Transform:
   m_ObjectHideFlags: 0
@@ -17925,6 +17935,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!1 &1499398402
 GameObject:
   m_ObjectHideFlags: 0
@@ -21902,8 +21913,8 @@ RectTransform:
   - {fileID: 1442450238}
   - {fileID: 1212987237}
   - {fileID: 1558959022}
-  - {fileID: 64702327}
   - {fileID: 605042748}
+  - {fileID: 64702327}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -23712,6 +23723,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &2024849766
 Transform:
   m_ObjectHideFlags: 0

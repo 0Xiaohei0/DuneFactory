@@ -40,6 +40,11 @@ public class Grabber : PlacedObject
                 transform.Find("GrabberVisual").Find("ArrowDrop").gameObject.SetActive(false);*/
 
         grabFilterItemSO = GameAssets.i.itemSO_Refs.any;
+        EnergyConsumer energyConsumer = transform.GetComponent<EnergyConsumer>();
+        if (energyConsumer != null)
+        {
+            energyConsumer.isOn = true;
+        }
     }
 
     public override string ToString()

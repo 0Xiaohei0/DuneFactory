@@ -254,6 +254,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: buildingAssembler
       objectReference: {fileID: 0}
+    - target: {fileID: 2654713335656134247, guid: b162aea9ac33f89429bebaaa52886d46,
+        type: 3}
+      propertyPath: m_Name
+      value: Light
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

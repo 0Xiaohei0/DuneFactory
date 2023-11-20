@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniGLTF;
 using UnityEngine;
 
 public class PlacedObject : MonoBehaviour
@@ -15,7 +16,6 @@ public class PlacedObject : MonoBehaviour
         placedObject.origin = origin;
         placedObject.dir = dir;
         placedObject.powerSaticfactionMultiplier = 1.0f;
-
         placedObject.Setup();
 
         return placedObject;
@@ -26,6 +26,8 @@ public class PlacedObject : MonoBehaviour
     public Vector2Int origin;
     public PlacedObjectTypeSO.Dir dir;
     public float powerSaticfactionMultiplier;
+
+    [SerializeField] private GameObject IndicatorLight;
 
     protected virtual void Setup()
     {
@@ -68,5 +70,18 @@ public class PlacedObject : MonoBehaviour
     public void SetEffciencyMultiplier(float effciencyMultiplier)
     {
         powerSaticfactionMultiplier = effciencyMultiplier;
+    }
+    public void SetLight(bool isOn)
+    {
+        if (IndicatorLight == null)
+        {
+            IndicatorLight = transform.FindDescendant("Light")?.gameObject;
+            if (IndicatorLight == null)
+            {
+                print("no light mesh found");
+                return;
+            }
+        }
+        IndicatorLight.GetComponent<MeshRenderer>().material = isOn ? GameAssets.i.LightRingMaterialOn : GameAssets.i.LightRingMaterialOff;
     }
 }

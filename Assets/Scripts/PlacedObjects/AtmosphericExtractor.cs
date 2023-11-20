@@ -25,33 +25,6 @@ public class AtmosphericExtractor : PlacedObject, IItemStorage
         //FindResourcesWithinRange();
     }
 
-    public void FindResourcesWithinRange(object sender = null, EventArgs e = null)
-    {
-        int resourceNodeSearchWidth = 2;
-        int resourceNodeSearchHeight = 2;
-
-        // Find resources within range
-        for (int x = origin.x - resourceNodeSearchWidth; x < origin.x + resourceNodeSearchWidth + placedObjectTypeSO.width; x++)
-        {
-            for (int y = origin.y - resourceNodeSearchHeight; y < origin.y + resourceNodeSearchHeight + placedObjectTypeSO.height; y++)
-            {
-                Vector2Int gridPosition = new Vector2Int(x, y);
-                if (GridBuildingSystem.Instance.IsValidGridPosition(gridPosition))
-                {
-                    PlacedObject placedObject = GridBuildingSystem.Instance.GetGridObject(gridPosition).GetPlacedObject();
-                    if (placedObject != null)
-                    {
-                        if (placedObject is ResourceNode)
-                        {
-                            ResourceNode resourceNode = placedObject as ResourceNode;
-                            miningResourceItem = resourceNode.GetItemScriptableObject();
-                        }
-                    }
-                }
-            }
-        }
-        lightRingObject.GetComponent<MeshRenderer>().material = miningResourceItem == null ? GameAssets.i.LightRingMaterialOff : GameAssets.i.LightRingMaterialOn;
-    }
     public override string ToString()
     {
         if (miningResourceItem == null)
@@ -63,6 +36,12 @@ public class AtmosphericExtractor : PlacedObject, IItemStorage
 
     private void Update()
     {
+        SetLight(miningResourceItem != null);
+        EnergyConsumer energyConsumer = transform.GetComponent<EnergyConsumer>();
+        if (energyConsumer != null)
+        {
+            energyConsumer.isOn = miningResourceItem != null;
+        }
         if (miningResourceItem == null)
         {
             // No resources in range!

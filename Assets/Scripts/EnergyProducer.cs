@@ -12,7 +12,10 @@ public class EnergyProducer : EnergyBuilding
         tickTimer += Time.deltaTime;
         if (tickTimer >= energyManager.TickInterval)
         {
-            energyManager.AddProduction(energyRate);
+            if (isOn)
+            {
+                energyManager.AddProduction(energyRate);
+            }
             tickTimer = 0f;
         }
     }

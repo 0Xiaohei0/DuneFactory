@@ -18,7 +18,10 @@ public class EnergyConsumer : EnergyBuilding
         tickTimer += Time.deltaTime;
         if (tickTimer >= energyManager.TickInterval)
         {
-            energyManager.AddConsumption(energyRate);
+            if (isOn)
+            {
+                energyManager.AddConsumption(energyRate);
+            }
             tickTimer = 0f;
         }
         UpdateIconVisibility();

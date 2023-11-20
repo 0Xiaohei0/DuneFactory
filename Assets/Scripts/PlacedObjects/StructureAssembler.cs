@@ -3,37 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Smelter : PlacedObject, IItemStorage
+public class StructureAssembler : PlacedObject, IItemStorage
 {
-
     public event EventHandler OnItemStorageCountChanged;
 
-
-    [SerializeField] private ItemRecipeSO itemRecipeSO;
-    [SerializeField] private ItemStackList inputItemStackList;
-    [SerializeField] private ItemStackList outputItemStackList;
+    [SerializeField] private PlacedObjectTypeSO itemRecipeSO;
     [SerializeField] private float craftingProgress;
+    [SerializeField] private List<ItemStack> inputItemStackList;
 
     protected override void Setup()
     {
-        //Debug.Log("Smelter.Setup()");
-        inputItemStackList = new ItemStackList();
-        outputItemStackList = new ItemStackList();
+        inputItemStackList = new List<ItemStack>();
     }
 
     public override string ToString()
     {
         string str = "";
-        str += inputItemStackList.ToString();
-        str += outputItemStackList.ToString();
+        foreach (ItemStack itemStack in inputItemStackList)
+        {
+            str += "I: " + itemStack.itemSO.itemName + "x" + itemStack.amount;
+            str += "\n";
+        }
         return str;
     }
 
     private void Update()
     {
+        bool hasEnoughItemsToCraft = HasEnoughItemsToCraft();
+        SetLight(hasEnoughItemsToCraft);
+        EnergyConsumer energyConsumer = transform.GetComponent<EnergyConsumer>();
+        if (energyConsumer != null)
+        {
+            energyConsumer.isOn = hasEnoughItemsToCraft;
+        }
         if (!HasItemRecipe()) return;
 
-        if (HasEnoughItemsToCraft())
+        if (hasEnoughItemsToCraft)
         {
             craftingProgress += Time.deltaTime * powerSaticfactionMultiplier;
 
@@ -43,15 +48,12 @@ public class Smelter : PlacedObject, IItemStorage
                 craftingProgress = 0f;
 
                 // Add Crafted Output Items
-                foreach (ItemRecipeSO.RecipeItem recipeItem in itemRecipeSO.outputItemList)
-                {
-                    outputItemStackList.AddItemToItemStack(recipeItem.item, recipeItem.amount);
-                }
+                GlobalStorage.AddBuilding(itemRecipeSO);
 
                 // Consume Input Items
                 foreach (ItemRecipeSO.RecipeItem recipeItem in itemRecipeSO.inputItemList)
                 {
-                    ItemStack itemStack = inputItemStackList.GetItemStackWithItemType(recipeItem.item);
+                    ItemStack itemStack = GetInputItemStackWithItemType(recipeItem.item);
                     itemStack.amount -= recipeItem.amount;
                 }
 
@@ -76,53 +78,20 @@ public class Smelter : PlacedObject, IItemStorage
     public int GetItemStoredCount(ItemSO filterItemSO)
     {
         int amount = 0;
-
-        amount += outputItemStackList.GetItemStoredCount(filterItemSO);
-        amount += inputItemStackList.GetItemStoredCount(filterItemSO);
-
+        foreach (ItemStack itemStack in inputItemStackList)
+        {
+            if (filterItemSO == GameAssets.i.itemSO_Refs.any || filterItemSO == itemStack.itemSO)
+            {
+                amount += itemStack.amount;
+            }
+        }
         return amount;
     }
 
     public bool TryGetStoredItem(ItemSO[] filterItemSO, out ItemSO itemSO)
     {
-        if (!HasItemRecipe())
-        {
-            itemSO = null;
-            return false;
-        }
-
-        if (ItemSO.IsItemSOInFilter(GameAssets.i.itemSO_Refs.any, filterItemSO) ||
-            ItemSO.IsItemSOInFilter(itemRecipeSO.outputItemList[0].item, filterItemSO))
-        {
-            // If filter matches any or filter matches this itemType
-            ItemStack itemStack = outputItemStackList.GetItemStackWithItemType(itemRecipeSO.outputItemList[0].item);
-            if (itemStack != null)
-            {
-                if (itemStack.amount > 0)
-                {
-                    itemStack.amount -= 1;
-                    itemSO = itemStack.itemSO;
-                    OnItemStorageCountChanged?.Invoke(this, EventArgs.Empty);
-                    TriggerGridObjectChanged();
-                    return true;
-                }
-                else
-                {
-                    itemSO = null;
-                    return false;
-                }
-            }
-            else
-            {
-                itemSO = null;
-                return false;
-            }
-        }
-        else
-        {
-            itemSO = null;
-            return false;
-        }
+        itemSO = null;
+        return false;
     }
 
     public ItemSO[] GetItemSOThatCanStore()
@@ -147,9 +116,9 @@ public class Smelter : PlacedObject, IItemStorage
             if (itemSO == recipeItem.item)
             {
                 // Can add item to input stack?
-                if (inputItemStackList.CanAddItemToItemStack(itemSO))
+                if (CanAddItemToInputStack(itemSO))
                 {
-                    inputItemStackList.AddItemToItemStack(itemSO);
+                    AddItemToInputItemStack(itemSO);
                     OnItemStorageCountChanged?.Invoke(this, EventArgs.Empty);
                     TriggerGridObjectChanged();
                     return true;
@@ -164,13 +133,63 @@ public class Smelter : PlacedObject, IItemStorage
         return false;
     }
 
+    private bool CanAddItemToInputStack(ItemSO itemSO, int amount = 1)
+    {
+        ItemStack itemStack = GetInputItemStackWithItemType(itemSO);
+        if (itemStack != null)
+        {
+            // Stack already exists, has space?
+            if (itemStack.amount + amount <= itemSO.maxStackAmount)
+            {
+                // Can add
+                return true;
+            }
+            else
+            {
+                // Stack full
+                return false;
+            }
+        }
+        else
+        {
+            // No item stack exists, can add
+            return true;
+        }
+    }
+
+    private void AddItemToInputItemStack(ItemSO itemSO, int amount = 1)
+    {
+        ItemStack itemStack = GetInputItemStackWithItemType(itemSO);
+        if (itemStack != null)
+        {
+            itemStack.amount += amount;
+        }
+        else
+        {
+            itemStack = new ItemStack { itemSO = itemSO, amount = amount };
+            inputItemStackList.Add(itemStack);
+        }
+    }
+
+    private ItemStack GetInputItemStackWithItemType(ItemSO itemSO)
+    {
+        foreach (ItemStack itemStack in inputItemStackList)
+        {
+            if (itemStack.itemSO == itemSO)
+            {
+                return itemStack;
+            }
+        }
+        return null;
+    }
+
     private bool HasEnoughItemsToCraft()
     {
         if (!HasItemRecipe()) return false;
 
         foreach (ItemRecipeSO.RecipeItem recipeItem in itemRecipeSO.inputItemList)
         {
-            ItemStack itemStack = inputItemStackList.GetItemStackWithItemType(recipeItem.item);
+            ItemStack itemStack = GetInputItemStackWithItemType(recipeItem.item);
             if (itemStack == null)
             {
                 // There's no item stack with this item type
@@ -194,14 +213,13 @@ public class Smelter : PlacedObject, IItemStorage
         return itemRecipeSO != null;
     }
 
-    public ItemRecipeSO GetItemRecipeSO()
+    public PlacedObjectTypeSO GetItemRecipeSO()
     {
         return itemRecipeSO;
     }
 
-    public void SetItemRecipeScriptableObject(ItemRecipeSO itemRecipeSO)
+    public void SetItemRecipeScriptableObject(PlacedObjectTypeSO itemRecipeSO)
     {
         this.itemRecipeSO = itemRecipeSO;
     }
-
 }

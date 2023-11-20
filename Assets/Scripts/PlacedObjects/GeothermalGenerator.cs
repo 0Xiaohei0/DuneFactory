@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StructureAssembler : PlacedObject, IItemStorage
+public class GeothermalGenerator : PlacedObject, IItemStorage
 {
     public event EventHandler OnItemStorageCountChanged;
 
-    [SerializeField] private PlacedObjectTypeSO itemRecipeSO;
+    [SerializeField] private ItemRecipeSO itemRecipeSO;
     [SerializeField] private float craftingProgress;
     [SerializeField] private List<ItemStack> inputItemStackList;
 
@@ -16,22 +16,18 @@ public class StructureAssembler : PlacedObject, IItemStorage
         inputItemStackList = new List<ItemStack>();
     }
 
-    public override string ToString()
-    {
-        string str = "";
-        foreach (ItemStack itemStack in inputItemStackList)
-        {
-            str += "I: " + itemStack.itemSO.itemName + "x" + itemStack.amount;
-            str += "\n";
-        }
-        return str;
-    }
-
     private void Update()
     {
+        bool hasEnoughItemsToCraft = HasEnoughItemsToCraft();
+        SetLight(hasEnoughItemsToCraft);
+        EnergyProducer energyProducer = transform.GetComponent<EnergyProducer>();
+        if (energyProducer != null)
+        {
+            energyProducer.isOn = hasEnoughItemsToCraft;
+        }
         if (!HasItemRecipe()) return;
 
-        if (HasEnoughItemsToCraft())
+        if (hasEnoughItemsToCraft)
         {
             craftingProgress += Time.deltaTime * powerSaticfactionMultiplier;
 
@@ -39,9 +35,6 @@ public class StructureAssembler : PlacedObject, IItemStorage
             {
                 // Item crafting complete
                 craftingProgress = 0f;
-
-                // Add Crafted Output Items
-                GlobalStorage.AddBuilding(itemRecipeSO);
 
                 // Consume Input Items
                 foreach (ItemRecipeSO.RecipeItem recipeItem in itemRecipeSO.inputItemList)
@@ -206,12 +199,12 @@ public class StructureAssembler : PlacedObject, IItemStorage
         return itemRecipeSO != null;
     }
 
-    public PlacedObjectTypeSO GetItemRecipeSO()
+    public ItemRecipeSO GetItemRecipeSO()
     {
         return itemRecipeSO;
     }
 
-    public void SetItemRecipeScriptableObject(PlacedObjectTypeSO itemRecipeSO)
+    public void SetItemRecipeScriptableObject(ItemRecipeSO itemRecipeSO)
     {
         this.itemRecipeSO = itemRecipeSO;
     }

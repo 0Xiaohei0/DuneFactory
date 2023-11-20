@@ -38,9 +38,16 @@ public class Assembler : PlacedObject, IItemStorage
 
     private void Update()
     {
+        bool hasEnoughItemsToCraft = HasEnoughItemsToCraft();
+        SetLight(hasEnoughItemsToCraft);
+        EnergyConsumer energyConsumer = transform.GetComponent<EnergyConsumer>();
+        if (energyConsumer != null)
+        {
+            energyConsumer.isOn = hasEnoughItemsToCraft;
+        }
         if (!HasItemRecipe()) return;
 
-        if (HasEnoughItemsToCraft())
+        if (hasEnoughItemsToCraft)
         {
             craftingProgress += Time.deltaTime * powerSaticfactionMultiplier;
 

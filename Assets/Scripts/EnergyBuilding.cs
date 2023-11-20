@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class EnergyBuilding : MonoBehaviour
 {
     public float energyRate; // Can be positive for production, negative for consumption
-
+    public bool isOn = true;
     protected EnergyManager energyManager;
 
     protected virtual void Start()

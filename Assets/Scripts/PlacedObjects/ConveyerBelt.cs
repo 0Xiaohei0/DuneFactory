@@ -9,6 +9,11 @@ public class ConveyerBelt : PlacedObject, IWorldItemSlot
     void Start()
     {
         belt = GetComponentInChildren<Belt>();
+        EnergyConsumer energyConsumer = transform.GetComponent<EnergyConsumer>();
+        if (energyConsumer != null)
+        {
+            energyConsumer.isOn = true;
+        }
     }
 
     public WorldItem GetWorldItem()

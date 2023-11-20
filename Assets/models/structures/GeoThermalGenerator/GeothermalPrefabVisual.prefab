@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6927787126810888356}
-  - component: {fileID: 8174758407764761537}
-  - component: {fileID: 1238568428315953026}
   m_Layer: 0
   m_Name: GeothermalPrefabVisual
   m_TagString: Untagged
@@ -34,35 +32,6 @@ Transform:
   - {fileID: 313958571488955343}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8174758407764761537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8667712453743330659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df369df1792296f4f962f31989f22970, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placedObjectTypeSO: {fileID: 0}
-  origin: {x: 0, y: 0}
-  dir: 0
-  powerSaticfactionMultiplier: 0
---- !u!114 &1238568428315953026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8667712453743330659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8928809486714b4a9785712cfc86fc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  energyRate: 300
 --- !u!1001 &275246059619658788
 PrefabInstance:
   m_ObjectHideFlags: 0
