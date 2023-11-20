@@ -205,7 +205,6 @@ namespace StarterAssets
 
         private void CheckIdle()
         {
-            print(_input.move != Vector2.zero);
             if (_input.move != Vector2.zero)
             {
                 timeSinceLastMove = 0;

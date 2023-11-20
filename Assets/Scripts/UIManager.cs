@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UniGLTF;
 using CodeMonkey.Utils;
+using UnityEngine.SceneManagement;
+using System.Runtime.CompilerServices;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,6 +19,9 @@ public class UIManager : MonoBehaviour
     public GameObject statsButton;
     public GameObject researchParent; // The parent transform for stat UI
     public GameObject researchButton;
+    public GameObject LoadGameButtonContainer;
+    public GameObject SaveBG;
+    public GameObject LoadBG;
 
     private BuildingCategorySO activeCategory = null;
 
@@ -27,6 +32,8 @@ public class UIManager : MonoBehaviour
         SetupCategoryButtons();
         SetupStatButtons();
         buildingsParent.SetActive(false);
+        SaveBG.SetActive(false);
+        LoadBG.SetActive(false);
         GlobalStorage.OnBuildingAmountChanged += UpdateBuildingAmount;
     }
 
@@ -133,5 +140,60 @@ public class UIManager : MonoBehaviour
         PopulateBuildings(activeCategory);
     }
 
+    public void BackToMenu()
+    {
+        // Replace "GameScene" with the name of your game scene
+        SceneManager.LoadScene("TitleScene");
+    }
 
+    public void QuitGame()
+    {
+        // This will quit the game. Note: This will not stop the game in the Unity editor.
+        Application.Quit();
+    }
+    public void OpenSaveMenu()
+    {
+        SaveBG.SetActive(true);
+        UpdateSaveSlots(isLoad: false);
+    }
+    public void OpenLoadMenu()
+    {
+        LoadBG.SetActive(true);
+        UpdateSaveSlots(isLoad: true);
+    }
+
+    public void WriteSave(int idx)
+    {
+        SaveManager.Instance.WriteGameSave(idx);
+        UpdateSaveSlots(isLoad: false);
+    }
+
+    public void LoadSave(int idx)
+    {
+        SaveManager.Instance.LoadGameSave(SaveSystem.LoadGameData(idx));
+        UpdateSaveSlots(isLoad: true);
+    }
+    public void UpdateSaveSlots(bool isLoad = false)
+    {
+        int idx = 1;
+        Transform container = isLoad ? LoadBG.transform.Find("SaveSlotContainer") : SaveBG.transform.Find("SaveSlotContainer");
+        foreach (Transform saveSlot in container)
+        {
+            Button button = saveSlot.GetComponent<Button>();
+            int currentIdx = idx;
+            if (isLoad)
+            {
+                button.onClick.AddListener(() => LoadSave(currentIdx));
+            }
+            else
+            {
+                button.onClick.AddListener(() => WriteSave(currentIdx));
+            }
+            SaveManager.SaveStatus saveStatus = SaveManager.Instance.GetSaveStatus(currentIdx);
+            saveSlot.Find("SlotStatus").GetComponent<TMP_Text>().text = saveStatus.statusString;
+            saveSlot.Find("SlotName").GetComponent<TMP_Text>().text = "Slot " + currentIdx;
+            saveSlot.Find("SaveTime").GetComponent<TMP_Text>().text = saveStatus.saveTime;
+            idx++;
+        }
+    }
 }

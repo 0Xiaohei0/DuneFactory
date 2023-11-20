@@ -10,16 +10,19 @@ using UnityEngine.Playables;
 using static SaveManager.GameData.GridData;
 using static UnityEngine.UI.Image;
 using System.Runtime.CompilerServices;
+using static SaveManager;
+using System;
 
 public class SaveManager : MonoBehaviour
 {
-
+    public static SaveManager Instance { get; private set; }
     public GridBuildingSystem gridBuildingSystem;
     private StarterAssetsInputs _input;
 
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         gridBuildingSystem = FindObjectOfType<GridBuildingSystem>();
         _input = FindObjectOfType<StarterAssetsInputs>();
         loadNewGame();
@@ -66,7 +69,7 @@ public class SaveManager : MonoBehaviour
             }
         }
     }
-    public void WriteGameSave()
+    public void WriteGameSave(int idx = 0)
     {
         GameData gameData = new GameData();
         gameData.gridData.width = gridBuildingSystem.grid.width;
@@ -118,7 +121,12 @@ public class SaveManager : MonoBehaviour
                 }
             }
         }
-        SaveSystem.SaveGameData(gameData, 0);
+
+        SaveStatus saveStatus = new SaveStatus();
+        saveStatus.saveTime = DateTime.Now.ToString();
+        saveStatus.statusString = "Lv " + ProgressionManager.Instance.currentLevel.ToString();
+        SaveSystem.SaveGameData(gameData, idx);
+        SaveSystem.SaveSaveStatus(saveStatus, idx);
     }
     public void LoadGameSave(GameData gameData)
     {
@@ -208,5 +216,16 @@ public class SaveManager : MonoBehaviour
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 50);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 50);
         ProgressionManager.Instance.LevelUp();
+    }
+
+    public SaveStatus GetSaveStatus(int slot)
+    {
+        return SaveSystem.LoadSaveStatus(slot);
+    }
+
+    public class SaveStatus
+    {
+        public string statusString;
+        public string saveTime;
     }
 }

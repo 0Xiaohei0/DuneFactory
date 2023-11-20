@@ -31,8 +31,8 @@ public class GridBuildingSystem : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        int gridWidth = 2000;
-        int gridHeight = 2000;
+        int gridWidth = 1000;
+        int gridHeight = 1000;
         float cellSize = 1f;
         Vector3 origin = new Vector3(-gridWidth / 2 * cellSize, 0, -gridHeight / 2 * cellSize);
         //Vector3 origin = Vector3.zero;

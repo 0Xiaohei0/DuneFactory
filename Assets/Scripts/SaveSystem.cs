@@ -6,6 +6,7 @@ using static SaveManager;
 public static class SaveSystem
 {
     private static readonly string SavePath = Path.Combine(Application.persistentDataPath, "save{0}.json");
+    private static readonly string SaveStatusPath = Path.Combine(Application.persistentDataPath, "save{0}status.json");
 
     public static void SaveGameData(GameData data, int slot)
     {
@@ -49,4 +50,46 @@ public static class SaveSystem
         PopupManager.Instance?.ShowPopup("Game data loaded from JSON");
         return data;
     }
+
+    public static bool saveExist(int slot)
+    {
+        string slotSavePath = string.Format(SavePath, slot);
+        return File.Exists(slotSavePath);
+    }
+
+    public static void SaveSaveStatus(SaveStatus data, int slot)
+    {
+        string slotSavePath = string.Format(SaveStatusPath, slot);
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto,
+            Formatting = Formatting.Indented,
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        };
+
+        string json = JsonConvert.SerializeObject(data, settings);
+        File.WriteAllText(slotSavePath, json);
+        //Debug.Log("Save status saved to " + slotSavePath);
+    }
+
+    public static SaveStatus LoadSaveStatus(int slot)
+    {
+        string slotSavePath = string.Format(SaveStatusPath, slot);
+        if (File.Exists(slotSavePath))
+        {
+            string json = File.ReadAllText(slotSavePath);
+            var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
+            SaveStatus data = JsonConvert.DeserializeObject<SaveStatus>(json, settings);
+            //Debug.Log("Save status data loaded from " + slotSavePath);
+            return data;
+        }
+        else
+        {
+            SaveStatus data = new SaveStatus();
+            data.statusString = "Empty";
+            //Debug.LogWarning("Save status data not found in " + slotSavePath);
+            return data; // Return a new instance if no save file exists.
+        }
+    }
+
 }
