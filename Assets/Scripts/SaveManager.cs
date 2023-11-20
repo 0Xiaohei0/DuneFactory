@@ -91,6 +91,11 @@ public class SaveManager : MonoBehaviour
                     MiningMachine miningMachine = placedObject as MiningMachine;
                     gameData.gridData.gridArray[x, z].miningResourceItemName = miningMachine.GetMiningResourceItem()?.itemName;
                 }
+                else if (placedObject is AtmosphericExtractor)
+                {
+                    AtmosphericExtractor atmosphericExtractor = placedObject as AtmosphericExtractor;
+                    gameData.gridData.gridArray[x, z].miningResourceItemName = atmosphericExtractor.GetMiningResourceItem()?.itemName;
+                }
                 else if (placedObject is Assembler)
                 {
                     Assembler assembler = placedObject as Assembler;
@@ -139,6 +144,11 @@ public class SaveManager : MonoBehaviour
                 {
                     MiningMachine miningMachine = placedObject as MiningMachine;
                     miningMachine.SetMiningResourceItem(GameAssets.i.itemSO_Refs.FindItemSOByName(gameData.gridData.gridArray[x, z].miningResourceItemName));
+                }
+                else if (placedObject is AtmosphericExtractor)
+                {
+                    AtmosphericExtractor atmosphericExtractor = placedObject as AtmosphericExtractor;
+                    atmosphericExtractor.SetMiningResourceItem(GameAssets.i.itemSO_Refs.FindItemSOByName(gameData.gridData.gridArray[x, z].miningResourceItemName));
                 }
                 else if (placedObject is Assembler)
                 {

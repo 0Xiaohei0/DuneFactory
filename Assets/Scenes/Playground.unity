@@ -5163,6 +5163,9 @@ MonoBehaviour:
     sand: {fileID: 11400000, guid: 8977105a84545d949a40ed055e01937b, type: 2}
     siliconBar: {fileID: 11400000, guid: 9fe1d1e61eb84244e83ddbd6017d83d4, type: 2}
     solarCell: {fileID: 11400000, guid: 51ffdbbb12be16e4bb63cac7583d5546, type: 2}
+    water: {fileID: 11400000, guid: 4623c663bff552942a06507ba840e3b3, type: 2}
+    copperWire: {fileID: 11400000, guid: 8ec20fbf57994dd4ba161d123da315a7, type: 2}
+    magneticCoil: {fileID: 11400000, guid: 47471e76326554243a3409b5e172a648, type: 2}
     any: {fileID: 11400000, guid: f67fc602bd3131446934fb6e23eeef0f, type: 2}
     none: {fileID: 11400000, guid: 88717a9be081f8a40b8eeddad1b4a0e3, type: 2}
   itemRecipeSO_Refs:

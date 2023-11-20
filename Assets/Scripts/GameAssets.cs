@@ -89,6 +89,9 @@ public class GameAssets : MonoBehaviour
         public ItemSO sand;
         public ItemSO siliconBar;
         public ItemSO solarCell;
+        public ItemSO water;
+        public ItemSO copperWire;
+        public ItemSO magneticCoil;
 
         public ItemSO any;
         public ItemSO none;
