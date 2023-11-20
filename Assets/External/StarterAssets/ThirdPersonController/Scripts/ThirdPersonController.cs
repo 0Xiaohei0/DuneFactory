@@ -104,6 +104,11 @@ namespace StarterAssets
         [Tooltip("Debug")]
         public RaycastHit hit;
 
+        [SerializeField] private float timeSinceLastMove = 0f;
+        [SerializeField] private bool isInIdleAnimation = false;
+        public float idleAnimationThreshold = 5f; // Time in seconds
+
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -195,6 +200,40 @@ namespace StarterAssets
             updateMouseWorldPosition();
             ZoomCamera();
             RotateCamera();
+            CheckIdle();
+        }
+
+        private void CheckIdle()
+        {
+            print(_input.move != Vector2.zero);
+            if (_input.move != Vector2.zero)
+            {
+                timeSinceLastMove = 0;
+                if (isInIdleAnimation)
+                {
+                    OnIdleFinish();
+                }
+
+            }
+            else
+            {
+                if (isInIdleAnimation)
+                {
+                    timeSinceLastMove = 0;
+                }
+                timeSinceLastMove += Time.deltaTime;
+                if (timeSinceLastMove >= idleAnimationThreshold)
+                {
+                    PlayRandomIdleAnimation();
+                    timeSinceLastMove = 0;
+                }
+            }
+        }
+        private void PlayRandomIdleAnimation()
+        {
+            int randomIdle = Random.Range(1, 3);
+            _animator.SetTrigger("Idle" + randomIdle);
+            isInIdleAnimation = true;
         }
 
         private void LateUpdate()
@@ -468,6 +507,12 @@ namespace StarterAssets
                 LockCameraPosition = true;
                 Cursor.lockState = CursorLockMode.None;
             }
+        }
+
+        public void OnIdleFinish()
+        {
+            _animator.SetTrigger("IdleFinish");
+            isInIdleAnimation = false;
         }
     }
 }

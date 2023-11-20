@@ -9,11 +9,14 @@ public class EnergyManager : MonoBehaviour
     public float TickInterval = 1.0f; // Time in seconds for each tick
     public float ExcessEnergy = 0;
     public float ExcessEnergyRate = 0;
+    public float NoEnergyThreshold = 0.75f;
+    public int NoEnergyDuration = 3;
 
     [SerializeField] public float energyProducedThisTick = 0;
     [SerializeField] public float energyConsumedThisTick = 0;
 
     [SerializeField] private float efficiencyRatio;
+    [SerializeField] private int noEnergyTickCount;
 
     public TMP_Text EnergyProducedText; // The parent transform for stat UI
     public TMP_Text EnergyConsumedText; // The parent transform for stat UI
@@ -52,6 +55,14 @@ public class EnergyManager : MonoBehaviour
         }
 
         efficiencyRatio = energyProducedThisTick / energyConsumedThisTick;
+        if (efficiencyRatio <= NoEnergyThreshold)
+        {
+            noEnergyTickCount++;
+        }
+        else
+        {
+            noEnergyTickCount = 0;
+        }
         AdjustBuildingEfficiency(efficiencyRatio);
 
         UpdateUI();
@@ -65,7 +76,7 @@ public class EnergyManager : MonoBehaviour
     {
         foreach (var consumer in FindObjectsOfType<EnergyConsumer>())
         {
-            consumer.SetPowerStatus(efficiencyRatio >= 0.75f); // True if enough power, false otherwise
+            consumer.SetPowerStatus(noEnergyTickCount < NoEnergyDuration); // True if enough power, false otherwise
             consumer.gameObject.GetComponent<PlacedObject>().SetEffciencyMultiplier(Mathf.Min(efficiencyRatio, 1));
         }
     }

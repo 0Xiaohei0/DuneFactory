@@ -7,7 +7,7 @@ public class TitleScreenManager : SaveManager
 {
     private void Start()
     {
-        print(Resources.Load<TextAsset>("Assets/saves/TitleSave"));
+        print(Resources.Load<TextAsset>("saves/TitleSave"));
         GameData saveData = SaveSystem.LoadGameDataFromString(Resources.Load<TextAsset>("saves/TitleSave").text);
         gridBuildingSystem.processInput = false;
         LoadGameSave(saveData);

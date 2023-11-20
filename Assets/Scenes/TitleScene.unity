@@ -766,6 +766,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &58363961
 Transform:
   m_ObjectHideFlags: 0
@@ -890,6 +891,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &63210674
 Transform:
   m_ObjectHideFlags: 0
@@ -1591,6 +1593,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &125467833
 Transform:
   m_ObjectHideFlags: 0
@@ -5902,6 +5905,9 @@ MonoBehaviour:
     sand: {fileID: 11400000, guid: 8977105a84545d949a40ed055e01937b, type: 2}
     siliconBar: {fileID: 11400000, guid: 9fe1d1e61eb84244e83ddbd6017d83d4, type: 2}
     solarCell: {fileID: 11400000, guid: 51ffdbbb12be16e4bb63cac7583d5546, type: 2}
+    water: {fileID: 11400000, guid: 4623c663bff552942a06507ba840e3b3, type: 2}
+    copperWire: {fileID: 11400000, guid: 8ec20fbf57994dd4ba161d123da315a7, type: 2}
+    magneticCoil: {fileID: 11400000, guid: 47471e76326554243a3409b5e172a648, type: 2}
     any: {fileID: 11400000, guid: f67fc602bd3131446934fb6e23eeef0f, type: 2}
     none: {fileID: 11400000, guid: 88717a9be081f8a40b8eeddad1b4a0e3, type: 2}
   itemRecipeSO_Refs:
@@ -7531,6 +7537,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &590739399
 Transform:
   m_ObjectHideFlags: 0
@@ -7976,6 +7983,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &612063432
 Transform:
   m_ObjectHideFlags: 0
@@ -8631,6 +8639,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &652012828
 Transform:
   m_ObjectHideFlags: 0
@@ -9054,6 +9063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxEnergy: 1000
   TickInterval: 1
+  ExcessEnergy: 0
+  ExcessEnergyRate: 0
   energyProducedThisTick: 0
   energyConsumedThisTick: 0
   efficiencyRatio: 0
@@ -10622,6 +10633,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &853690623
 Transform:
   m_ObjectHideFlags: 0
@@ -14557,6 +14569,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &1185133600
 Transform:
   m_ObjectHideFlags: 0
@@ -14606,6 +14619,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &1201451101
 Transform:
   m_ObjectHideFlags: 0
@@ -18732,6 +18746,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &1476361183
 Transform:
   m_ObjectHideFlags: 0
@@ -18967,6 +18982,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!1 &1499398402
 GameObject:
   m_ObjectHideFlags: 0
@@ -23777,12 +23793,6 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!224 &1902390064 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4067657672057279065, guid: 96e622632f4ccc84c8ec5c898c6320dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 8178153109989009494}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1910544095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24856,7 +24866,7 @@ RectTransform:
   m_Children:
   - {fileID: 644074285}
   - {fileID: 1148774450}
-  - {fileID: 1902390064}
+  - {fileID: 8178153109989009495}
   - {fileID: 149316586}
   - {fileID: 1716446562}
   - {fileID: 2052685042}
@@ -25329,6 +25339,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!4 &2024849766
 Transform:
   m_ObjectHideFlags: 0
@@ -27540,6 +27551,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96e622632f4ccc84c8ec5c898c6320dd, type: 3}
+--- !u!224 &8178153109989009495 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5024593481247587486, guid: 96e622632f4ccc84c8ec5c898c6320dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 8178153109989009494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8345070700268369567
 PrefabInstance:
   m_ObjectHideFlags: 0

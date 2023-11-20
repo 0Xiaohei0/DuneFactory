@@ -8536,9 +8536,12 @@ MonoBehaviour:
   TickInterval: 1
   ExcessEnergy: 0
   ExcessEnergyRate: 0
+  NoEnergyThreshold: 0.75
+  NoEnergyDuration: 3
   energyProducedThisTick: 0
   energyConsumedThisTick: 0
   efficiencyRatio: 0
+  noEnergyTickCount: 0
   EnergyProducedText: {fileID: 1134859711}
   EnergyConsumedText: {fileID: 379123484}
 --- !u!4 &704768139

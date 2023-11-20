@@ -46,7 +46,7 @@ public static class SaveSystem
         var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
         GameData data = JsonConvert.DeserializeObject<GameData>(json, settings);
         Debug.Log("Game data loaded from JSON");
-        PopupManager.Instance.ShowPopup("Game data loaded from JSON");
+        PopupManager.Instance?.ShowPopup("Game data loaded from JSON");
         return data;
     }
 }
