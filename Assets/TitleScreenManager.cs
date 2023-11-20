@@ -9,13 +9,15 @@ public class TitleScreenManager : SaveManager
     public bool isPlayingAnimation = false;
     public int currentAnimationIdx = 0;
 
-    public Animator animator;
+    public GameObject player;
+    private Animator _animator;
     private void Start()
     {
         print(Resources.Load<TextAsset>("saves/TitleSave"));
         GameData saveData = SaveSystem.LoadGameDataFromString(Resources.Load<TextAsset>("saves/TitleSave").text);
         gridBuildingSystem.processInput = false;
         LoadGameSave(saveData);
+        _animator = player.GetComponent<Animator>();
     }
     void Update()
     {
@@ -32,10 +34,11 @@ public class TitleScreenManager : SaveManager
         GameObject location = GameObject.Find(pair.locationName); // or GameObject.FindWithTag(pair.locationTag);
 
         // Teleport and animate
-        transform.position = location.transform.position;
-        animator.Play(pair.animationName);
+        player.transform.position = location.transform.position;
+        player.transform.rotation = location.transform.rotation;
+        _animator.Play(pair.animationName);
         isPlayingAnimation = true;
-        HandleAnimationDuration(pair.duration);
+        StartCoroutine(HandleAnimationDuration(pair.duration));
     }
     IEnumerator HandleAnimationDuration(float duration)
     {
