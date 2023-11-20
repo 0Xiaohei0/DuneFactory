@@ -11,6 +11,7 @@ public class TitleScreenManager : SaveManager
 
     public GameObject player;
     private Animator _animator;
+    ParticleSystem ps;
     private void Start()
     {
         print(Resources.Load<TextAsset>("saves/TitleSave"));
@@ -18,6 +19,7 @@ public class TitleScreenManager : SaveManager
         gridBuildingSystem.processInput = false;
         LoadGameSave(saveData);
         _animator = player.GetComponent<Animator>();
+        ps = player.GetComponentInChildren<ParticleSystem>();
     }
     void Update()
     {
@@ -37,17 +39,24 @@ public class TitleScreenManager : SaveManager
         player.transform.position = location.transform.position;
         player.transform.rotation = location.transform.rotation;
         _animator.Play(pair.animationName);
+        if (pair.animationName == "Standing Using Touchscreen Tablet")
+        {
+            player.transform.Find("Tablet").gameObject.SetActive(true);
+        }
         isPlayingAnimation = true;
         StartCoroutine(HandleAnimationDuration(pair.duration));
     }
     IEnumerator HandleAnimationDuration(float duration)
     {
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration - 0.5f);
+        ps.Play();
+        yield return new WaitForSeconds(0.5f);
         isPlayingAnimation = false;
         currentAnimationIdx++;
         if (currentAnimationIdx == pairs.Count)
         {
             currentAnimationIdx = 0;
         }
+        player.transform.Find("Tablet")?.gameObject.SetActive(false);
     }
 }
