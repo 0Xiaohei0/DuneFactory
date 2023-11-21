@@ -1,21 +1,13 @@
 using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using UnityEngine;
 using static GridBuildingSystem;
-using UnityEditor.Experimental.GraphView;
-using System.IO;
-using UnityEngine.Playables;
 using static SaveManager.GameData.GridData;
-using static UnityEngine.UI.Image;
-using System.Runtime.CompilerServices;
-using static SaveManager;
 using System;
 
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance { get; private set; }
+    public bool processInput = true;
     public GridBuildingSystem gridBuildingSystem;
     private StarterAssetsInputs _input;
 
@@ -23,14 +15,21 @@ public class SaveManager : MonoBehaviour
     void Start()
     {
         Instance = this;
+        if (!processInput) return;
         gridBuildingSystem = FindObjectOfType<GridBuildingSystem>();
         _input = FindObjectOfType<StarterAssetsInputs>();
+        GameSettings gameSettings = FindAnyObjectByType<GameSettings>();
+        if (gameSettings != null && gameSettings.saveSelected == true)
+        {
+            LoadGameSave(SaveSystem.LoadGameData(gameSettings.saveIdxToLoad));
+        }
         loadNewGame();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!processInput) return;
         if (_input.save)
         {
             _input.save = false;
@@ -206,16 +205,15 @@ public class SaveManager : MonoBehaviour
     public void loadNewGame()
     {
         ClearPlacableObjects();
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, 100);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.smelter, 100);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 100);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 100);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 1000);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 50);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 50);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 50);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 50);
-        ProgressionManager.Instance.LevelUp();
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, 10);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.smelter, 10);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 10);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 20);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 100);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 20);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 5);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 0);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 0);
     }
 
     public SaveStatus GetSaveStatus(int slot)

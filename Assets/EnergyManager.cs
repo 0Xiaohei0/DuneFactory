@@ -21,9 +21,12 @@ public class EnergyManager : MonoBehaviour
     public TMP_Text EnergyProducedText; // The parent transform for stat UI
     public TMP_Text EnergyConsumedText; // The parent transform for stat UI
 
-    void Start()
+    private void Awake()
     {
         Instance = this;
+    }
+    void Start()
+    {
         TotalEnergy = 0;
         InvokeRepeating("ProcessTick", TickInterval, TickInterval); // Repeatedly call ProcessTick every TickInterval seconds
     }

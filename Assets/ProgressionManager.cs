@@ -18,9 +18,12 @@ public class ProgressionManager : MonoBehaviour
     public Transform unlocksContainer;
     public Transform researchLevelUpPanel;
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
+    }
+    private void Start()
+    {
         researchLevelUpPanel.gameObject.SetActive(false);
         SetupUnlocks(unlocksContainer);
     }
@@ -57,6 +60,7 @@ public class ProgressionManager : MonoBehaviour
     }
     private void SetupUnlocks(Transform unlocksContainer)
     {
+        if (currentLevel == levelList.Count) return;
         Transform unlocksTemplate = unlocksContainer.Find("Template");
         unlocksTemplate.gameObject.SetActive(false);
 

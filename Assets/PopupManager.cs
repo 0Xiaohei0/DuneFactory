@@ -7,7 +7,7 @@ public class PopupManager : MonoBehaviour
 {
     public static PopupManager Instance { get; private set; }
     public GameObject popupPrefab; // Assign your popup prefab in the Inspector
-    private void Start()
+    private void Awake()
     {
         Instance = this;
     }
