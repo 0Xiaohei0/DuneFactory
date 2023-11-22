@@ -50,6 +50,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
   itemRecipeSO: {fileID: 11400000, guid: f5f7719b96a82654eadf5f8eff743e95, type: 2}
   craftingProgress: 0
 --- !u!114 &1238568428315953026
@@ -64,7 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8928809486714b4a9785712cfc86fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyRate: 300
+  energyRate: 3700
+  isOn: 0
 --- !u!1001 &275246059619658788
 PrefabInstance:
   m_ObjectHideFlags: 0

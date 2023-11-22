@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdbe71d1b57adfa44b23833158fffbb4, type: 3}
-  m_Name: Level 1
+  m_Name: Level 2
   m_EditorClassIdentifier: 
-  levelCost: 30000
+  levelCost: 300000
   unlockBuildings:
   - {fileID: 11400000, guid: 24d1972e18971ff42906bf69fd2fc086, type: 2}
   - {fileID: 11400000, guid: 2f3c8d0f267f75b45ad98ebf5bf87999, type: 2}

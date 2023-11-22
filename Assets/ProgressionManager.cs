@@ -43,18 +43,17 @@ public class ProgressionManager : MonoBehaviour
     }
     public void LevelUp()
     {
+        currentLevel++;
         if (currentLevel < levelList.Count - 1)
         {
             EnergyManager.Instance.ExcessEnergy = 0;
             UnlockBuildings(currentLevel);
-            currentLevel++;
             levelText.text = "Lv " + currentLevel.ToString();
         }
         if (currentLevel == levelList.Count - 1)
         {
             EnergyManager.Instance.ExcessEnergy = 0;
             UnlockBuildings(currentLevel);
-            currentLevel++;
             levelText.text = "Lv MAX";
         }
     }

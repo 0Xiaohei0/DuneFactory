@@ -50,6 +50,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
 --- !u!114 &3477116439377192590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyRate: 10
+  isOn: 0
 --- !u!1001 &1710699608419697500
 PrefabInstance:
   m_ObjectHideFlags: 0
