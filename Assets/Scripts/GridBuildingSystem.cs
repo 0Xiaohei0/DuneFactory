@@ -187,7 +187,7 @@ public class GridBuildingSystem : MonoBehaviour
 
         bool canBuild = true;
         // check if has enough items
-        if (GlobalStorage.GetBuildingCount(placedObjectTypeSO) < 0)
+        if (GlobalStorage.GetBuildingCount(placedObjectTypeSO) <= 0 && useItem == true)
         {
             canBuild = false;
             if (showpopup) { UtilsClass.CreateWorldTextPopup("No building left!", position); }

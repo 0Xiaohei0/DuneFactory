@@ -15390,7 +15390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1167916869
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25614,7 +25614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1885036765
 Transform:
   m_ObjectHideFlags: 0
@@ -26144,7 +26144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1923466371
 Transform:
   m_ObjectHideFlags: 0
@@ -26813,7 +26813,9 @@ MonoBehaviour:
   transitionProgress: 0
   transitionSpeed: 0.1
   enrichmentPlantPosition: {x: 0, y: 0, z: 0}
-  plantEffectRadius: 0.1
+  plantEffectRadius: 64.5
+  updateTimer: 0
+  updateInterval: 1
 --- !u!4 &2023213200
 Transform:
   m_ObjectHideFlags: 0
