@@ -214,6 +214,7 @@ public class SaveManager : MonoBehaviour
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 5);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 0);
         GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 0);
+        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.SoilEnrichmentPlant, 10);
     }
 
     public SaveStatus GetSaveStatus(int slot)

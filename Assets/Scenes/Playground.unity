@@ -6023,6 +6023,10 @@ MonoBehaviour:
       type: 2}
     GeoThermalGenerator: {fileID: 11400000, guid: 2f3c8d0f267f75b45ad98ebf5bf87999,
       type: 2}
+    SoilEnrichmentPlant: {fileID: 11400000, guid: 94938e2f74280104c9c88ef06ba77674,
+      type: 2}
+    CloudSeedingRocketLauncher: {fileID: 11400000, guid: 5fb161ef206a5dc4abcdeaf323c1071a,
+      type: 2}
   itemSO_Refs:
     ironOre: {fileID: 11400000, guid: 7580fd3495234f3409eeb4f34543eb1a, type: 2}
     copperOre: {fileID: 11400000, guid: ab9d158bd97690b4fa707734b710a6ac, type: 2}
@@ -24815,6 +24819,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 476a92dd398b3b94bb35c672697d4097, type: 2}
   - {fileID: 11400000, guid: edb6e0eceed912744bf26cb88a853389, type: 2}
   - {fileID: 11400000, guid: dde079f98902d6f4bb526bf655ed7753, type: 2}
+  - {fileID: 11400000, guid: 14829a24cf580344d81936ae02f59c8e, type: 2}
   buildingPrefab: {fileID: 3963586651918111173, guid: 86c84ade7eb315342ac7044fc7bbd094,
     type: 3}
   categoryPrefab: {fileID: 3426971404090899547, guid: 4d8cc74e7b447a244bddcfd3caac97e4,
@@ -26809,13 +26814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cdf9214ca19f349b9b8fafecfc7c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrain: {fileID: 1114356731}
-  transitionProgress: 0
-  transitionSpeed: 0.1
-  enrichmentPlantPosition: {x: 0, y: 0, z: 0}
-  plantEffectRadius: 10
-  updateTimer: 0
-  updateInterval: 1
 --- !u!4 &2023213200
 Transform:
   m_ObjectHideFlags: 0
@@ -28032,6 +28030,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6548b4cc70f093e4c9c4ce4e4e720688, type: 3}
+--- !u!1001 &1864600534379393397
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711488246904872361, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014364079905928256, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: updateInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867919000305526164, guid: fe464834bfea3794183a940c38bc8042,
+        type: 3}
+      propertyPath: m_Name
+      value: SoilEnrichmentPlantPrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fe464834bfea3794183a940c38bc8042, type: 3}
 --- !u!1 &2114283753834967212
 GameObject:
   m_ObjectHideFlags: 0
@@ -30091,3 +30162,4 @@ SceneRoots:
   - {fileID: 438416103}
   - {fileID: 1114356732}
   - {fileID: 2023213200}
+  - {fileID: 1864600534379393397}

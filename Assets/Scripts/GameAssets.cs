@@ -46,6 +46,8 @@ public class GameAssets : MonoBehaviour
         public PlacedObjectTypeSO solarPanel;
         public PlacedObjectTypeSO AtmosphericExtractor;
         public PlacedObjectTypeSO GeoThermalGenerator;
+        public PlacedObjectTypeSO SoilEnrichmentPlant;
+        public PlacedObjectTypeSO CloudSeedingRocketLauncher;
         public PlacedObjectTypeSO FindPlacedObjectTypeSOByName(string name)
         {
             // Use reflection to get all fields of PlacedObjectTypeSO_Refs

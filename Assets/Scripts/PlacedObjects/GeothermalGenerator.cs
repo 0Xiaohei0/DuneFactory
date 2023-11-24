@@ -7,8 +7,8 @@ public class GeothermalGenerator : PlacedObject, IItemStorage
 {
     public event EventHandler OnItemStorageCountChanged;
 
-    [SerializeField] private ItemRecipeSO itemRecipeSO;
-    [SerializeField] private float craftingProgress;
+    [SerializeField] public ItemRecipeSO itemRecipeSO;
+    [SerializeField] public float craftingProgress;
     [SerializeField] private List<ItemStack> inputItemStackList;
 
     protected override void Setup()
@@ -16,7 +16,7 @@ public class GeothermalGenerator : PlacedObject, IItemStorage
         inputItemStackList = new List<ItemStack>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         bool hasEnoughItemsToCraft = HasEnoughItemsToCraft();
         SetLight(hasEnoughItemsToCraft);
@@ -157,7 +157,7 @@ public class GeothermalGenerator : PlacedObject, IItemStorage
         }
     }
 
-    private ItemStack GetInputItemStackWithItemType(ItemSO itemSO)
+    public ItemStack GetInputItemStackWithItemType(ItemSO itemSO)
     {
         foreach (ItemStack itemStack in inputItemStackList)
         {
@@ -169,7 +169,7 @@ public class GeothermalGenerator : PlacedObject, IItemStorage
         return null;
     }
 
-    private bool HasEnoughItemsToCraft()
+    public bool HasEnoughItemsToCraft()
     {
         if (!HasItemRecipe()) return false;
 
