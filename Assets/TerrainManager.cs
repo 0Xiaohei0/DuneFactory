@@ -15,8 +15,9 @@ public class TerrainManager : MonoBehaviour
     [SerializeField] private float updateInterval = 5f; // Update every 5 seconds
     private void Start()
     {
-        UpdateSplatMap(terrain, enrichmentPlantPosition, 10000, 0);
+        //UpdateSplatMap(terrain, enrichmentPlantPosition, 10000, 0);
         Vector3 centerPos = new Vector3(0, 0, 0); // Center position in world space
+        SetSplatMap(terrain, 0);
         SetGrass(terrain, 0, 0);
         //SetGrass(terrain, 0, 150);
         //PrintDetailMapSummary(terrain, 0);
@@ -56,27 +57,36 @@ public class TerrainManager : MonoBehaviour
         int startZ = 0;
         int endZ = terrainData.alphamapHeight;
 
-
         float[,,] splatmapData = terrainData.GetAlphamaps(startX, startZ, endX - startX, endZ - startZ);
         print("updating splat");
         for (int y = centerZ - radiusInSplatMap; y < centerZ + radiusInSplatMap; y++)
         {
             for (int x = centerX - radiusInSplatMap; x < centerX + radiusInSplatMap; x++)
             {
-
                 int distance = (int)Mathf.Sqrt((x - centerX) * (x - centerX) + (y - centerZ) * (y - centerZ));
                 if (distance < radiusInSplatMap)
                 {
                     splatmapData[x, y, 0] = 1 - transitionProgress; // Sand
                     splatmapData[x, y, 1] = transitionProgress; // Green
                 }
-
-
             }
         }
-
-        // Apply the modified splatmap data
         terrainData.SetAlphamaps(startX, startZ, splatmapData);
+    }
+    void SetSplatMap(Terrain terrain, float value)
+    {
+        TerrainData terrainData = terrain.terrainData;
+        float[,,] splatmapData = terrainData.GetAlphamaps(0, 0, terrainData.alphamapWidth, terrainData.alphamapHeight);
+        print("updating splat");
+        for (int y = 0; y < terrainData.alphamapWidth; y++)
+        {
+            for (int x = 0; x < terrainData.alphamapHeight; x++)
+            {
+                splatmapData[x, y, 0] = 1; // Sand
+                splatmapData[x, y, 1] = value; // Green
+            }
+        }
+        terrainData.SetAlphamaps(0, 0, splatmapData);
     }
     void SetGrass(Terrain terrain, int grassIndex, int density)
     {
@@ -126,30 +136,14 @@ public class TerrainManager : MonoBehaviour
         // Apply the updated detail layer to the terrain
         terrainData.SetDetailLayer(0, 0, grassIndex, detailLayer);
     }
-    void PrintDetailMapSummary(Terrain terrain, int detailIndex)
-    {
-        TerrainData terrainData = terrain.terrainData;
-        int[,] detailLayer = terrainData.GetDetailLayer(0, 0, terrainData.detailWidth, terrainData.detailHeight, detailIndex);
-
-        int totalDensity = 0;
-        for (int y = 0; y < terrainData.detailHeight; y++)
-        {
-            for (int x = 0; x < terrainData.detailWidth; x++)
-            {
-                totalDensity += detailLayer[y, x];
-            }
-        }
-
-        float averageDensity = (float)totalDensity / (terrainData.detailWidth * terrainData.detailHeight);
-        Debug.Log("Average Grass Density: " + averageDensity);
-    }
     void UpdateTerrainAndGrass(Terrain terrain, Vector3 centerPoint, float radius, int grassIndex, float transitionProgress, int tickRate)
     {
+        if (transitionProgress == 1) { return; }
         // Update splatmap for terrain texture
         UpdateSplatMap(terrain, centerPoint, radius, transitionProgress);
 
         // Calculate grass density based on transitionProgress
-        int grassDensity = (int)(transitionProgress * 150); // Scale density with progress
+        int grassDensity = Mathf.Max((int)(transitionProgress * 400) - 200, 0); // Scale density with progress
 
         // Update grass density in the detail layer
         UpdateGrassDensity(terrain, centerPoint, radius, grassIndex, grassDensity);
