@@ -133,11 +133,15 @@ public class GameAssets : MonoBehaviour
     [System.Serializable]
     public class ItemRecipeSO_Refs
     {
-
-        public ItemRecipeSO ironBar;
-        public ItemRecipeSO copperBar;
         public ItemRecipeSO circuitBoard;
+        public ItemRecipeSO copperWire;
+        public ItemRecipeSO copperBar;
+        public ItemRecipeSO geothermalPower;
+        public ItemRecipeSO ironBar;
+        public ItemRecipeSO magneticRing;
+        public ItemRecipeSO organicMaterial;
         public ItemRecipeSO siliconBar;
+        public ItemRecipeSO soilEnrichment;
         public ItemRecipeSO solarCell;
 
         public ItemRecipeSO FindItemRecipeSOByName(string name)

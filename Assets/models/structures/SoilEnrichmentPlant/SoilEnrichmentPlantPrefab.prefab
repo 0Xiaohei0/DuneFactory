@@ -52,15 +52,13 @@ MonoBehaviour:
   dir: 0
   powerSaticfactionMultiplier: 0
   IndicatorLight: {fileID: 0}
-  itemRecipeSO: {fileID: 11400000, guid: f5f7719b96a82654eadf5f8eff743e95, type: 2}
+  itemRecipeSO: {fileID: 11400000, guid: 41aa056ab8345e5419329be1d1090b87, type: 2}
   craftingProgress: 0
   terrain: {fileID: 0}
   transitionProgress: 0
   transitionSpeed: 0.1
   enrichmentPlantPosition: {x: 0, y: 0, z: 0}
   plantEffectRadius: 40
-  updateTimer: 0
-  updateInterval: 1
 --- !u!114 &842401105317615826
 MonoBehaviour:
   m_ObjectHideFlags: 0

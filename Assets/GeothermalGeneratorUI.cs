@@ -9,11 +9,7 @@ public class GeothermalGeneratorUI : MonoBehaviour
 {
     public static GeothermalGeneratorUI Instance { get; private set; }
 
-
-
     [SerializeField] private List<ItemRecipeSO> itemRecipeScriptableObjectList;
-
-    private Dictionary<ItemSO, Transform> recipeButtonDic;
     private GeothermalGenerator geothermalGenerator;
     private Image craftingProgressBar;
 
