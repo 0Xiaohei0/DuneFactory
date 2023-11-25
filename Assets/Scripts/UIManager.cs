@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     public GameObject LoadGameButtonContainer;
     public GameObject SaveBG;
     public GameObject LoadBG;
+    public List<PlacedObjectTypeSO> currentUnlockedBuildings;
 
     private BuildingCategorySO activeCategory = null;
 
@@ -119,7 +120,6 @@ public class UIManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
         // Instantiate new building UI elements
         foreach (PlacedObjectTypeSO building in category.placedObjects)
         {
@@ -131,7 +131,10 @@ public class UIManager : MonoBehaviour
             {
                 OnBuildingSelected(building);
             });
-            // Optionally add button listeners to these building elements...
+            if (currentUnlockedBuildings.Contains(building))
+            {
+                buildingElement.GetComponent<Button>().interactable = true;
+            }
         }
     }
     void UpdateBuildingAmount(object sender, System.EventArgs e)

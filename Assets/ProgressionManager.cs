@@ -43,7 +43,6 @@ public class ProgressionManager : MonoBehaviour
     }
     public void LevelUp()
     {
-        currentLevel++;
         if (currentLevel < levelList.Count - 1)
         {
             EnergyManager.Instance.ExcessEnergy = 0;
@@ -56,6 +55,8 @@ public class ProgressionManager : MonoBehaviour
             UnlockBuildings(currentLevel);
             levelText.text = "Lv MAX";
         }
+        currentLevel++;
+        SetupUnlocks(unlocksContainer);
     }
     private void SetupUnlocks(Transform unlocksContainer)
     {
@@ -98,6 +99,10 @@ public class ProgressionManager : MonoBehaviour
     {
         for (int i = 0; i < levelList[level].unlockBuildings.Count; i++)
         {
+            if (!UIManager.Instance.currentUnlockedBuildings.Contains(levelList[level].unlockBuildings[i]))
+            {
+                UIManager.Instance.currentUnlockedBuildings.Add(levelList[level].unlockBuildings[i]);
+            }
             PlacedObjectTypeSO buildingScriptableObject = levelList[level].unlockBuildings[i];
             bool found = false;
             foreach (PlacedObjectTypeSO placedObjectTypeSO in StructureAssemblerUI.Instance.itemRecipeScriptableObjectList)

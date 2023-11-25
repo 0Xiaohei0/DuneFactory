@@ -28582,6 +28582,14 @@ MonoBehaviour:
   LoadGameButtonContainer: {fileID: 126547962}
   SaveBG: {fileID: 2134970839}
   LoadBG: {fileID: 1912354248}
+  currentUnlockedBuildings:
+  - {fileID: 11400000, guid: d82c087e719e35f449a71222eaddece3, type: 2}
+  - {fileID: 11400000, guid: 5ad5049d2923a3b46829d0a991460f24, type: 2}
+  - {fileID: 11400000, guid: d1d13464ae9f76543a9a6b95ab825f10, type: 2}
+  - {fileID: 11400000, guid: 1b766db6bfb442642952e25c100e94b2, type: 2}
+  - {fileID: 11400000, guid: 45c4867a7499a3a4cade0c6cc9695c17, type: 2}
+  - {fileID: 11400000, guid: ca2b8f3211c7e9b40a5aaa1b8cb8a36f, type: 2}
+  - {fileID: 11400000, guid: 76d00406c68a6ab43b76db2af3c5670c, type: 2}
 --- !u!1 &1805773365
 GameObject:
   m_ObjectHideFlags: 0

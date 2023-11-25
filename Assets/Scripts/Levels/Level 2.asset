@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelCost: 300000
   unlockBuildings:
-  - {fileID: 11400000, guid: 24d1972e18971ff42906bf69fd2fc086, type: 2}
-  - {fileID: 11400000, guid: 2f3c8d0f267f75b45ad98ebf5bf87999, type: 2}
+  - {fileID: 11400000, guid: 79465bbe86930ff42ad1c259843dc3d7, type: 2}
+  - {fileID: 11400000, guid: 94938e2f74280104c9c88ef06ba77674, type: 2}
   unlockItems:
-  - {fileID: 11400000, guid: 7e3bccf3dba2e5a449f1f00f45bf6255, type: 2}
-  - {fileID: 11400000, guid: 653fa9297df478942b7400ebf80cadf2, type: 2}
+  - {fileID: 11400000, guid: b3fa25fe23b978947aed8043544d400b, type: 2}
