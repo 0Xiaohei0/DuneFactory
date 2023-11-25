@@ -24,4 +24,4 @@ MonoBehaviour:
     amount: 1
   - item: {fileID: 11400000, guid: 508b5aa69a5d87640832fa1d02bb5a60, type: 2}
     amount: 1
-  craftingEffort: 1
+  craftingEffort: 10

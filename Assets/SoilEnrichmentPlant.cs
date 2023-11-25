@@ -11,16 +11,13 @@ public class SoilEnrichmentPlant : GeothermalGenerator
     public float transitionSpeed = 0.1f;
     public Vector3 enrichmentPlantPosition;
     public float plantEffectRadius;
-    // Example variables for tick-based update
-    [SerializeField] private float updateTimer = 0f;
-    [SerializeField] private float updateInterval = 5f; // Update every 5 seconds
-    // Start is called before the first frame update
     void Start()
     {
         terrain = FindAnyObjectByType<Terrain>();
         enrichmentPlantPosition = new Vector3(transform.position.x + 4, transform.position.y, transform.position.z + 4);
-        SetSplatMap(terrain, 0);
-        SetGrass(terrain, 0, 0);
+        //SetSplatMap(terrain, 0);
+        //SetGrass(terrain, 0, 0);
+        OnItemStorageCountChanged += IncrementProgress;
     }
 
     // Update is called once per frame
@@ -35,17 +32,13 @@ public class SoilEnrichmentPlant : GeothermalGenerator
         {
             energyConsumer.isOn = hasEnoughItemsToCraft;
         }
+    }
 
-        updateTimer += Time.deltaTime;
-        if (updateTimer >= updateInterval)
-        {
-            updateTimer = 0f;
-            UpdateTerrainAndGrass(terrain, enrichmentPlantPosition, plantEffectRadius, 0, transitionProgress, 5);
-        }
-        //// Example condition: increment transitionProgress over time
-        transitionProgress += Time.deltaTime * transitionSpeed; // transitionSpeed is a variable you define
+    private void IncrementProgress(object sender, EventArgs e)
+    {
+        transitionProgress += transitionSpeed; // transitionSpeed is a variable you define
         transitionProgress = Mathf.Clamp01(transitionProgress); // Ensure value stays between 0 and 1
-        //UpdateSplatMap(terrain, enrichmentPlantPosition, plantEffectRadius, transitionProgress);
+        UpdateTerrainAndGrass(terrain, enrichmentPlantPosition, plantEffectRadius, 0, transitionProgress, 5);
     }
 
 
@@ -132,7 +125,7 @@ public class SoilEnrichmentPlant : GeothermalGenerator
                 int distance = (int)Mathf.Sqrt((x - centerX) * (x - centerX) + (y - centerY) * (y - centerY));
                 if (distance < radiusInDetailMap)
                 {
-                    detailLayer[y, x] = grassDensity;
+                    detailLayer[y, x] = Mathf.Max(grassDensity, detailLayer[y, x]);
                 }
             }
         }
@@ -142,7 +135,7 @@ public class SoilEnrichmentPlant : GeothermalGenerator
     }
     void UpdateTerrainAndGrass(Terrain terrain, Vector3 centerPoint, float radius, int grassIndex, float transitionProgress, int tickRate)
     {
-        //if (transitionProgress == 1) { return; }
+        if (transitionProgress == 1) { return; }
         // Update splatmap for terrain texture
         UpdateSplatMap(terrain, centerPoint, radius, transitionProgress);
 

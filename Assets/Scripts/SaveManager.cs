@@ -205,16 +205,33 @@ public class SaveManager : MonoBehaviour
     public void loadNewGame()
     {
         ClearPlacableObjects();
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, 10);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.smelter, 10);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 10);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 20);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 100);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 20);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 5);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 0);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 0);
-        GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.SoilEnrichmentPlant, 10);
+        bool testing = false;
+        if (testing)
+        {
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, 100);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.smelter, 100);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 100);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 200);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 100);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 200);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 50);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 100);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 100);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.SoilEnrichmentPlant, 100);
+        }
+        else
+        {
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, 10);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.smelter, 10);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.assembler, 10);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.grabber, 20);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.conveyorBelt, 100);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 20);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, 5);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 0);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 0);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.SoilEnrichmentPlant, 0);
+        }
     }
 
     public SaveStatus GetSaveStatus(int slot)
