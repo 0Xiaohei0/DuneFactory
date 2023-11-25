@@ -17,7 +17,7 @@ public class GeothermalGeneratorUI : MonoBehaviour
     private GeothermalGenerator geothermalGenerator;
     private Image craftingProgressBar;
 
-    private void Awake()
+    public virtual void Awake()
     {
         Instance = this;
 

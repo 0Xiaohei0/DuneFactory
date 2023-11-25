@@ -88,6 +88,10 @@ public class GridBuildingSystem : MonoBehaviour
                     {
                         MiningMachineUI.Instance.Show(placedObject as MiningMachine);
                     }
+                    else if (placedObject is AquaticFarm)
+                    {
+                        AquaticFarmUI.Instance.Show(placedObject as AquaticFarm);
+                    }
                     else if (placedObject is Assembler)
                     {
                         AssemblerUI.Instance.Show(placedObject as Assembler);
@@ -107,6 +111,10 @@ public class GridBuildingSystem : MonoBehaviour
                     else if (placedObject is AtmosphericExtractor)
                     {
                         AtmosphericExtractorUI.Instance.Show(placedObject as AtmosphericExtractor);
+                    }
+                    else if (placedObject is SoilEnrichmentPlant)
+                    {
+                        SoilEnrichmentPlantUI.Instance.Show(placedObject as SoilEnrichmentPlant);
                     }
                     else if (placedObject is GeothermalGenerator)
                     {

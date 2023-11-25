@@ -205,7 +205,7 @@ public class SaveManager : MonoBehaviour
     public void loadNewGame()
     {
         ClearPlacableObjects();
-        bool testing = false;
+        bool testing = true;
         if (testing)
         {
             GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, 100);
@@ -218,6 +218,7 @@ public class SaveManager : MonoBehaviour
             GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator, 100);
             GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 100);
             GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.SoilEnrichmentPlant, 100);
+            GlobalStorage.AddBuilding(GameAssets.i.placedObjectTypeSO_Refs.AquaticFarm, 100);
         }
         else
         {

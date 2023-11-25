@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57aee7775b75209468c7de0c892dc659, type: 3}
+  m_Name: Aquatic Farm
+  m_EditorClassIdentifier: 
+  nameString: Aquatic Farm
+  prefab: {fileID: 6316370109667607784, guid: a2ce7b8058ef01e4096702a7cd6dd4e2, type: 3}
+  visual: {fileID: 6316370109667607784, guid: 84cf7309fffd638488e624294a8344c4, type: 3}
+  width: 8
+  height: 8
+  icon: {fileID: 21300000, guid: b25e25b9064c5a24bb490ba99ed1643f, type: 3}
+  categoryName: Processing
+  inputItemList:
+  - item: {fileID: 11400000, guid: cace00a0f6ab1fd47bf330ea1cf82376, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 508b5aa69a5d87640832fa1d02bb5a60, type: 2}
+    amount: 1
+  craftingEffort: 10

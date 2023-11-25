@@ -9,10 +9,10 @@ public class Assembler : PlacedObject, IItemStorage
     public event EventHandler OnItemStorageCountChanged;
 
 
-    private ItemRecipeSO itemRecipeSO;
-    private List<ItemStack> inputItemStackList;
-    private List<ItemStack> outputItemStackList;
-    private float craftingProgress;
+    [SerializeField] private ItemRecipeSO itemRecipeSO;
+    [SerializeField] private List<ItemStack> inputItemStackList;
+    [SerializeField] private List<ItemStack> outputItemStackList;
+    [SerializeField] private float craftingProgress;
 
     protected override void Setup()
     {
@@ -36,9 +36,10 @@ public class Assembler : PlacedObject, IItemStorage
         return str;
     }
 
-    private void Update()
+    public virtual void Update()
     {
         bool hasEnoughItemsToCraft = HasEnoughItemsToCraft();
+        print("HasEnoughItemsToCraft: " + hasEnoughItemsToCraft);
         SetLight(hasEnoughItemsToCraft);
         EnergyConsumer energyConsumer = transform.GetComponent<EnergyConsumer>();
         if (energyConsumer != null)

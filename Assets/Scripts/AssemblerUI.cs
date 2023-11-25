@@ -19,7 +19,7 @@ public class AssemblerUI : MonoBehaviour
     private Image craftingProgressBar;
     private TextMeshProUGUI powerSatisfactionText;
 
-    private void Awake()
+    public virtual void Awake()
     {
         Instance = this;
 
