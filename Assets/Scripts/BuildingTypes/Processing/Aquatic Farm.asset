@@ -20,7 +20,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b25e25b9064c5a24bb490ba99ed1643f, type: 3}
   categoryName: Processing
   inputItemList:
-  - item: {fileID: 11400000, guid: cace00a0f6ab1fd47bf330ea1cf82376, type: 2}
+  - item: {fileID: 11400000, guid: 47471e76326554243a3409b5e172a648, type: 2}
     amount: 1
   - item: {fileID: 11400000, guid: 508b5aa69a5d87640832fa1d02bb5a60, type: 2}
     amount: 1

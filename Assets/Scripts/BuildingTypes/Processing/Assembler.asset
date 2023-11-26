@@ -20,8 +20,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 7850b9ce6bc41724f8314466fde1a335, type: 3}
   categoryName: Processing
   inputItemList:
-  - item: {fileID: 11400000, guid: cace00a0f6ab1fd47bf330ea1cf82376, type: 2}
-    amount: 1
   - item: {fileID: 11400000, guid: 508b5aa69a5d87640832fa1d02bb5a60, type: 2}
     amount: 1
-  craftingEffort: 0
+  craftingEffort: 10
