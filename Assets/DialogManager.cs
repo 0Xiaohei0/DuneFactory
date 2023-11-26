@@ -22,6 +22,8 @@ public class DialogManager : MonoBehaviour
 
     public bool extractorPlaced;
     public bool solarPanelPlaced;
+    public bool structureAssemblerPlaced;
+    public bool furnacePlaced;
     public VideoClip speaking;
     public VideoClip idle;
     public VideoPlayer videoPlayer;
@@ -105,15 +107,33 @@ public class DialogManager : MonoBehaviour
     {
         if (!extractorPlaced && sender is MiningMachine)
         {
-            print("First Extractor Placed!");
             extractorPlaced = true;
             DisplayDialog(OnPlaceExtractorDialogs);
+            RemoveObjective("Build Extractor");
         }
         if (!solarPanelPlaced && sender is SolarPanel)
         {
-            print("First SolarPanel Placed!");
             solarPanelPlaced = true;
             DisplayDialog(OnPlaceSolarPanelDialogs);
+            RemoveObjective("Build Solar Panels");
         }
+        if (!furnacePlaced && sender is Smelter)
+        {
+            furnacePlaced = true;
+            //DisplayDialog(OnPlaceSolarPanelDialogs);
+            RemoveObjective("Build Furnace");
+        }
+        if (!structureAssemblerPlaced && sender is StructureAssembler)
+        {
+            structureAssemblerPlaced = true;
+            //DisplayDialog(OnPlaceSolarPanelDialogs);
+            RemoveObjective("Build Structure Assembler");
+        }
+    }
+
+    void RemoveObjective(string objectiveName)
+    {
+        Objectives.Remove(objectiveName);
+        UpdateObjectiveList();
     }
 }
