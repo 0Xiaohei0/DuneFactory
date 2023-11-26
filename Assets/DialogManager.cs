@@ -1,3 +1,4 @@
+using CodeMonkey.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ public class DialogManager : MonoBehaviour
     public List<DialogueSO> OnPlaceExtractorDialogs;
     public List<DialogueSO> OnPlaceSolarPanelDialogs;
     public List<DialogueSO> OnProduceIronBarsDialogs;
+    public List<string> Objectives;
+    public int maxObjectives = 5;
+    public GameObject objectivePanel;
 
     public bool extractorPlaced;
     public bool solarPanelPlaced;
@@ -30,6 +34,7 @@ public class DialogManager : MonoBehaviour
         sentences = new Queue<DialogueSO>();
         GridBuildingSystem.Instance.OnObjectPlaced += OnbuildingPlaced;
         DisplayDialog(beginningDialogs);
+        UpdateObjectiveList();
     }
     private void Update()
     {
@@ -37,6 +42,29 @@ public class DialogManager : MonoBehaviour
         {
             videoPlayer.clip = idle;
             videoPlayer.Play();
+        }
+    }
+    private void UpdateObjectiveList()
+    {
+        Transform ObjectivesContainer = transform.Find("ObjectivePanel");
+        Transform ObjectivesTemplate = ObjectivesContainer.Find("Template");
+        ObjectivesTemplate.gameObject.SetActive(false);
+
+        // Destory old transforms
+        foreach (Transform transform in ObjectivesContainer)
+        {
+            if (transform != ObjectivesTemplate)
+            {
+                Destroy(transform.gameObject);
+            }
+        }
+
+        for (int i = 0; i < Mathf.Min(Objectives.Count, maxObjectives); i++)
+        {
+            string objective = Objectives[i];
+            Transform recipeTransform = Instantiate(ObjectivesTemplate, ObjectivesContainer);
+            recipeTransform.gameObject.SetActive(true);
+            recipeTransform.Find("Text").GetComponent<TMP_Text>().text = objective;
         }
     }
     public void DisplayDialog(List<DialogueSO> dialogList)
