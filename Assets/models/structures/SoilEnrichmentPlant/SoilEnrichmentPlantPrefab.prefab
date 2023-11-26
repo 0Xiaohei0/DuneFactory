@@ -56,7 +56,7 @@ MonoBehaviour:
   craftingProgress: 0
   terrain: {fileID: 0}
   transitionProgress: 0
-  transitionSpeed: 0.1
+  transitionSpeed: 0.05
   enrichmentPlantPosition: {x: 0, y: 0, z: 0}
   plantEffectRadius: 40
 --- !u!114 &842401105317615826

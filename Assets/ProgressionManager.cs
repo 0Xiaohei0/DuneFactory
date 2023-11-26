@@ -43,6 +43,7 @@ public class ProgressionManager : MonoBehaviour
     }
     public void LevelUp()
     {
+        print("leveling up, current level: " + currentLevel);
         if (currentLevel < levelList.Count - 1)
         {
             EnergyManager.Instance.ExcessEnergy = 0;
@@ -99,6 +100,7 @@ public class ProgressionManager : MonoBehaviour
     {
         for (int i = 0; i < levelList[level].unlockBuildings.Count; i++)
         {
+            print("UIManager.Instance: " + UIManager.Instance);
             if (!UIManager.Instance.currentUnlockedBuildings.Contains(levelList[level].unlockBuildings[i]))
             {
                 UIManager.Instance.currentUnlockedBuildings.Add(levelList[level].unlockBuildings[i]);

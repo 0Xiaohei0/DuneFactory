@@ -39,7 +39,6 @@ public class Assembler : PlacedObject, IItemStorage
     public virtual void Update()
     {
         bool hasEnoughItemsToCraft = HasEnoughItemsToCraft();
-        print("HasEnoughItemsToCraft: " + hasEnoughItemsToCraft);
         SetLight(hasEnoughItemsToCraft);
         EnergyConsumer energyConsumer = transform.GetComponent<EnergyConsumer>();
         if (energyConsumer != null)

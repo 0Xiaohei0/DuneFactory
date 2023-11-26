@@ -25,21 +25,20 @@ public class UIManager : MonoBehaviour
     public List<PlacedObjectTypeSO> currentUnlockedBuildings;
 
     private BuildingCategorySO activeCategory = null;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is assumed to set up category buttons, each with an appropriate listener
     void Start()
     {
-        Instance = this;
         SetupCategoryButtons();
         SetupStatButtons();
         buildingsParent.SetActive(false);
         SaveBG.SetActive(false);
         LoadBG.SetActive(false);
         GlobalStorage.OnBuildingAmountChanged += UpdateBuildingAmount;
-    }
-
-    private void Update()
-    {
     }
 
     void SetupStatButtons()

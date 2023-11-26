@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &290684418669096341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3508597670333572293}
+  - component: {fileID: 2776602200228632124}
+  m_Layer: 0
+  m_Name: GameAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3508597670333572293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290684418669096341}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.939463, y: 2.7828794, z: -2.9327605}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2776602200228632124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290684418669096341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9697a308b41b28442b27d58cce5da685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placedObjectTypeSO_Refs:
+    conveyorBelt: {fileID: 11400000, guid: 1b766db6bfb442642952e25c100e94b2, type: 2}
+    miningMachine: {fileID: 11400000, guid: 5ad5049d2923a3b46829d0a991460f24, type: 2}
+    smelter: {fileID: 11400000, guid: 45c4867a7499a3a4cade0c6cc9695c17, type: 2}
+    grabber: {fileID: 11400000, guid: d1d13464ae9f76543a9a6b95ab825f10, type: 2}
+    assembler: {fileID: 11400000, guid: ca2b8f3211c7e9b40a5aaa1b8cb8a36f, type: 2}
+    structureAssembler: {fileID: 11400000, guid: 76d00406c68a6ab43b76db2af3c5670c,
+      type: 2}
+    storage: {fileID: 0}
+    solarPanel: {fileID: 11400000, guid: d82c087e719e35f449a71222eaddece3, type: 2}
+    AtmosphericExtractor: {fileID: 11400000, guid: 24d1972e18971ff42906bf69fd2fc086,
+      type: 2}
+    GeoThermalGenerator: {fileID: 11400000, guid: 2f3c8d0f267f75b45ad98ebf5bf87999,
+      type: 2}
+    SoilEnrichmentPlant: {fileID: 11400000, guid: 94938e2f74280104c9c88ef06ba77674,
+      type: 2}
+    CloudSeedingRocketLauncher: {fileID: 11400000, guid: 5fb161ef206a5dc4abcdeaf323c1071a,
+      type: 2}
+    AquaticFarm: {fileID: 11400000, guid: 79465bbe86930ff42ad1c259843dc3d7, type: 2}
+  itemSO_Refs:
+    ironOre: {fileID: 11400000, guid: 7580fd3495234f3409eeb4f34543eb1a, type: 2}
+    copperOre: {fileID: 11400000, guid: ab9d158bd97690b4fa707734b710a6ac, type: 2}
+    ironBar: {fileID: 11400000, guid: 508b5aa69a5d87640832fa1d02bb5a60, type: 2}
+    copperBar: {fileID: 11400000, guid: d9a39654ffa361241b21cdb55077992a, type: 2}
+    circuitBoard: {fileID: 11400000, guid: cace00a0f6ab1fd47bf330ea1cf82376, type: 2}
+    sand: {fileID: 11400000, guid: 8977105a84545d949a40ed055e01937b, type: 2}
+    siliconBar: {fileID: 11400000, guid: 9fe1d1e61eb84244e83ddbd6017d83d4, type: 2}
+    solarCell: {fileID: 11400000, guid: 51ffdbbb12be16e4bb63cac7583d5546, type: 2}
+    water: {fileID: 11400000, guid: 4623c663bff552942a06507ba840e3b3, type: 2}
+    copperWire: {fileID: 11400000, guid: 8ec20fbf57994dd4ba161d123da315a7, type: 2}
+    magneticCoil: {fileID: 11400000, guid: 47471e76326554243a3409b5e172a648, type: 2}
+    any: {fileID: 11400000, guid: f67fc602bd3131446934fb6e23eeef0f, type: 2}
+    none: {fileID: 11400000, guid: 88717a9be081f8a40b8eeddad1b4a0e3, type: 2}
+  itemRecipeSO_Refs:
+    circuitBoard: {fileID: 11400000, guid: 0590e7a3def82e441bd7c1ac153509f2, type: 2}
+    copperWire: {fileID: 11400000, guid: 653fa9297df478942b7400ebf80cadf2, type: 2}
+    copperBar: {fileID: 11400000, guid: f61386ae90105864caf20075c0a725f8, type: 2}
+    geothermalPower: {fileID: 11400000, guid: f5f7719b96a82654eadf5f8eff743e95, type: 2}
+    ironBar: {fileID: 11400000, guid: 91be299dd14394c4fb5446581d0eb212, type: 2}
+    magneticRing: {fileID: 11400000, guid: 7e3bccf3dba2e5a449f1f00f45bf6255, type: 2}
+    organicMaterial: {fileID: 11400000, guid: b3fa25fe23b978947aed8043544d400b, type: 2}
+    siliconBar: {fileID: 11400000, guid: fad8a26ce8fc1cc4e988fde0dd2b5f97, type: 2}
+    soilEnrichment: {fileID: 11400000, guid: 41aa056ab8345e5419329be1d1090b87, type: 2}
+    solarCell: {fileID: 11400000, guid: 3b6b6a8787d28b84ca6b10d43a200f23, type: 2}
+  pfWorldItem: {fileID: 4564539339344671884, guid: f6371d6d994dffc4492be3ed0eea529c,
+    type: 3}
+  pfBeltDebugVisualNode: {fileID: 0}
+  pfBeltDebugVisualLine: {fileID: 0}
+  fxBuildingPlaced: {fileID: 0}
+  iconNoPower: {fileID: 0}
+  sndBuilding: {fileID: 0}
+  LightRingMaterialOn: {fileID: 2100000, guid: e591ed9d26ef05a4585b1ebcd37abb7e, type: 2}
+  LightRingMaterialOff: {fileID: 2100000, guid: 7d95be91725c1a149b8c7977ed86d6eb,
+    type: 2}
