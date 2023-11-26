@@ -7741,6 +7741,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AtmosphericExtractorPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 8786066593157593976, guid: 81b9c20714a1b9247bf94490a21e5f88,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 072c851edc63e09428fa1c2e710c3d71, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22074,6 +22079,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1366889716}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1367930519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367930521}
+  - component: {fileID: 1367930520}
+  m_Layer: 0
+  m_Name: TutorialGhost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1367930520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367930519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b42da79e82d8dba4685abfc51cfe6f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visuals: []
+  ghostMaterial: {fileID: 2100000, guid: 072c851edc63e09428fa1c2e710c3d71, type: 2}
+--- !u!4 &1367930521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367930519}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 720.13947, y: 532.4648, z: 4.5919733}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370086642
 GameObject:
   m_ObjectHideFlags: 0
@@ -23119,8 +23170,6 @@ MonoBehaviour:
   OnPlaceSolarPanelDialogs:
   - {fileID: 11400000, guid: 5eb9487a959542b429755f56eca7da01, type: 2}
   - {fileID: 11400000, guid: c1982cf2f4f408c408df9a0b355ee528, type: 2}
-  - {fileID: 11400000, guid: 990e55e58b5056c428e6c45457d515c6, type: 2}
-  - {fileID: 11400000, guid: cd899e6d4e60e304b971e685839b1758, type: 2}
   OnProduceIronBarsDialogs:
   - {fileID: 11400000, guid: 990e55e58b5056c428e6c45457d515c6, type: 2}
   - {fileID: 11400000, guid: cd899e6d4e60e304b971e685839b1758, type: 2}
@@ -23141,6 +23190,18 @@ MonoBehaviour:
   solarPanelPlaced: 0
   structureAssemblerPlaced: 0
   furnacePlaced: 0
+  ironBarProduced: 0
+  extractorProduced: 0
+  furnaceProduced: 0
+  inserterProduced: 0
+  assemblerProduced: 0
+  solarPanelProduced: 0
+  extractorPosition: {x: 498, y: 506}
+  SolarPanelPosition: {x: 498, y: 502}
+  furnacePosition: {x: 501, y: 506}
+  inserterPosition: {x: 500, y: 506}
+  structureAssemplerPosition: {x: 504, y: 505}
+  inserterPosition2: {x: 498, y: 506}
   speaking: {fileID: 32900000, guid: fb9e86a751dbc7741b4b61b2c2b0a85d, type: 3}
   idle: {fileID: 32900000, guid: 3efbb85ed7772ae4199f6a951edd76d4, type: 3}
   videoPlayer: {fileID: 932287642}
@@ -31083,6 +31144,18 @@ MonoBehaviour:
   solarPanelPlaced: 0
   structureAssemblerPlaced: 0
   furnacePlaced: 0
+  ironBarProduced: 0
+  extractorProduced: 0
+  furnaceProduced: 0
+  inserterProduced: 0
+  assemblerProduced: 0
+  solarPanelProduced: 0
+  extractorPosition: {x: 498, y: 506}
+  SolarPanelPosition: {x: 498, y: 506}
+  furnacePosition: {x: 501, y: 506}
+  inserterPosition: {x: 500, y: 506}
+  structureAssemplerPosition: {x: 504, y: 505}
+  inserterPosition2: {x: 498, y: 506}
   speaking: {fileID: 32900000, guid: e49e9db5e966d6c41818912d92a3fe23, type: 3}
   idle: {fileID: 32900000, guid: 3efbb85ed7772ae4199f6a951edd76d4, type: 3}
   videoPlayer: {fileID: 932287642}
@@ -35124,3 +35197,4 @@ SceneRoots:
   - {fileID: 1437705681}
   - {fileID: 1983779765}
   - {fileID: 4946115331232496265}
+  - {fileID: 1367930521}

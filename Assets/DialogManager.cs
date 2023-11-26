@@ -31,6 +31,13 @@ public class DialogManager : MonoBehaviour
     public bool inserterProduced;
     public bool assemblerProduced;
     public bool solarPanelProduced;
+    public Vector2Int extractorPosition = new Vector2Int(498, 506);
+    public Vector2Int SolarPanelPosition = new Vector2Int(498, 502);
+    public Vector2Int furnacePosition = new Vector2Int(501, 506);
+    public Vector2Int inserterPosition = new Vector2Int(500, 506);
+    public Vector2Int structureAssemplerPosition = new Vector2Int(504, 505);
+    public Vector2Int inserterPosition2 = new Vector2Int(498, 506);
+
     public VideoClip speaking;
     public VideoClip idle;
     public VideoPlayer videoPlayer;
@@ -44,6 +51,7 @@ public class DialogManager : MonoBehaviour
         GridBuildingSystem.Instance.OnObjectPlaced += OnbuildingPlaced;
         DisplayDialog(beginningDialogs);
         UpdateObjectiveList();
+        TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, extractorPosition);
     }
     private void Update()
     {
@@ -114,25 +122,39 @@ public class DialogManager : MonoBehaviour
     {
         if (!extractorPlaced && sender is MiningMachine)
         {
-            extractorPlaced = true;
-            DisplayDialog(OnPlaceExtractorDialogs);
-            RemoveObjective("Build Extractor");
+            MiningMachine extractor = sender as MiningMachine;
+            if (extractor.origin == extractorPosition)
+            {
+                extractorPlaced = true;
+                DisplayDialog(OnPlaceExtractorDialogs);
+                RemoveObjective("Build Extractor");
+                TutorialGhost.Instance.HideAllGhosts();
+                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, SolarPanelPosition);
+            }
         }
         if (!solarPanelPlaced && sender is SolarPanel)
         {
-            solarPanelPlaced = true;
-            DisplayDialog(OnPlaceSolarPanelDialogs);
-            RemoveObjective("Build Solar Panels");
+            SolarPanel solarPanel = sender as SolarPanel;
+            if (solarPanel.origin == SolarPanelPosition)
+            {
+                solarPanelPlaced = true;
+                DisplayDialog(OnPlaceSolarPanelDialogs);
+                RemoveObjective("Build Solar Panels");
+                TutorialGhost.Instance.HideAllGhosts();
+                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.smelter, furnacePosition);
+            }
         }
         if (sender is Smelter)
         {
             Smelter smelter = sender as Smelter;
             smelter.OnItemStorageCountChanged += Smelter_OnItemStorageCountChanged;
-            if (!furnacePlaced)
+            if (!furnacePlaced && smelter.origin == furnacePosition)
             {
                 furnacePlaced = true;
                 //DisplayDialog(OnPlaceSolarPanelDialogs);
                 RemoveObjective("Build Furnace");
+                TutorialGhost.Instance.HideAllGhosts();
+                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition);
             }
         }
         if (sender is StructureAssembler)
@@ -144,6 +166,8 @@ public class DialogManager : MonoBehaviour
                 structureAssemblerPlaced = true;
                 //DisplayDialog(OnPlaceSolarPanelDialogs);
                 RemoveObjective("Build Structure Assembler");
+                TutorialGhost.Instance.HideAllGhosts();
+                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition);
             }
         }
     }

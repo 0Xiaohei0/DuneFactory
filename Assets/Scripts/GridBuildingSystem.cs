@@ -187,7 +187,6 @@ public class GridBuildingSystem : MonoBehaviour
     public PlacedObject SpawnStructure(Vector3 position, bool useItem = true, bool showpopup = true)
     {
         grid.GetXZ(position, out int x, out int z);
-
         List<Vector2Int> gridPositionList = placedObjectTypeSO.GetGridPositionList(new Vector2Int(x, z), dir);
 
         GridObject gridObject = grid.GetGridObject(x, z);
@@ -216,7 +215,7 @@ public class GridBuildingSystem : MonoBehaviour
         {
             Vector2Int rotationOffset = placedObjectTypeSO.GetRotationOffset(dir);
             Vector3 placedObjectWorldPosition = grid.GetWorldPosition(x, z) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * grid.GetCellSize();
-
+            print(placedObjectTypeSO.nameString + " placed at ( " + x + ", " + z + ")");
             placedObject = PlacedObject.Create(placedObjectWorldPosition, new Vector2Int(x, z), dir, placedObjectTypeSO);
 
             foreach (Vector2Int gridPosition in gridPositionList)
@@ -339,5 +338,10 @@ public class GridBuildingSystem : MonoBehaviour
     public Vector3 GetWorldPositionCentre(Vector2Int gridPosition)
     {
         return grid.GetWorldPositionCentre(gridPosition.x, gridPosition.y);
+    }
+    public Vector2Int GetXZ(Vector3 worldPosition)
+    {
+        grid.GetXZ(worldPosition, out int x, out int z);
+        return new Vector2Int(x, z);
     }
 }
