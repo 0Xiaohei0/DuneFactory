@@ -11,7 +11,7 @@ public class Smelter : PlacedObject, IItemStorage
 
     [SerializeField] private ItemRecipeSO itemRecipeSO;
     [SerializeField] private ItemStackList inputItemStackList;
-    [SerializeField] private ItemStackList outputItemStackList;
+    [SerializeField] public ItemStackList outputItemStackList;
     [SerializeField] private float craftingProgress;
 
     protected override void Setup()

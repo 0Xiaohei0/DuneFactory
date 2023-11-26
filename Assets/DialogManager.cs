@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
+using static UnityEditor.Progress;
 
 public class DialogManager : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class DialogManager : MonoBehaviour
     public bool solarPanelPlaced;
     public bool structureAssemblerPlaced;
     public bool furnacePlaced;
+    public bool ironBarProduced;
+    public bool extractorProduced;
+    public bool furnaceProduced;
+    public bool inserterProduced;
+    public bool assemblerProduced;
+    public bool solarPanelProduced;
     public VideoClip speaking;
     public VideoClip idle;
     public VideoPlayer videoPlayer;
@@ -117,17 +124,86 @@ public class DialogManager : MonoBehaviour
             DisplayDialog(OnPlaceSolarPanelDialogs);
             RemoveObjective("Build Solar Panels");
         }
-        if (!furnacePlaced && sender is Smelter)
+        if (sender is Smelter)
         {
-            furnacePlaced = true;
-            //DisplayDialog(OnPlaceSolarPanelDialogs);
-            RemoveObjective("Build Furnace");
+            Smelter smelter = sender as Smelter;
+            smelter.OnItemStorageCountChanged += Smelter_OnItemStorageCountChanged;
+            if (!furnacePlaced)
+            {
+                furnacePlaced = true;
+                //DisplayDialog(OnPlaceSolarPanelDialogs);
+                RemoveObjective("Build Furnace");
+            }
         }
-        if (!structureAssemblerPlaced && sender is StructureAssembler)
+        if (sender is StructureAssembler)
         {
-            structureAssemblerPlaced = true;
-            //DisplayDialog(OnPlaceSolarPanelDialogs);
-            RemoveObjective("Build Structure Assembler");
+            StructureAssembler structureAssembler = sender as StructureAssembler;
+            structureAssembler.OnItemStorageCountChanged += StructureAssembler_OnItemStorageCountChanged;
+            if (!structureAssemblerPlaced)
+            {
+                structureAssemblerPlaced = true;
+                //DisplayDialog(OnPlaceSolarPanelDialogs);
+                RemoveObjective("Build Structure Assembler");
+            }
+        }
+    }
+    private void Smelter_OnItemStorageCountChanged(object sender, System.EventArgs e)
+    {
+        Smelter smelter = sender as Smelter;
+        if (!ironBarProduced)
+        {
+            ItemStack outputStack = smelter.outputItemStackList.GetItemStackWithItemType(GameAssets.i.itemSO_Refs.ironBar);
+            if (outputStack != null && outputStack.amount > 0)
+            {
+                ironBarProduced = true;
+                DisplayDialog(OnProduceIronBarsDialogs);
+                print("First ironbar produced");
+                RemoveObjective("Produce Iron Bars");
+            }
+        }
+    }
+    private void StructureAssembler_OnItemStorageCountChanged(object sender, System.EventArgs e)
+    {
+        StructureAssembler structureAssembler = sender as StructureAssembler;
+        if (!extractorProduced)
+        {
+            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.miningMachine))
+            {
+                extractorProduced = true;
+                RemoveObjective("Produce Extractors");
+            }
+        }
+        if (!inserterProduced)
+        {
+            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.grabber))
+            {
+                extractorProduced = true;
+                RemoveObjective("Produce Inserters");
+            }
+        }
+        if (!furnaceProduced)
+        {
+            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.smelter))
+            {
+                extractorProduced = true;
+                RemoveObjective("Produce Furnaces");
+            }
+        }
+        if (!assemblerProduced)
+        {
+            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.assembler))
+            {
+                extractorProduced = true;
+                RemoveObjective("Produce Assemblers");
+            }
+        }
+        if (!solarPanelProduced)
+        {
+            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            {
+                extractorProduced = true;
+                RemoveObjective("Produce Solar Panels");
+            }
         }
     }
 
