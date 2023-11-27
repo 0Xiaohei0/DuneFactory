@@ -25,6 +25,8 @@ public class DialogManager : MonoBehaviour
     public bool solarPanelPlaced;
     public bool structureAssemblerPlaced;
     public bool furnacePlaced;
+    public bool inserterPlaced;
+    public bool inserter2Placed;
     public bool ironBarProduced;
     public bool extractorProduced;
     public bool furnaceProduced;
@@ -154,7 +156,7 @@ public class DialogManager : MonoBehaviour
                 //DisplayDialog(OnPlaceSolarPanelDialogs);
                 RemoveObjective("Build Furnace");
                 TutorialGhost.Instance.HideAllGhosts();
-                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition);
+                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition, PlacedObjectTypeSO.Dir.Right);
             }
         }
         if (sender is StructureAssembler)
@@ -167,7 +169,22 @@ public class DialogManager : MonoBehaviour
                 //DisplayDialog(OnPlaceSolarPanelDialogs);
                 RemoveObjective("Build Structure Assembler");
                 TutorialGhost.Instance.HideAllGhosts();
-                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition);
+                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition2, PlacedObjectTypeSO.Dir.Right);
+            }
+        }
+        if (sender is Grabber)
+        {
+            Grabber grabber = sender as Grabber;
+
+            if (!inserterPlaced && grabber.origin == inserterPosition && grabber.GetDir() == PlacedObjectTypeSO.Dir.Right)
+            {
+                inserterPlaced = true;
+                TutorialGhost.Instance.HideAllGhosts();
+            }
+            if (!inserter2Placed && grabber.origin == inserterPosition2 && grabber.GetDir() == PlacedObjectTypeSO.Dir.Right)
+            {
+                inserter2Placed = true;
+                TutorialGhost.Instance.HideAllGhosts();
             }
         }
     }
@@ -183,6 +200,7 @@ public class DialogManager : MonoBehaviour
                 DisplayDialog(OnProduceIronBarsDialogs);
                 print("First ironbar produced");
                 RemoveObjective("Produce Iron Bars");
+                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, structureAssemplerPosition);
             }
         }
     }

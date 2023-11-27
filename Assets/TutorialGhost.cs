@@ -15,11 +15,9 @@ public class TutorialGhost : MonoBehaviour
     {
         if (placedObjectTypeSO != null)
         {
-            Transform visual = Instantiate(placedObjectTypeSO.visual, Vector3.zero, Quaternion.Euler(0, placedObjectTypeSO.GetRotationAngle(dir), 0));
             Vector2Int rotationOffset = placedObjectTypeSO.GetRotationOffset(dir);
             Vector3 placedObjectWorldPosition = GridBuildingSystem.Instance.GetWorldPosition(gridPosition) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * GridBuildingSystem.Instance.grid.GetCellSize();
-            visual.transform.position = GridBuildingSystem.Instance.GetWorldPosition(gridPosition);
-            visual.localEulerAngles = Vector3.zero;
+            Transform visual = Instantiate(placedObjectTypeSO.visual, placedObjectWorldPosition, Quaternion.Euler(0, placedObjectTypeSO.GetRotationAngle(dir), 0));
             visuals.Add(visual);
             SetMaterialRecursive(visual.gameObject);
         }

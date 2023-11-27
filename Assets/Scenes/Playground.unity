@@ -14851,8 +14851,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Movement: W, A, S, D\nSprint: SHIFT \nRotate camera: RIGHT CLICK\nZoom
-    camera: SCOROLL WHEEL\nDemolish: X key\n\n\n\n\n\n\n\n\nYou can access this page
-    again with the ? button on the topleft of the screen."
+    camera: SCOROLL WHEEL\nDemolish: X key\nRotate: R key\n\n\n\n\n\n\n\nYou can
+    access this page again with the ? button on the topleft of the screen."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea4dad4fbc9b40442b99291553befff4, type: 2}
   m_sharedMaterial: {fileID: 4170041836351680083, guid: ea4dad4fbc9b40442b99291553befff4,
@@ -19186,9 +19186,9 @@ RectTransform:
   - {fileID: 77351246}
   m_Father: {fileID: 1167916869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -121, y: 129}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 482, y: -264}
   m_SizeDelta: {x: 730.0397, y: 161.44421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1210458500
@@ -23190,6 +23190,8 @@ MonoBehaviour:
   solarPanelPlaced: 0
   structureAssemblerPlaced: 0
   furnacePlaced: 0
+  inserterPlaced: 0
+  inserter2Placed: 0
   ironBarProduced: 0
   extractorProduced: 0
   furnaceProduced: 0
@@ -23201,7 +23203,7 @@ MonoBehaviour:
   furnacePosition: {x: 501, y: 506}
   inserterPosition: {x: 500, y: 506}
   structureAssemplerPosition: {x: 504, y: 505}
-  inserterPosition2: {x: 498, y: 506}
+  inserterPosition2: {x: 503, y: 506}
   speaking: {fileID: 32900000, guid: fb9e86a751dbc7741b4b61b2c2b0a85d, type: 3}
   idle: {fileID: 32900000, guid: 3efbb85ed7772ae4199f6a951edd76d4, type: 3}
   videoPlayer: {fileID: 932287642}
@@ -29017,8 +29019,8 @@ RectTransform:
   - {fileID: 703327245}
   - {fileID: 1912354249}
   - {fileID: 2134970840}
-  - {fileID: 1167916869}
   - {fileID: 64702327}
+  - {fileID: 1167916869}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -31144,6 +31146,8 @@ MonoBehaviour:
   solarPanelPlaced: 0
   structureAssemblerPlaced: 0
   furnacePlaced: 0
+  inserterPlaced: 0
+  inserter2Placed: 0
   ironBarProduced: 0
   extractorProduced: 0
   furnaceProduced: 0
