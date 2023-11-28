@@ -48,6 +48,7 @@ public class DialogManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         sentences = new Queue<DialogueSO>();
         GridBuildingSystem.Instance.OnObjectPlaced += OnbuildingPlaced;
+        TerrainManager.Instance.OnTerraformPercentageCalculated += OnTerraformPercentageCalculated;
         DisplayDialog(beginningDialogs);
         UpdateObjectiveList();
         TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, extractorPosition);
@@ -274,6 +275,14 @@ public class DialogManager : MonoBehaviour
                 extractorProduced = true;
                 RemoveObjective("Produce Soil Enrichment Plant");
             }
+        }
+    }
+    void OnTerraformPercentageCalculated(object sender, EventArgs e)
+    {
+        TerrainManager terrainManager = sender as TerrainManager;
+        if (terrainManager.GetAverageDensity() >= 0.1)
+        {
+            RemoveObjective("Terraform 10% of the desert");
         }
     }
 

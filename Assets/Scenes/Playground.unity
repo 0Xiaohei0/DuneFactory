@@ -23294,7 +23294,7 @@ MonoBehaviour:
   - Produce GeoThermal Generator
   - Produce Aquatic Farm
   - Produce Soil Enrichment Plant
-  - Terraform 50% of the desert
+  - Terraform 10% of the desert
   maxObjectives: 5
   objectivePanel: {fileID: 0}
   extractorPlaced: 0

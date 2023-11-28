@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class TerrainManager : MonoBehaviour
 {
     public static TerrainManager Instance { get; private set; }
+    public event EventHandler OnTerraformPercentageCalculated;
+
     public Terrain terrain; // Assign this in the inspector or via code
     public int detailIndex = 0;
     [SerializeField] private float averageDensity;
@@ -90,6 +93,7 @@ public class TerrainManager : MonoBehaviour
         }
 
         averageDensity = (float)totalDensity / totalCount;
+        OnTerraformPercentageCalculated?.Invoke(this, EventArgs.Empty);
         Debug.Log("Average Grass Density: " + averageDensity);
     }
 
