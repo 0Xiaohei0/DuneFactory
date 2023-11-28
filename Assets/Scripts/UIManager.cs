@@ -6,6 +6,7 @@ using UniGLTF;
 using CodeMonkey.Utils;
 using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class UIManager : MonoBehaviour
     public GameObject SaveBG;
     public GameObject LoadBG;
     public List<PlacedObjectTypeSO> currentUnlockedBuildings;
+    public TMP_Text TerraformPercentageText;
 
     private BuildingCategorySO activeCategory = null;
     private void Awake()
@@ -39,6 +41,15 @@ public class UIManager : MonoBehaviour
         SaveBG.SetActive(false);
         LoadBG.SetActive(false);
         GlobalStorage.OnBuildingAmountChanged += UpdateBuildingAmount;
+        StartCoroutine(RunEveryTick());
+    }
+    private IEnumerator RunEveryTick()
+    {
+        while (true)
+        {
+            TerraformPercentageText.text = Mathf.RoundToInt(TerrainManager.Instance.GetAverageDensity() * 100) + "%";
+            yield return new WaitForSeconds(1); // Wait for one second
+        }
     }
 
     void SetupStatButtons()

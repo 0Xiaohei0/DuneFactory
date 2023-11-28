@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain: {fileID: 0}
+  detailIndex: 0
+  averageDensity: 0
+  calculationIntervalSeconds: 10

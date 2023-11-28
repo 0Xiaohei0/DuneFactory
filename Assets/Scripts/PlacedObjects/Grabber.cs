@@ -230,5 +230,13 @@ public class Grabber : PlacedObject
         return this.range;
     }
 
+    public override void DestroySelf()
+    {
+        if (holdingItem != null)
+        {
+            holdingItem.DestroySelf();
+        }
+        base.DestroySelf();
+    }
 }
 

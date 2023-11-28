@@ -100,7 +100,6 @@ public class ProgressionManager : MonoBehaviour
     {
         for (int i = 0; i < levelList[level].unlockBuildings.Count; i++)
         {
-            print("UIManager.Instance: " + UIManager.Instance);
             if (!UIManager.Instance.currentUnlockedBuildings.Contains(levelList[level].unlockBuildings[i]))
             {
                 UIManager.Instance.currentUnlockedBuildings.Add(levelList[level].unlockBuildings[i]);

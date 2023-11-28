@@ -2,15 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
+using static UnityEngine.Rendering.DebugUI;
 
 public class TerrainManager : MonoBehaviour
 {
+    public static TerrainManager Instance { get; private set; }
     public Terrain terrain; // Assign this in the inspector or via code
+    public int detailIndex = 0;
+    [SerializeField] private float averageDensity;
+    [SerializeField] private float calculationIntervalSeconds;
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         terrain = FindAnyObjectByType<Terrain>();
         SetSplatMap(terrain, 0);
         SetGrass(terrain, 0, 0);
+        StartCoroutine(RepeatedCalculationCoroutine());
     }
     void SetSplatMap(Terrain terrain, float value)
     {
@@ -45,4 +55,47 @@ public class TerrainManager : MonoBehaviour
         // Apply the updated detail layer to the terrain
         terrainData.SetDetailLayer(0, 0, grassIndex, detailLayer);
     }
+    private IEnumerator RepeatedCalculationCoroutine()
+    {
+        while (true) // Infinite loop to keep repeating
+        {
+            yield return StartCoroutine(CalculateTerraformPercentage());
+
+            // Wait for specified interval before repeating
+            yield return new WaitForSeconds(calculationIntervalSeconds);
+        }
+    }
+    private IEnumerator CalculateTerraformPercentage()
+    {
+        TerrainData terrainData = terrain.terrainData;
+        float[,,] splatmapData = terrainData.GetAlphamaps(0, 0, terrainData.alphamapWidth, terrainData.alphamapHeight);
+
+        int totalDensity = 0;
+        int totalCount = terrainData.alphamapWidth * terrainData.alphamapWidth;
+
+        // Chunk size - number of cells to process per frame
+        int chunkSize = 10000; // Adjust this number based on performance needs
+
+        for (int y = 0; y < terrainData.alphamapWidth; y++)
+        {
+            for (int x = 0; x < terrainData.alphamapHeight; x++)
+            {
+                totalDensity += Mathf.RoundToInt(splatmapData[x, y, 1]);
+                if ((y * terrainData.alphamapWidth + x) % chunkSize == 0)
+                {
+                    print(totalDensity);
+                    yield return null; // Wait for the next frame
+                }
+            }
+        }
+
+        averageDensity = (float)totalDensity / totalCount;
+        Debug.Log("Average Grass Density: " + averageDensity);
+    }
+
+    public float GetAverageDensity()
+    {
+        return averageDensity;
+    }
+
 }

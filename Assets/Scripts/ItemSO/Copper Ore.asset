@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Copper Ore
   sprite: {fileID: 21300000, guid: f0b6c9126f3c5fe41be07316153dfd10, type: 3}
-  maxStackAmount: 100
+  maxStackAmount: 20
   miningTimer: 1
   color: {r: 0.7830189, g: 0.37659565, b: 0.13665895, a: 1}
