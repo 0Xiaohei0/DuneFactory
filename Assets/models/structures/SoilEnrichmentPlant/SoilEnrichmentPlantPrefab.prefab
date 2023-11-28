@@ -58,7 +58,7 @@ MonoBehaviour:
   transitionProgress: 0
   transitionSpeed: 0.05
   enrichmentPlantPosition: {x: 0, y: 0, z: 0}
-  plantEffectRadius: 40
+  plantEffectRadius: 100
 --- !u!114 &842401105317615826
 MonoBehaviour:
   m_ObjectHideFlags: 0
