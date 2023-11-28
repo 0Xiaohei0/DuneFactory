@@ -6,6 +6,7 @@ using UnityEngine;
 public class StructureAssembler : PlacedObject, IItemStorage
 {
     public event EventHandler OnItemStorageCountChanged;
+    public event EventHandler OnBuildingProduced;
 
     [SerializeField] private PlacedObjectTypeSO itemRecipeSO;
     [SerializeField] private float craftingProgress;
@@ -49,6 +50,7 @@ public class StructureAssembler : PlacedObject, IItemStorage
 
                 // Add Crafted Output Items
                 GlobalStorage.AddBuilding(itemRecipeSO);
+                OnBuildingProduced.Invoke(itemRecipeSO, EventArgs.Empty);
 
                 // Consume Input Items
                 foreach (ItemRecipeSO.RecipeItem recipeItem in itemRecipeSO.inputItemList)

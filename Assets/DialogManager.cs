@@ -159,7 +159,7 @@ public class DialogManager : MonoBehaviour
         if (sender is StructureAssembler)
         {
             StructureAssembler structureAssembler = sender as StructureAssembler;
-            structureAssembler.OnItemStorageCountChanged += StructureAssembler_OnItemStorageCountChanged;
+            structureAssembler.OnBuildingProduced += StructureAssembler_OnBuildingProduced;
             if (!structureAssemblerPlaced)
             {
                 structureAssemblerPlaced = true;
@@ -201,47 +201,78 @@ public class DialogManager : MonoBehaviour
             }
         }
     }
-    private void StructureAssembler_OnItemStorageCountChanged(object sender, System.EventArgs e)
+    private void StructureAssembler_OnBuildingProduced(object sender, System.EventArgs e)
     {
-        StructureAssembler structureAssembler = sender as StructureAssembler;
-        if (!extractorProduced)
+        if (Objectives.Contains("Produce Extractors"))
         {
-            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.miningMachine))
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.miningMachine))
             {
                 extractorProduced = true;
                 RemoveObjective("Produce Extractors");
             }
         }
-        if (!inserterProduced)
+        if (Objectives.Contains("Produce Inserters"))
         {
-            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.grabber))
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.grabber))
             {
                 extractorProduced = true;
                 RemoveObjective("Produce Inserters");
             }
         }
-        if (!furnaceProduced)
+        if (Objectives.Contains("Produce Furnaces"))
         {
-            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.smelter))
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.smelter))
             {
                 extractorProduced = true;
                 RemoveObjective("Produce Furnaces");
             }
         }
-        if (!assemblerProduced)
+        if (Objectives.Contains("Produce Assemblers"))
         {
-            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.assembler))
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.assembler))
             {
                 extractorProduced = true;
                 RemoveObjective("Produce Assemblers");
             }
         }
-        if (!solarPanelProduced)
+        if (Objectives.Contains("Produce Solar Panels"))
         {
-            if (structureAssembler.GetItemRecipeSO() == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
             {
                 extractorProduced = true;
                 RemoveObjective("Produce Solar Panels");
+            }
+        }
+        if (Objectives.Contains("Produce Atmospheric Extractor"))
+        {
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            {
+                extractorProduced = true;
+                RemoveObjective("Produce Atmospheric Extractor");
+            }
+        }
+        if (Objectives.Contains("Produce GeoThermal Generator"))
+        {
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            {
+                extractorProduced = true;
+                RemoveObjective("Produce GeoThermal Generator");
+            }
+        }
+        if (Objectives.Contains("Produce Aquatic Farm"))
+        {
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            {
+                extractorProduced = true;
+                RemoveObjective("Produce Aquatic Farm");
+            }
+        }
+        if (Objectives.Contains("Produce Soil Enrichment Plant"))
+        {
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            {
+                extractorProduced = true;
+                RemoveObjective("Produce Soil Enrichment Plant");
             }
         }
     }

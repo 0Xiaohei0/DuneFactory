@@ -23292,10 +23292,9 @@ MonoBehaviour:
   - Produce Solar Panels
   - Produce Atmospheric Extractor
   - Produce GeoThermal Generator
-  - Produce GeoThermal Generator
   - Produce Aquatic Farm
   - Produce Soil Enrichment Plant
-  - Terraform 10% of the desert
+  - Terraform 50% of the desert
   maxObjectives: 5
   objectivePanel: {fileID: 0}
   extractorPlaced: 0
@@ -30921,7 +30920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1923466371
 Transform:
   m_ObjectHideFlags: 0
