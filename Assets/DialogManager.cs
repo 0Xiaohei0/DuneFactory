@@ -40,7 +40,7 @@ public class DialogManager : MonoBehaviour
     public Vector2Int SolarPanelPosition = new Vector2Int(498, 502);
     public Vector2Int furnacePosition = new Vector2Int(501, 506);
     public Vector2Int inserterPosition = new Vector2Int(500, 506);
-    public Vector2Int structureAssemplerPosition = new Vector2Int(504, 505);
+    public Vector2Int structureAssemplerPosition = new Vector2Int(506, 505);
     public Vector2Int inserterPosition2 = new Vector2Int(498, 506);
 
     public VideoClip speaking;
@@ -135,7 +135,6 @@ public class DialogManager : MonoBehaviour
                 extractorPlaced = true;
                 DisplayDialog(OnPlaceExtractorDialogs);
                 RemoveObjective("Build Extractor");
-                TutorialGhost.Instance.HideAllGhosts();
                 TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, SolarPanelPosition);
             }
         }
@@ -147,7 +146,6 @@ public class DialogManager : MonoBehaviour
                 solarPanelPlaced = true;
                 DisplayDialog(OnPlaceSolarPanelDialogs);
                 RemoveObjective("Build Solar Panels");
-                TutorialGhost.Instance.HideAllGhosts();
                 TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.smelter, furnacePosition);
             }
         }
@@ -160,7 +158,6 @@ public class DialogManager : MonoBehaviour
                 furnacePlaced = true;
                 DisplayDialog(OnPlaceFurnacelDialogs);
                 RemoveObjective("Build Furnace");
-                TutorialGhost.Instance.HideAllGhosts();
                 TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition, PlacedObjectTypeSO.Dir.Right);
             }
         }
@@ -171,10 +168,7 @@ public class DialogManager : MonoBehaviour
             if (!structureAssemblerPlaced)
             {
                 structureAssemblerPlaced = true;
-                DisplayDialog(OnProduceExtractorDialogs);
                 RemoveObjective("Build Structure Assembler");
-                TutorialGhost.Instance.HideAllGhosts();
-                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition2, PlacedObjectTypeSO.Dir.Right);
             }
         }
         if (sender is Grabber)
@@ -185,12 +179,10 @@ public class DialogManager : MonoBehaviour
             {
                 inserterPlaced = true;
                 DisplayDialog(OnPlaceInserterDialogs);
-                TutorialGhost.Instance.HideAllGhosts();
             }
             if (!inserter2Placed && grabber.origin == inserterPosition2 && grabber.GetDir() == PlacedObjectTypeSO.Dir.Right)
             {
                 inserter2Placed = true;
-                TutorialGhost.Instance.HideAllGhosts();
             }
         }
     }
@@ -206,7 +198,8 @@ public class DialogManager : MonoBehaviour
                 DisplayDialog(OnProduceIronBarsDialogs);
                 print("First ironbar produced");
                 RemoveObjective("Produce Iron Bars");
-                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, structureAssemplerPosition);
+                //TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, structureAssemplerPosition);
+                TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.ExtractorProductionList);
             }
         }
     }
@@ -216,6 +209,7 @@ public class DialogManager : MonoBehaviour
         {
             if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.miningMachine))
             {
+                DisplayDialog(OnProduceExtractorDialogs);
                 RemoveObjective("Produce Extractors");
             }
         }
