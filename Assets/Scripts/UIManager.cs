@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject LoadGameButtonContainer;
     public GameObject SaveBG;
     public GameObject LoadBG;
+    public GameObject ExitBuildingModeButton;
     public List<PlacedObjectTypeSO> currentUnlockedBuildings;
     public TMP_Text TerraformPercentageText;
 
@@ -40,6 +41,7 @@ public class UIManager : MonoBehaviour
         buildingsParent.SetActive(false);
         SaveBG.SetActive(false);
         LoadBG.SetActive(false);
+        ExitBuildingModeButton.SetActive(false);
         GlobalStorage.OnBuildingAmountChanged += UpdateBuildingAmount;
         StartCoroutine(RunEveryTick());
     }
@@ -102,15 +104,11 @@ public class UIManager : MonoBehaviour
         if (activeCategory == category)
         {
             // Toggle the visibility of the buildings panel
-            buildingsParent.SetActive(!buildingsParent.activeSelf);
-            if (!buildingsParent.activeSelf)
-            {
-                GridBuildingSystem.Instance.SetPlacedObjectTypeSO(null);
-            }
+            SetBuildingMode(!buildingsParent.activeSelf);
         }
         else
         {
-            buildingsParent.SetActive(true); // Make sure the panel is open
+            SetBuildingMode(true);
             activeCategory = category; // Set the new active category
             PopulateBuildings(category); // Populate with new category's buildings
         }
@@ -207,6 +205,15 @@ public class UIManager : MonoBehaviour
             saveSlot.Find("SlotName").GetComponent<TMP_Text>().text = "Slot " + currentIdx;
             saveSlot.Find("SaveTime").GetComponent<TMP_Text>().text = saveStatus.saveTime;
             idx++;
+        }
+    }
+    public void SetBuildingMode(bool isActive)
+    {
+        buildingsParent.SetActive(isActive);
+        ExitBuildingModeButton.SetActive(isActive);
+        if (!buildingsParent.activeSelf)
+        {
+            GridBuildingSystem.Instance.SetPlacedObjectTypeSO(null);
         }
     }
 }
