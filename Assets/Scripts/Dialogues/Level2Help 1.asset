@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
-  m_Name: Beginning2
+  m_Name: Level2Help 1
   m_EditorClassIdentifier: 
-  sentence: 'First, place an extractor at the marked spot.
-
-'
-  audioClip: {fileID: 8300000, guid: 47cf675a4fc06e043858efc6440c11ee, type: 3}
+  sentence: 'Unlocked: Aquatic Farm and Soil Enrichment Plant. Use the Soil Enrichment
+    Plant to boost terraforming and grow grass. The Aquatic Farm supplies essential
+    organic material for it.'
+  audioClip: {fileID: 8300000, guid: 43f89d2f1f4419441b6c36a09571d59d, type: 3}

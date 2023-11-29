@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Beginning
   m_EditorClassIdentifier: 
   sentence: 'Hello, I''m Luna, your AI assistant from the Sora Collective for Advanced
-    and Low-carbon Energy. Welcome to our terraforming project site in the desert.
-    I''m here to guide you through our initial operations.
+    and Low-carbon Energy. Welcome to the desert terraforming project. Let''s start
+    our work here.
 
 '
-  audioClip: {fileID: 8300000, guid: 89d0b35174f1bb04ba458ee0355cea87, type: 3}
+  audioClip: {fileID: 8300000, guid: e828aff063607e0469ac8b5b9d003193, type: 3}

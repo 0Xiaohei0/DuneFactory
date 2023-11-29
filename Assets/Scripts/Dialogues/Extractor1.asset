@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
   m_Name: Extractor1
   m_EditorClassIdentifier: 
-  sentence: "Great. Now, let's instruct the Extractor to mine iron ore. Simply select
-    it and assign the task. However, you might notice it's inactive. It requires
-    power to operate.\r"
-  audioClip: {fileID: 8300000, guid: 30d2b2e38c2bbd04aa5bd7b79768b9ef, type: 3}
+  sentence: "Good. Now, set it to extract iron ore. \r"
+  audioClip: {fileID: 8300000, guid: a7de1ce170696d94a89e9d661e377b8c, type: 3}

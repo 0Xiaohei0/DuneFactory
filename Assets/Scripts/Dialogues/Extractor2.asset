@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
   m_Name: Extractor2
   m_EditorClassIdentifier: 
-  sentence: 'Solar Panels will provide the necessary energy. Their design allows
-    for energy transfer through underground cables, offering a clean and unobtrusive
-    power solution. Please place a Solar Panel at a location of your choosing.
-
-'
-  audioClip: {fileID: 8300000, guid: 198186496772abb419bc2f123410f010, type: 3}
+  sentence: Install a Solar Panel to power it up.
+  audioClip: {fileID: 8300000, guid: 2fbc1523d18d6944dbaa02561e738142, type: 3}

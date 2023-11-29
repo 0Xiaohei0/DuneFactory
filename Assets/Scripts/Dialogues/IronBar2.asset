@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
   m_Name: IronBar2
   m_EditorClassIdentifier: 
-  sentence: Your journey here is crucial to our project's success. Please continue
-    to expand and explore. The desert holds great potential for transformation. I'm
-    here to assist with analysis and advice whenever you need it. Good luck.
-  audioClip: {fileID: 8300000, guid: 269f01f2dbd00544a9bc0e07e498bbde, type: 3}
+  sentence: Direct them to a structure assembler with conveyor belts and produce
+    more extractors.
+  audioClip: {fileID: 8300000, guid: a849de42040379742abfe85570fbef94, type: 3}

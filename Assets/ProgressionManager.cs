@@ -1,4 +1,5 @@
 using CodeMonkey.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,7 @@ using static Cinemachine.DocumentationSortingAttribute;
 public class ProgressionManager : MonoBehaviour
 {
     public static ProgressionManager Instance { get; private set; }
+    public event EventHandler OnLevelUp;
     public List<Level> levelList = new List<Level>();
     private Dictionary<PlacedObjectTypeSO, Transform> buildingButtonDic;
     public int currentLevel = 0;
@@ -57,6 +59,7 @@ public class ProgressionManager : MonoBehaviour
             levelText.text = "Lv MAX";
         }
         currentLevel++;
+        OnLevelUp?.Invoke(this, EventArgs.Empty);
         SetupUnlocks(unlocksContainer);
     }
     private void SetupUnlocks(Transform unlocksContainer)

@@ -13,7 +13,13 @@ public class DialogManager : MonoBehaviour
     public List<DialogueSO> beginningDialogs;
     public List<DialogueSO> OnPlaceExtractorDialogs;
     public List<DialogueSO> OnPlaceSolarPanelDialogs;
+    public List<DialogueSO> OnPlaceFurnacelDialogs;
+    public List<DialogueSO> OnPlaceInserterDialogs;
     public List<DialogueSO> OnProduceIronBarsDialogs;
+    public List<DialogueSO> OnProduceExtractorDialogs;
+    public List<DialogueSO> OnLevel1Dialogs;
+    public List<DialogueSO> OnLevel2Dialogs;
+    public List<DialogueSO> OnFinishGameDialogs;
     public List<string> Objectives;
     public int maxObjectives = 5;
     public GameObject objectivePanel;
@@ -49,6 +55,7 @@ public class DialogManager : MonoBehaviour
         sentences = new Queue<DialogueSO>();
         GridBuildingSystem.Instance.OnObjectPlaced += OnbuildingPlaced;
         TerrainManager.Instance.OnTerraformPercentageCalculated += OnTerraformPercentageCalculated;
+        ProgressionManager.Instance.OnLevelUp += OnLevelup;
         DisplayDialog(beginningDialogs);
         UpdateObjectiveList();
         TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, extractorPosition);
@@ -151,7 +158,7 @@ public class DialogManager : MonoBehaviour
             if (!furnacePlaced && smelter.origin == furnacePosition)
             {
                 furnacePlaced = true;
-                //DisplayDialog(OnPlaceSolarPanelDialogs);
+                DisplayDialog(OnPlaceFurnacelDialogs);
                 RemoveObjective("Build Furnace");
                 TutorialGhost.Instance.HideAllGhosts();
                 TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition, PlacedObjectTypeSO.Dir.Right);
@@ -164,7 +171,7 @@ public class DialogManager : MonoBehaviour
             if (!structureAssemblerPlaced)
             {
                 structureAssemblerPlaced = true;
-                //DisplayDialog(OnPlaceSolarPanelDialogs);
+                DisplayDialog(OnProduceExtractorDialogs);
                 RemoveObjective("Build Structure Assembler");
                 TutorialGhost.Instance.HideAllGhosts();
                 TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition2, PlacedObjectTypeSO.Dir.Right);
@@ -177,6 +184,7 @@ public class DialogManager : MonoBehaviour
             if (!inserterPlaced && grabber.origin == inserterPosition && grabber.GetDir() == PlacedObjectTypeSO.Dir.Right)
             {
                 inserterPlaced = true;
+                DisplayDialog(OnPlaceInserterDialogs);
                 TutorialGhost.Instance.HideAllGhosts();
             }
             if (!inserter2Placed && grabber.origin == inserterPosition2 && grabber.GetDir() == PlacedObjectTypeSO.Dir.Right)
@@ -208,7 +216,6 @@ public class DialogManager : MonoBehaviour
         {
             if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.miningMachine))
             {
-                extractorProduced = true;
                 RemoveObjective("Produce Extractors");
             }
         }
@@ -216,7 +223,6 @@ public class DialogManager : MonoBehaviour
         {
             if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.grabber))
             {
-                extractorProduced = true;
                 RemoveObjective("Produce Inserters");
             }
         }
@@ -224,7 +230,6 @@ public class DialogManager : MonoBehaviour
         {
             if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.smelter))
             {
-                extractorProduced = true;
                 RemoveObjective("Produce Furnaces");
             }
         }
@@ -232,7 +237,6 @@ public class DialogManager : MonoBehaviour
         {
             if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.assembler))
             {
-                extractorProduced = true;
                 RemoveObjective("Produce Assemblers");
             }
         }
@@ -240,39 +244,34 @@ public class DialogManager : MonoBehaviour
         {
             if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
             {
-                extractorProduced = true;
                 RemoveObjective("Produce Solar Panels");
             }
         }
         if (Objectives.Contains("Produce Atmospheric Extractor"))
         {
-            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor))
             {
-                extractorProduced = true;
                 RemoveObjective("Produce Atmospheric Extractor");
             }
         }
         if (Objectives.Contains("Produce GeoThermal Generator"))
         {
-            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.GeoThermalGenerator))
             {
-                extractorProduced = true;
                 RemoveObjective("Produce GeoThermal Generator");
             }
         }
         if (Objectives.Contains("Produce Aquatic Farm"))
         {
-            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.AquaticFarm))
             {
-                extractorProduced = true;
                 RemoveObjective("Produce Aquatic Farm");
             }
         }
         if (Objectives.Contains("Produce Soil Enrichment Plant"))
         {
-            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.solarPanel))
+            if ((object)sender == (GameAssets.i.placedObjectTypeSO_Refs.SoilEnrichmentPlant))
             {
-                extractorProduced = true;
                 RemoveObjective("Produce Soil Enrichment Plant");
             }
         }
@@ -280,12 +279,24 @@ public class DialogManager : MonoBehaviour
     void OnTerraformPercentageCalculated(object sender, EventArgs e)
     {
         TerrainManager terrainManager = sender as TerrainManager;
-        if (terrainManager.GetAverageDensity() >= 0.1)
+        if (Objectives.Contains("Terraform 10% of the desert") && terrainManager.GetAverageDensity() >= 0.1)
         {
             RemoveObjective("Terraform 10% of the desert");
+            DisplayDialog(OnFinishGameDialogs);
         }
     }
-
+    void OnLevelup(object sender, EventArgs e)
+    {
+        ProgressionManager progressManager = sender as ProgressionManager;
+        if (progressManager.currentLevel == 1)
+        {
+            DisplayDialog(OnLevel1Dialogs);
+        }
+        else if (progressManager.currentLevel == 2)
+        {
+            DisplayDialog(OnLevel2Dialogs);
+        }
+    }
     void RemoveObjective(string objectiveName)
     {
         Objectives.Remove(objectiveName);

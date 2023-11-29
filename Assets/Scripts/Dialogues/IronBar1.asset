@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
   m_Name: IronBar1
   m_EditorClassIdentifier: 
-  sentence: Excellent. The production of iron bars marks the beginning of our automation
-    phase. We'll need to supply the structure assembler with iron bars along with
-    circuit boards to further our construction capabilities.
-  audioClip: {fileID: 8300000, guid: 92495f2b7c782fb40b0e12273009adf7, type: 3}
+  sentence: Excellent. We can use  the iron bars to produce the basic structures.
+  audioClip: {fileID: 8300000, guid: beffb724b04ca7d46864d112d4d26778, type: 3}

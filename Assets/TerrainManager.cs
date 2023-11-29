@@ -86,15 +86,12 @@ public class TerrainManager : MonoBehaviour
                 totalDensity += Mathf.RoundToInt(splatmapData[x, y, 1]);
                 if ((y * terrainData.alphamapWidth + x) % chunkSize == 0)
                 {
-                    print(totalDensity);
                     yield return null; // Wait for the next frame
                 }
             }
         }
-
         averageDensity = (float)totalDensity / totalCount;
         OnTerraformPercentageCalculated?.Invoke(this, EventArgs.Empty);
-        Debug.Log("Average Grass Density: " + averageDensity);
     }
 
     public float GetAverageDensity()

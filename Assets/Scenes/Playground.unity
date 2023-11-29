@@ -18315,7 +18315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1167916869
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23269,16 +23269,28 @@ MonoBehaviour:
   beginningDialogs:
   - {fileID: 11400000, guid: 2a1be5495c494d34abd4f244a0399b93, type: 2}
   - {fileID: 11400000, guid: 57639e36fdc48f4488c8dfff2a0da0a7, type: 2}
-  - {fileID: 11400000, guid: 2e48fcd8d09309e4eb9808d4a1f3f637, type: 2}
   OnPlaceExtractorDialogs:
   - {fileID: 11400000, guid: d81bb9ffea0dd894b8d2dcaf1fe9f874, type: 2}
   - {fileID: 11400000, guid: c3b4f678a887ee144b8649ce58f0417d, type: 2}
   OnPlaceSolarPanelDialogs:
   - {fileID: 11400000, guid: 5eb9487a959542b429755f56eca7da01, type: 2}
-  - {fileID: 11400000, guid: c1982cf2f4f408c408df9a0b355ee528, type: 2}
+  OnPlaceFurnacelDialogs:
+  - {fileID: 11400000, guid: 9a82de8d3a0421f459797bf98e4045d8, type: 2}
+  - {fileID: 11400000, guid: f6da3e2ec8c27ed48940726f61427694, type: 2}
+  OnPlaceInserterDialogs:
+  - {fileID: 11400000, guid: 900e6778550e4d44da427b4712af4003, type: 2}
   OnProduceIronBarsDialogs:
   - {fileID: 11400000, guid: 990e55e58b5056c428e6c45457d515c6, type: 2}
   - {fileID: 11400000, guid: cd899e6d4e60e304b971e685839b1758, type: 2}
+  OnProduceExtractorDialogs:
+  - {fileID: 11400000, guid: a734f91823889b64da3ddf4c24c98f46, type: 2}
+  - {fileID: 11400000, guid: df4e8b49efbadee49b9b472117529789, type: 2}
+  OnLevel1Dialogs:
+  - {fileID: 11400000, guid: e200ae69aa0e8ea4084a2dac1acd53e0, type: 2}
+  OnLevel2Dialogs:
+  - {fileID: 11400000, guid: d7db2d4aae48f1e43ab8f6be9d08bcd2, type: 2}
+  OnFinishGameDialogs:
+  - {fileID: 11400000, guid: ca1a8e45f8473c449bd3b2e373fe3d3e, type: 2}
   Objectives:
   - Build Extractor
   - Build Solar Panels
@@ -31662,7 +31674,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a1be5495c494d34abd4f244a0399b93, type: 2}
   OnPlaceExtractorDialogs: []
   OnPlaceSolarPanelDialogs: []
+  OnPlaceFurnacelDialogs: []
+  OnPlaceInserterDialogs: []
   OnProduceIronBarsDialogs: []
+  OnProduceExtractorDialogs: []
+  OnLevel1Dialogs: []
+  OnLevel2Dialogs: []
+  OnFinishGameDialogs: []
   Objectives: []
   maxObjectives: 5
   objectivePanel: {fileID: 0}

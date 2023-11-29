@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
-  m_Name: Beginning2
+  m_Name: Level1Help
   m_EditorClassIdentifier: 
-  sentence: 'First, place an extractor at the marked spot.
-
-'
-  audioClip: {fileID: 8300000, guid: 47cf675a4fc06e043858efc6440c11ee, type: 3}
+  sentence: 'Unlocked: Atmospheric Extractor and Geothermal Generator. The Geothermal
+    Generator offers more power than solar panels and needs water from Atmospheric
+    Extractors.'
+  audioClip: {fileID: 8300000, guid: 407dce2df4a59be4e8dc6b040433fe4c, type: 3}

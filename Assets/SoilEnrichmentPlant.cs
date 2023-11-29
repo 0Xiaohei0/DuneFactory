@@ -46,7 +46,6 @@ public class SoilEnrichmentPlant : GeothermalGenerator
     {
         TerrainData terrainData = terrain.terrainData;
         Vector3 terrainPos = terrain.transform.position;
-        print("updating splat");
         int centerX = (int)(((centerPoint.x - terrainPos.x) / terrainData.size.x) * terrainData.alphamapWidth);
         int centerY = (int)(((centerPoint.z - terrainPos.z) / terrainData.size.z) * terrainData.alphamapHeight);
         int radiusInDetailMap = (int)(radius / terrainData.size.x * terrainData.alphamapWidth);
@@ -70,44 +69,11 @@ public class SoilEnrichmentPlant : GeothermalGenerator
         }
         terrainData.SetAlphamaps(0, 0, splatmapData);
     }
-    void SetSplatMap(Terrain terrain, float value)
-    {
-        TerrainData terrainData = terrain.terrainData;
-        float[,,] splatmapData = terrainData.GetAlphamaps(0, 0, terrainData.alphamapWidth, terrainData.alphamapHeight);
-        print("updating splat");
-        for (int y = 0; y < terrainData.alphamapWidth; y++)
-        {
-            for (int x = 0; x < terrainData.alphamapHeight; x++)
-            {
-                splatmapData[x, y, 0] = 1; // Sand
-                splatmapData[x, y, 1] = value; // Green
-            }
-        }
-        terrainData.SetAlphamaps(0, 0, splatmapData);
-    }
-    void SetGrass(Terrain terrain, int grassIndex, int density)
-    {
-        TerrainData terrainData = terrain.terrainData;
-        Vector3 terrainPos = terrain.transform.position;
 
-        int[,] detailLayer = terrainData.GetDetailLayer(0, 0, terrainData.detailWidth, terrainData.detailHeight, grassIndex);
-        for (int y = 0; y <= terrainData.detailHeight; y++)
-        {
-            for (int x = 0; x <= terrainData.detailWidth; x++)
-            {
-                if (x < 0 || x >= terrainData.detailWidth || y < 0 || y >= terrainData.detailHeight)
-                    continue;
-                detailLayer[y, x] = density;
-            }
-        }
-        // Apply the updated detail layer to the terrain
-        terrainData.SetDetailLayer(0, 0, grassIndex, detailLayer);
-    }
     void UpdateGrassDensity(Terrain terrain, Vector3 centerPoint, float radius, int grassIndex, int grassDensity)
     {
         TerrainData terrainData = terrain.terrainData;
         Vector3 terrainPos = terrain.transform.position;
-        print("updating grass");
         // Convert centerWorldPos to terrain local coordinates
         int centerX = (int)(((centerPoint.x - terrainPos.x) / terrainData.size.x) * terrainData.detailWidth);
         int centerY = (int)(((centerPoint.z - terrainPos.z) / terrainData.size.z) * terrainData.detailHeight);

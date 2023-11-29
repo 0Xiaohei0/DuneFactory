@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
   m_Name: SolarPlaced1
   m_EditorClassIdentifier: 
-  sentence: With materials being extracted, the next step is processing. Inserters
-    and conveyor belts will transport the ore from the Extractor to the furnace,
-    enabling us to produce iron bars.
-  audioClip: {fileID: 8300000, guid: 2e73651c5ab23e3448e653c79c5e2ed6, type: 3}
+  sentence: Next, set up a furnace to process the iron ores.
+  audioClip: {fileID: 8300000, guid: da6ee6f879fecc742b036e8ce3ff64cd, type: 3}

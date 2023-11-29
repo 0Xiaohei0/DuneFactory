@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
-  m_Name: Beginning2
+  m_Name: ProduceExtractor1
   m_EditorClassIdentifier: 
-  sentence: 'First, place an extractor at the marked spot.
-
-'
-  audioClip: {fileID: 8300000, guid: 47cf675a4fc06e043858efc6440c11ee, type: 3}
+  sentence: 'Your next goal is to automate the rest of the basic structures and generate
+    sufficient power to reach the next research level. '
+  audioClip: {fileID: 8300000, guid: be17ad63364b5b64f9b33280cebc6c8c, type: 3}

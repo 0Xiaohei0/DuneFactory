@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
-  m_Name: SolarPlaced2
+  m_Name: FinishGame1
   m_EditorClassIdentifier: 
-  sentence: Try placing a furnace and use inserters to send in iron ores.
-  audioClip: {fileID: 8300000, guid: 3412bd41223eb2449992dbd548be30f9, type: 3}
+  sentence: "Congradulations, your vision has transformed this desert into usable
+    land! Thank you for playing our demo. The journey to restore the entire desert
+    awaits in the full game \u2013 I hope to see you there!"
+  audioClip: {fileID: 8300000, guid: f4a487f3726b58d428b48abb4a6b49a8, type: 3}

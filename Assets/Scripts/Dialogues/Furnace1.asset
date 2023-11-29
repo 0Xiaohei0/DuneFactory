@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 911c4fc3b1065f7438127682ec2e2dec, type: 3}
-  m_Name: Beginning2
+  m_Name: Furnace1
   m_EditorClassIdentifier: 
-  sentence: 'First, place an extractor at the marked spot.
-
-'
-  audioClip: {fileID: 8300000, guid: 47cf675a4fc06e043858efc6440c11ee, type: 3}
+  sentence: Add an inserter facing the furnace.
+  audioClip: {fileID: 8300000, guid: a9b542f7cc14a434d872b5576b2369e4, type: 3}
