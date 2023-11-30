@@ -218,6 +218,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0}
   dir: 0
   powerSaticfactionMultiplier: 0
+  IndicatorLight: {fileID: 0}
   grabPosition: {x: 0, y: 0}
   dropPosition: {x: 0, y: 0}
   grabWorldPosition: {x: 0, y: 0, z: 0}
@@ -244,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyRate: 1
+  isOn: 1
   insufficientPowerIcon: {fileID: 0}
 --- !u!1001 &2830982507764116011
 PrefabInstance:

@@ -58,7 +58,10 @@ public class DialogManager : MonoBehaviour
         ProgressionManager.Instance.OnLevelUp += OnLevelup;
         DisplayDialog(beginningDialogs);
         UpdateObjectiveList();
-        TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.miningMachine, extractorPosition);
+        TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.ExtractorBuilding);
+        TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.SolarPanelBuilding);
+        TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.FurnaceBuilding);
+        TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.FurnaceInserter);
     }
     private void Update()
     {
@@ -135,7 +138,6 @@ public class DialogManager : MonoBehaviour
                 extractorPlaced = true;
                 DisplayDialog(OnPlaceExtractorDialogs);
                 RemoveObjective("Build Extractor");
-                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, SolarPanelPosition);
             }
         }
         if (!solarPanelPlaced && sender is SolarPanel)
@@ -146,7 +148,6 @@ public class DialogManager : MonoBehaviour
                 solarPanelPlaced = true;
                 DisplayDialog(OnPlaceSolarPanelDialogs);
                 RemoveObjective("Build Solar Panels");
-                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.smelter, furnacePosition);
             }
         }
         if (sender is Smelter)
@@ -158,7 +159,6 @@ public class DialogManager : MonoBehaviour
                 furnacePlaced = true;
                 DisplayDialog(OnPlaceFurnacelDialogs);
                 RemoveObjective("Build Furnace");
-                TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.grabber, inserterPosition, PlacedObjectTypeSO.Dir.Right);
             }
         }
         if (sender is StructureAssembler)
@@ -198,7 +198,6 @@ public class DialogManager : MonoBehaviour
                 DisplayDialog(OnProduceIronBarsDialogs);
                 print("First ironbar produced");
                 RemoveObjective("Produce Iron Bars");
-                //TutorialGhost.Instance.ShowGhost(GameAssets.i.placedObjectTypeSO_Refs.structureAssembler, structureAssemplerPosition);
                 TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.ExtractorProductionList);
             }
         }
@@ -211,6 +210,12 @@ public class DialogManager : MonoBehaviour
             {
                 DisplayDialog(OnProduceExtractorDialogs);
                 RemoveObjective("Produce Extractors");
+                TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.BasicBuildingList);
+                TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.IronBarUpgrade);
+                TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.CircuitBoardProduction);
+                TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.MegneticRingProduction);
+                TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.GeothermalGenerator);
+                TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.TerraformingBuilding);
             }
         }
         if (Objectives.Contains("Produce Inserters"))

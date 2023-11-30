@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Inserter
   prefab: {fileID: 6011844984154668394, guid: 0cb1a9634da69fe41b96643d5090d35c, type: 3}
-  visual: {fileID: 6011844984154668394, guid: a0d0e0f99b4b4cb45af4b87eb2651cb8, type: 3}
+  visual: {fileID: 6011844984154668394, guid: 7dc594bc06bfc0341833cb0bebe9c9b0, type: 3}
   width: 1
   height: 1
   icon: {fileID: 21300000, guid: 0ece2d07654c6104bb0f343064877de6, type: 3}

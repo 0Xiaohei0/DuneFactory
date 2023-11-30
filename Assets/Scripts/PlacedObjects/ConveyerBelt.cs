@@ -23,6 +23,7 @@ public class ConveyerBelt : PlacedObject, IWorldItemSlot
 
     public bool IsEmpty()
     {
+        if (belt == null) return false;
         return belt.beltItem == null;
     }
 

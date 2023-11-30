@@ -7,6 +7,7 @@ using System;
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance { get; private set; }
+    public EventHandler OnGameLoaded;
     public bool processInput = true;
     public GridBuildingSystem gridBuildingSystem;
     private StarterAssetsInputs _input;
@@ -183,6 +184,7 @@ public class SaveManager : MonoBehaviour
             }
         }
         gridBuildingSystem.placedObjectTypeSO = null;
+        OnGameLoaded?.Invoke(this, EventArgs.Empty);
     }
 
     private void ClearPlacableObjects()

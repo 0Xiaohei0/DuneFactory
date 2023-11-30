@@ -52,7 +52,10 @@ public class Grabber : PlacedObject
         return textString;
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(GridBuildingSystem.Instance.GetWorldPosition(origin), 0.1f);
+    }
     private void Update()
     {
         Debug.DrawLine(transform.position, GridBuildingSystem.Instance.GetWorldPositionCentre(grabPosition) + new Vector3(0, padding, 0));

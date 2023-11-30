@@ -50,7 +50,7 @@ public class StructureAssembler : PlacedObject, IItemStorage
 
                 // Add Crafted Output Items
                 GlobalStorage.AddBuilding(itemRecipeSO);
-                OnBuildingProduced.Invoke(itemRecipeSO, EventArgs.Empty);
+                OnBuildingProduced?.Invoke(itemRecipeSO, EventArgs.Empty);
 
                 // Consume Input Items
                 foreach (ItemRecipeSO.RecipeItem recipeItem in itemRecipeSO.inputItemList)
