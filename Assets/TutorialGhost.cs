@@ -38,9 +38,8 @@ public class TutorialGhost : MonoBehaviour
             this.visual = visual;
         }
     }
-    private void Awake()
+    public void Initialize()
     {
-        Instance = this;
         GridBuildingSystem.Instance.OnObjectPlaced += OnBuildingPlaced;
         //SaveManager.Instance.OnGameLoaded += UpdateGhostImage;
         if (BuildingDataQueue == null)
@@ -54,7 +53,26 @@ public class TutorialGhost : MonoBehaviour
         };
         SolarPanelBuilding = new List<BuildingData>()
         {
-            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 498, 502, PlacedObjectTypeSO.Dir.Down)
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 498, 502, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 500, 502, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 502, 502, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 504, 502, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 506, 502, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 508, 502, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 510, 502, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 512, 502, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 514, 502, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 514, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 512, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 510, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 508, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 506, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 504, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 502, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 500, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 498, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 496, 500, PlacedObjectTypeSO.Dir.Down),
+            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.solarPanel, 496, 502, PlacedObjectTypeSO.Dir.Down),
         };
         FurnaceBuilding = new List<BuildingData>()
         {   new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.smelter, 501, 506, PlacedObjectTypeSO.Dir.Down)
@@ -219,12 +237,15 @@ public class TutorialGhost : MonoBehaviour
             new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.grabber, 498, 529, PlacedObjectTypeSO.Dir.Right),
             new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.grabber, 498, 532, PlacedObjectTypeSO.Dir.Right),
             new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.AquaticFarm, 508, 530, PlacedObjectTypeSO.Dir.Right),
-            new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.SoilEnrichmentPlant, 509, 539, PlacedObjectTypeSO.Dir.Right),
             new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.SoilEnrichmentPlant, 508, 539, PlacedObjectTypeSO.Dir.Right),
             new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.AtmosphericExtractor, 517, 530, PlacedObjectTypeSO.Dir.Right),
             new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.grabber, 516, 530, PlacedObjectTypeSO.Dir.Left),
             new BuildingData(GameAssets.i.placedObjectTypeSO_Refs.grabber, 508, 538, PlacedObjectTypeSO.Dir.Up),
         };
+    }
+    private void Awake()
+    {
+        Instance = this;
     }
     public Transform ShowGhost(PlacedObjectTypeSO placedObjectTypeSO, Vector2Int gridPosition, PlacedObjectTypeSO.Dir dir = PlacedObjectTypeSO.Dir.Down)
     {

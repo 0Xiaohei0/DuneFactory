@@ -217,8 +217,8 @@ public class GridBuildingSystem : MonoBehaviour
         {
             Vector2Int rotationOffset = placedObjectTypeSO.GetRotationOffset(dir);
             Vector3 placedObjectWorldPosition = grid.GetWorldPosition(x, z) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * grid.GetCellSize();
-            //debugBuildingData += "new BuildingData(GameAssets.i.placedObjectTypeSO_Refs." + placedObjectTypeSO.nameString + ", " + x + ", " + z + ", PlacedObjectTypeSO.Dir." + dir + "),\n";
-            //print(debugBuildingData);
+            debugBuildingData += "new BuildingData(GameAssets.i.placedObjectTypeSO_Refs." + placedObjectTypeSO.nameString + ", " + x + ", " + z + ", PlacedObjectTypeSO.Dir." + dir + "),\n";
+            print(debugBuildingData);
             placedObject = PlacedObject.Create(placedObjectWorldPosition, new Vector2Int(x, z), dir, placedObjectTypeSO);
 
             foreach (Vector2Int gridPosition in gridPositionList)

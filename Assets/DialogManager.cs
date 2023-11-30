@@ -58,6 +58,7 @@ public class DialogManager : MonoBehaviour
         ProgressionManager.Instance.OnLevelUp += OnLevelup;
         DisplayDialog(beginningDialogs);
         UpdateObjectiveList();
+        TutorialGhost.Instance.Initialize();
         TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.ExtractorBuilding);
         TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.SolarPanelBuilding);
         TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.FurnaceBuilding);
@@ -214,7 +215,7 @@ public class DialogManager : MonoBehaviour
                 TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.IronBarUpgrade);
                 TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.CircuitBoardProduction);
                 TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.MegneticRingProduction);
-                TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.GeothermalGenerator);
+                //TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.GeothermalGenerator);
                 TutorialGhost.Instance.QueueGhostList(TutorialGhost.Instance.TerraformingBuilding);
             }
         }
