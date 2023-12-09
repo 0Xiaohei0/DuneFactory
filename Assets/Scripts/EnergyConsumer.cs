@@ -6,12 +6,14 @@ public class EnergyConsumer : EnergyBuilding
     public GameObject insufficientPowerIcon; // Assign this in the Inspector
 
     private bool hasSufficientPower = true;
+    private Transform structureSound;
 
     private float tickTimer = 0f;
     void Awake()
     {
         energyRate = Mathf.Abs(energyRate);
         insufficientPowerIcon = transform.FindDescendant("NoPower").gameObject;
+        structureSound = transform.Find("StructureSound");
     }
     void Update()
     {
@@ -23,6 +25,10 @@ public class EnergyConsumer : EnergyBuilding
                 energyManager.AddConsumption(energyRate);
             }
             tickTimer = 0f;
+        }
+        if (structureSound != null)
+        {
+            structureSound.gameObject.SetActive(isOn);
         }
         UpdateIconVisibility();
     }
